@@ -91,7 +91,7 @@
 
             <div>
                <p class="login__signup">
-                  You do not have an account? <a href="#">Sign up</a>
+                  You do not have an account? <a href="signup.php">Sign up</a>
                </p>
    
                <a href="#" class="login__forgot">
@@ -110,6 +110,7 @@
          <!-- <img src="assets/img/bg-image.png" alt="image" class="main__bg"> -->
       </main>
       
+      <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur expedita dolorum temporibus voluptates obcaecati quos eius deserunt asperiores pariatur, dolor animi adipisci veritatis quasi at libero mollitia laboriosam, molestias consequatur.</p>
       <!--=============== MAIN JS ===============-->
       <script src="assets/js/main.js"></script>
    </body>

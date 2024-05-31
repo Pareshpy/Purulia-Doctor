@@ -1,0 +1,158 @@
+/*=============== GOOGLE FONTS ===============*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+/*=============== VARIABLES CSS ===============*/
+:root {
+    --header-height: 3.5rem;
+
+    /*========== Colors ==========*/
+    /*Color mode HSL(hue, saturation, lightness)*/
+    --first-color: hsl(230, 75%, 56%);
+    --title-color: hsl(230, 75%, 15%);
+    --text-color: hsl(230, 12%, 40%);
+    --body-color: hsl(230, 100%, 98%);
+    --container-color: hsl(230, 100%, 97%);
+    --border-color: hsl(230, 25%, 80%);
+
+    /*========== Font and typography ==========*/
+    /*.5rem = 8px | 1rem = 16px ...*/
+    --body-font: "poppins", sans-serif;
+    --h2-font-size: 1.25rem;
+    --normal-font-size: .938rem;
+
+    /*========== Font weight ==========*/
+    --font-regular: 400;
+    --font-medium: 500;
+    --font-semi-bold: 600;
+
+    /*========== z index ==========*/
+    --z-fixed: 100;
+    --z-modal: 1000;
+}
+
+/*========== Responsive typography ==========*/
+@media screen and (min-width: 1023px) {
+    :root {
+        --h2-font-size: 1.5rem;
+        --normal-font-size: 1rem;
+    }
+}
+
+/*=============== BASE ===============*/
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    /* font-family: "poppins", sans-serif; */
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body,
+input,
+button {
+    font-family: var(--body-font);
+    font-size: var(--normal-font-size);
+}
+
+body {
+    background-color: var(--body-color);
+    color: var(--text-color);
+}
+
+input,
+button {
+    border: none;
+    outline: none;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    /* font-size: 1rem; */
+
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+/*=============== REUSABLE CSS CLASSES ===============*/
+li {
+    list-style: none;
+}
+
+a:hover {
+    color: #3B57E3;
+}
+
+/* HEADER */
+header {
+    position: fixed;
+    height: 88px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--body-color);
+    box-shadow: 0 2px 16px hsla(230, 75%, 32%, .15);
+    z-index: var(--z-fixed);
+}
+
+.navbar {
+    width: 100%;
+    /* height: var(--header-height); */
+    height: 77px;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav__logo {
+    color: var(--first-color);
+    /* color: #2C4964; */
+    font-weight: var(--font-semi-bold);
+    transition: color .4s;
+    font-size: 24px;
+}
+
+.nav__link {
+    color: var(--title-color);
+    font-weight: var(--font-semi-bold);
+    transition: color .4s;
+}
+
+.navbar .logo a {
+    font-size: 24px;
+    font-weight: var(--font-semi-bold);
+}
+
+.logo {
+    color: var(--first-color);
+}
+
+
+.navbar .links {
+    display: flex;
+    gap: 2.5rem;
+}
+
+.action_btn {
+    font-size: 1.25rem;
+    color: var(--title-color);
+    cursor: pointer;
+    transition: color .4s;
+}
+
+:is(.nav__link, .action_btn):hover {
+    color: var(--first-color);
+}
