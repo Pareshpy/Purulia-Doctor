@@ -132,7 +132,7 @@ header {
 }
 
 .navbar .logo a {
-    font-size: 24px;
+    font-size: 26px;
     font-weight: var(--font-semi-bold);
 }
 
@@ -155,4 +155,162 @@ header {
 
 :is(.nav__link, .action_btn):hover {
     color: var(--first-color);
+}
+
+.a-group{
+    display: flex;
+    gap: 2.5rem;
+}
+
+.a-login{
+    font-size: 1.25rem;
+    color: var(--first-color);
+    cursor: pointer;
+    transition: color .4s;
+    font-size: 16px;
+    font-weight: var(--font-semi-bold);
+}
+.a-login:hover{
+    color: var(--title-color);
+}
+
+
+/*=============== LOGIN ===============*/
+.login__form, 
+.login__group {
+  display: grid;
+}
+
+.login__form {
+  background-color: var(--container-color);
+  padding: 2rem 1.5rem 2.5rem;
+  box-shadow: 0 8px 32px hsla(230, 75%, 15%, .2);
+  border-radius: 1rem;
+  row-gap: 1.25rem;
+  text-align: center;
+  transform: translateY(-1rem);
+  transition: transform .4s;
+}
+
+.login__title {
+  font-size: var(--h2-font-size);
+  color: var(--title-color);
+}
+
+.login__group {
+  row-gap: 1rem;
+}
+
+.login__label {
+  display: block;
+  text-align: initial;
+  color: var(--title-color);
+  font-weight: var(--font-medium);
+  margin-bottom: .25rem;
+}
+
+.login__input {
+  width: 100%;
+  background-color: var(--container-color);
+  border: 2px solid var(--border-color);
+  padding: 1rem;
+  border-radius: .5rem;
+  color: var(--text-color);
+}
+
+.login__input::placeholder {
+  color: var(--text-color);
+}
+
+.login__signup {
+  margin-bottom: .5rem;
+}
+
+.login__signup a {
+  color: var(--first-color);
+}
+
+.login__forgot {
+  display: inline-block;
+  color: var(--first-color);
+  margin-bottom: 1.25rem;
+}
+
+.login__button {
+  display: inline-block;
+  background-color: var(--first-color);
+  width: 100%;
+  color: #fff;
+  font-weight: var(--font-semi-bold);
+  padding: 1rem;
+  border-radius: .5rem;
+  cursor: pointer;
+  transition: box-shadow .4s;
+}
+
+.login__button:hover {
+  box-shadow: 0 4px 24px hsla(230, 75%, 40%, .4);
+}
+
+
+/*=============== BREAKPOINTS ===============*/
+/* For medium devices */
+@media screen and (min-width: 576px) {
+    .search,
+    .login {
+      padding-top: 10rem;
+    }
+  
+    .search__form {
+      max-width: 450px;
+      margin-inline: auto;
+    }
+  
+    .search__close,
+    .login__close {
+      width: max-content;
+      top: 5rem;
+      left: 0;
+      right: 0;
+      margin-inline: auto;
+      font-size: 2rem;
+    }
+  
+    .login__form {
+      max-width: 400px;
+      margin-inline: auto;
+    }
+  }
+  
+  /* For large devices */
+  @media screen and (min-width: 1023px) {
+    .nav {
+      height: calc(var(--header-height) + 2rem);
+      column-gap: 3rem;
+    }
+    .nav__close, 
+    .nav__toggle {
+      display: none;
+    }
+    .nav__menu {
+      margin-left: auto;
+    }
+    .nav__list {
+      flex-direction: row;
+      column-gap: 3rem;
+    }
+  
+    .login__form {
+      padding: 3rem 2rem 3.5rem;
+    }
+  }
+  
+  @media screen and (min-width: 1150px) {
+    .container {
+      margin-inline: auto;
+    }
+  }
+
+.main{
+    opacity: 0.2;
 }
