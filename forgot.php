@@ -8,7 +8,7 @@
     <!--=============== REMIX-ICONS ===============-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css">
 
-    <!--=============== CSS ===============-->                              
+    <!--=============== CSS ===============-->
     <link rel="stylesheet" href="assets/css/style.css" />
 
     <title>PD | Purulia Doctor</title>
@@ -26,46 +26,49 @@
                 <li><a href="#" class="nav__link">About</a></li>
             </ul>
             <div class="a-group">
-               <a href="signup.php" class="a-login" >Sign Up</a>
-               <a href="login.php" class="a-login" >Log In</a>
+                <a href="signup.php" class="a-login">Sign Up</a>
+                <a href="login.php" class="a-login">Log In</a>
             </div>
         </div>
     </header>
 
-     <!--==================== LOGIN ====================-->
-     <div class="login" id="login">
-         <form action="" class="login__form">
-            <h2 class="login__title">Log In</h2>
-            
-            <div class="login__group">
-               <!-- <div>
-                  <label for="email" class="login__label">Email</label>
-                  <input type="email" placeholder="Write your email" id="email" class="login__input">
-               </div>
-               
-               <div>
-                  <label for="password" class="login__label">Password</label>
-                  <input type="password" placeholder="Enter your password" id="password" class="login__input">
-               </div> -->
+    
+    <main>
+        <br>
+        <div class="hero"
+        style="background-image: url('assets/img/hero-bg.jpg'); background-size: cover; background-position: center;">
+        <!--==================== LOGIN ====================-->
+        <div class="login glass" style="height:100vh" id="login">
+            <form action="" class="login__form">
+                <h2 class="login__title">Log In</h2>
+        
+                <div class="login__group">
+                    <!-- <div>
+                      <label for="email" class="login__label">Email</label>
+                      <input type="email" placeholder="Write your email" id="email" class="login__input">
+                   </div>
+                   
+                   <div>
+                      <label for="password" class="login__label">Password</label>
+                      <input type="password" placeholder="Enter your password" id="password" class="login__input">
+                   </div> -->
+        
+                    Building this Later 😁
+                </div>
+        
+                <div>
+        
+                    <button type="submit" class="login__button">Log In</button>
+                </div>
+            </form>
+    </div>
+</main>
 
-                        Building this letter
-            </div>
 
-            <div>
-   
-               <button type="submit" class="login__button">Log In</button>
-            </div>
-         </form>
-
-    <main class="main">
-        <!-- <img src="assets/img/bg-image.png" alt="image" class="main__bg"> -->
-    </main>
-
-
-    <!--=============== MAIN JS ===============-->
-    <!-- M-413-205-520 -->
-    <!-- 123456 -->
-    <!-- <script src="assets/js/main.js"></script> -->
+        <!--=============== MAIN JS ===============-->
+        <!-- M-413-205-520 -->
+        <!-- 123456 -->
+        <!-- <script src="assets/js/main.js"></script> -->
 </body>
 
 </html>

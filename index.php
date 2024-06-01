@@ -8,7 +8,7 @@
     <!--=============== REMIX-ICONS ===============-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css">
 
-    <!--=============== CSS ===============-->                              
+    <!--=============== CSS ===============-->
     <link rel="stylesheet" href="assets/css/style.css" />
 
     <title>PD | Purulia Doctor</title>
@@ -28,11 +28,11 @@
             <a href="signup.php" class="action_btn"><i class="ri-user-line" id="login"></i></a>
         </div>
     </header>
-
-    <main class="main">
-        <!-- <img src="assets/img/bg-image.png" alt="image" class="main__bg"> -->
-        <br><br><br><br>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quibusdam laboriosam, harum temporibus praesentium quasi aliquid aliquam maxime ex aspernatur nobis odit porro exercitationem totam magnam soluta rem dolorum blanditiis ipsa?</p>
+    <main>
+        <br>
+        <div class="hero"
+            style="background-image: url('assets/img/hero-bg.jpg'); background-size: cover; background-position: center;">
+        </div>
     </main>
 
     <!--=============== MAIN JS ===============-->

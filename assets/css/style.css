@@ -4,179 +4,190 @@
 
 /*=============== VARIABLES CSS ===============*/
 :root {
-    --header-height: 3.5rem;
+  --header-height: 3.5rem;
 
-    /*========== Colors ==========*/
-    /*Color mode HSL(hue, saturation, lightness)*/
-    --first-color: hsl(230, 75%, 56%);
-    --title-color: hsl(230, 75%, 15%);
-    --text-color: hsl(230, 12%, 40%);
-    --body-color: hsl(230, 100%, 98%);
-    --container-color: hsl(230, 100%, 97%);
-    --border-color: hsl(230, 25%, 80%);
+  /*========== Colors ==========*/
+  /*Color mode HSL(hue, saturation, lightness)*/
+  --first-color: hsl(230, 75%, 56%);
+  --title-color: hsl(230, 75%, 15%);
+  --text-color: hsl(230, 12%, 40%);
+  --body-color: hsl(230, 100%, 98%);
+  --container-color: hsl(230, 100%, 97%);
+  --border-color: hsl(230, 25%, 80%);
 
-    /*========== Font and typography ==========*/
-    /*.5rem = 8px | 1rem = 16px ...*/
-    --body-font: "poppins", sans-serif;
-    --h2-font-size: 1.25rem;
-    --normal-font-size: .938rem;
+  /*========== Font and typography ==========*/
+  /*.5rem = 8px | 1rem = 16px ...*/
+  --body-font: "poppins", sans-serif;
+  --h2-font-size: 1.25rem;
+  --normal-font-size: .938rem;
 
-    /*========== Font weight ==========*/
-    --font-regular: 400;
-    --font-medium: 500;
-    --font-semi-bold: 600;
+  /*========== Font weight ==========*/
+  --font-regular: 400;
+  --font-medium: 500;
+  --font-semi-bold: 600;
 
-    /*========== z index ==========*/
-    --z-fixed: 100;
-    --z-modal: 1000;
+  /*========== z index ==========*/
+  --z-fixed: 100;
+  --z-modal: 1000;
+}
+
+.glass {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+  backdrop-filter: blur(90px);
+  -webkit-backdrop-filter: blur(90px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  height: max-content;
 }
 
 /*========== Responsive typography ==========*/
 @media screen and (min-width: 1023px) {
-    :root {
-        --h2-font-size: 1.5rem;
-        --normal-font-size: 1rem;
-    }
+  :root {
+    --h2-font-size: 1.5rem;
+    --normal-font-size: 1rem;
+  }
 }
 
 /*=============== BASE ===============*/
 * {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-    /* font-family: "poppins", sans-serif; */
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  /* font-family: "poppins", sans-serif; */
 }
 
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 body,
 input,
 button {
-    font-family: var(--body-font);
-    font-size: var(--normal-font-size);
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
 }
 
 body {
-    background-color: var(--body-color);
-    color: var(--text-color);
+  background-color: var(--body-color);
+  color: var(--text-color);
 }
 
 input,
 button {
-    border: none;
-    outline: none;
+  border: none;
+  outline: none;
 }
 
 ul {
-    list-style: none;
+  list-style: none;
 }
 
 a {
-    text-decoration: none;
-    /* font-size: 1rem; */
+  text-decoration: none;
+  /* font-size: 1rem; */
 
 }
 
 img {
-    display: block;
-    max-width: 100%;
-    height: auto;
+  display: block;
+  max-width: 100%;
+  height: auto;
 }
 
 /*=============== REUSABLE CSS CLASSES ===============*/
 li {
-    list-style: none;
+  list-style: none;
 }
 
 a:hover {
-    color: #3B57E3;
+  color: #3B57E3;
 }
 
 /* HEADER */
 header {
-    position: fixed;
-    height: 88px;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: var(--body-color);
-    box-shadow: 0 2px 16px hsla(230, 75%, 32%, .15);
-    z-index: var(--z-fixed);
+  position: fixed;
+  height: 88px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--body-color);
+  box-shadow: 0 2px 16px hsla(230, 75%, 32%, .15);
+  z-index: var(--z-fixed);
 }
 
 .navbar {
-    width: 100%;
-    /* height: var(--header-height); */
-    height: 77px;
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  width: 100%;
+  /* height: var(--header-height); */
+  height: 77px;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .nav__logo {
-    color: var(--first-color);
-    /* color: #2C4964; */
-    font-weight: var(--font-semi-bold);
-    transition: color .4s;
-    font-size: 24px;
+  color: var(--first-color);
+  /* color: #2C4964; */
+  font-weight: var(--font-semi-bold);
+  transition: color .4s;
+  font-size: 24px;
 }
 
 .nav__link {
-    color: var(--title-color);
-    font-weight: var(--font-semi-bold);
-    transition: color .4s;
+  color: var(--title-color);
+  font-weight: var(--font-semi-bold);
+  transition: color .4s;
 }
 
 .navbar .logo a {
-    font-size: 26px;
-    font-weight: var(--font-semi-bold);
+  font-size: 26px;
+  font-weight: var(--font-semi-bold);
 }
 
 .logo {
-    color: var(--first-color);
+  color: var(--first-color);
 }
 
 
 .navbar .links {
-    display: flex;
-    gap: 2.5rem;
+  display: flex;
+  gap: 2.5rem;
 }
 
 .action_btn {
-    font-size: 1.25rem;
-    color: var(--title-color);
-    cursor: pointer;
-    transition: color .4s;
+  font-size: 1.25rem;
+  color: var(--title-color);
+  cursor: pointer;
+  transition: color .4s;
 }
 
 :is(.nav__link, .action_btn):hover {
-    color: var(--first-color);
+  color: var(--first-color);
 }
 
-.a-group{
-    display: flex;
-    gap: 2.5rem;
+.a-group {
+  display: flex;
+  gap: 2.5rem;
 }
 
-.a-login{
-    font-size: 1.25rem;
-    color: var(--first-color);
-    cursor: pointer;
-    transition: color .4s;
-    font-size: 16px;
-    font-weight: var(--font-semi-bold);
+.a-login {
+  font-size: 1.25rem;
+  color: var(--first-color);
+  cursor: pointer;
+  transition: color .4s;
+  font-size: 16px;
+  font-weight: var(--font-semi-bold);
 }
-.a-login:hover{
-    color: var(--title-color);
+
+.a-login:hover {
+  color: var(--title-color);
 }
 
 
 /*=============== LOGIN ===============*/
-.login__form, 
+.login__form,
 .login__group {
   display: grid;
 }
@@ -256,61 +267,66 @@ header {
 /*=============== BREAKPOINTS ===============*/
 /* For medium devices */
 @media screen and (min-width: 576px) {
-    .search,
-    .login {
-      padding-top: 10rem;
-    }
-  
-    .search__form {
-      max-width: 450px;
-      margin-inline: auto;
-    }
-  
-    .search__close,
-    .login__close {
-      width: max-content;
-      top: 5rem;
-      left: 0;
-      right: 0;
-      margin-inline: auto;
-      font-size: 2rem;
-    }
-  
-    .login__form {
-      max-width: 400px;
-      margin-inline: auto;
-    }
-  }
-  
-  /* For large devices */
-  @media screen and (min-width: 1023px) {
-    .nav {
-      height: calc(var(--header-height) + 2rem);
-      column-gap: 3rem;
-    }
-    .nav__close, 
-    .nav__toggle {
-      display: none;
-    }
-    .nav__menu {
-      margin-left: auto;
-    }
-    .nav__list {
-      flex-direction: row;
-      column-gap: 3rem;
-    }
-  
-    .login__form {
-      padding: 3rem 2rem 3.5rem;
-    }
-  }
-  
-  @media screen and (min-width: 1150px) {
-    .container {
-      margin-inline: auto;
-    }
+
+  .search,
+  .login {
+    padding-top: 10rem;
   }
 
-.main{
-    opacity: 0.2;
+  .search__form {
+    max-width: 450px;
+    margin-inline: auto;
+  }
+
+  .search__close,
+  .login__close {
+    width: max-content;
+    top: 5rem;
+    left: 0;
+    right: 0;
+    margin-inline: auto;
+    font-size: 2rem;
+  }
+
+  .login__form {
+    max-width: 400px;
+    margin-inline: auto;
+  }
+}
+
+/* For large devices */
+@media screen and (min-width: 1023px) {
+  .nav {
+    height: calc(var(--header-height) + 2rem);
+    column-gap: 3rem;
+  }
+
+  .nav__close,
+  .nav__toggle {
+    display: none;
+  }
+
+  .nav__menu {
+    margin-left: auto;
+  }
+
+  .nav__list {
+    flex-direction: row;
+    column-gap: 3rem;
+  }
+
+  .login__form {
+    padding: 3rem 2rem 3.5rem;
+  }
+}
+
+@media screen and (min-width: 1150px) {
+  .container {
+    margin-inline: auto;
+  }
+}
+
+.hero {
+  height: 80vh;
+  /* Ensure the div has some height */
 }
