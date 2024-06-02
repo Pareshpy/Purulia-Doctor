@@ -15,6 +15,7 @@
 </head>
 
 <body>
+    <!-- Navbar -->
     <header>
         <div class="navbar">
             <div class="logo"><a href="#" class="nav__logo">PURULIA DOCTOR</a></div>
@@ -28,12 +29,32 @@
             <a href="login.php" class="action_btn"><i class="ri-user-line" id="login"></i></a>
         </div>
     </header>
-    <main>
+
+
+    <!-- ======= Hero Section ======= -->
+    <section id="hero" class="d-flex align-items-center">
+        <div class="container">
+            <h1>Welcome to Purulia Doctor</h1>
+            <h2>We offer appointments for various clinics, providing essential health services to the community.</h2>
+            <a href="#about" class="btn-get-started scrollto">Get Started</a>
+        </div>
+    </section>
+
+
+    <!-- <main>
         <br>
         <div class="hero"
             style="background-image: url('assets/img/hero-bg.jpg'); background-size: cover; background-position: center;">
+            <br><br>
+            <br><br>
+            <br><br>
+            <br><br>
+            <br><br>
+            <br>
+            <h2></h2>
+            <p></p>
         </div>
-    </main>
+    </main> -->
 
     <!--=============== MAIN JS ===============-->
     <!-- M-413-205-520 -->
