@@ -53,7 +53,7 @@
                       <input type="password" placeholder="Enter your password" id="password" class="login__input">
                    </div> -->
 
-                        Building this Later 😁
+                        Under Development 😁
                     </div>
 
                     <div>
