@@ -25,7 +25,7 @@
                 <li><a href="#" class="nav__link">Clinics</a></li>
                 <li><a href="#" class="nav__link">About</a></li>
             </ul>
-            <a href="signup.php" class="action_btn"><i class="ri-user-line" id="login"></i></a>
+            <a href="login.php" class="action_btn"><i class="ri-user-line" id="login"></i></a>
         </div>
     </header>
     <main>
