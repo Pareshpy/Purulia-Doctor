@@ -33,13 +33,10 @@
     </header>
     <main>
         <br>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quibusdam laboriosam, harum temporibus praesentium
-            quasi aliquid aliquam maxime ex aspernatur nobis odit porro exercitationem totam magnam soluta rem dolorum
-            blanditiis ipsa?</p>
         <div class="hero"
             style="background-image: url('assets/img/hero-bg.jpg'); background-size: cover; background-position: center;">
             <!--==================== LOGIN ====================-->
-            <div class="login glass" id="login">
+            <div class="login glass height" style="height : 200vh" id="login">
                 <form action="" class="login__form">
                     <h2 class="login__title">Sign up</h2>
 

@@ -29,6 +29,9 @@
   /*========== z index ==========*/
   --z-fixed: 100;
   --z-modal: 1000;
+
+  /* max height */
+  --max-height:  100vh;
 }
 
 .glass {
@@ -41,6 +44,9 @@
   height: max-content;
 }
 
+.height{
+  height: 100vh;
+}
 /*========== Responsive typography ==========*/
 @media screen and (min-width: 1023px) {
   :root {

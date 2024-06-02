@@ -38,7 +38,7 @@
         <div class="hero"
         style="background-image: url('assets/img/hero-bg.jpg'); background-size: cover; background-position: center;">
         <!--==================== LOGIN ====================-->
-        <div class="login glass" style="height:100vh" id="login">
+        <div class="login glass height" id="login">
             <form action="" class="login__form">
                 <h2 class="login__title">Log In</h2>
         
