@@ -34,7 +34,7 @@ if(isset($_SESSION['user_id'])){
             <ul class="links">
                 <li><a href="index.php" class="nav__link">Home</a></li>
                 <li><a href="services.php" class="nav__link">Services</a></li>
-                <li><a href="doctors.php" class="nav__link">Doctors</a></li>
+                <li><a href="doctor.php" class="nav__link">Doctors</a></li>
                 <li><a href="clinics.php" class="nav__link">Clinics</a></li>
                 <li><a href="about.php" class="nav__link">About</a></li>
             </ul>
