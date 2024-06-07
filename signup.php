@@ -1,10 +1,5 @@
 <?php
-// Include the connection file
-if (file_exists('connection.php')) {
-    include('connection.php');
-} else {
-    die('File not found.');
-}
+include ('./common/header.php');
 
 // Initialize error and success messages
 $error_message = "";
@@ -19,6 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST['password'];
     $c_password = $_POST['c_password'];
 
+    // $email = strip_tags($email);
     // Validate form fields
     if (empty($name) || empty($email) || empty($phone) || empty($password) || empty($c_password)) {
         $error_message = "All fields are required.";
@@ -36,10 +32,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } else {
             // Hash the password
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+            
+            $otp = rand(111111,999999);
+            $vid = rand(11111111,99999999);
 
             // Prepare and bind
-            $stmt = $conn->prepare("INSERT INTO users (name, email, phone, password) VALUES (?, ?, ?, ?)");
-            $stmt->bind_param("ssss", $name, $email, $phone, $hashed_password);
+            $stmt = $conn->prepare("INSERT INTO users (name, email, phone, password,otp,vid) VALUES (?, ?, ?, ?,?,?)");
+            $stmt->bind_param("ssssss", $name, $email, $phone, $hashed_password,$otp,$vid);
 
             // Execute the query
             if ($stmt->execute()) {
@@ -56,41 +55,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 // Close the connection
-$conn->close();
+
 ?>
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!--=============== REMIX-ICONS ===============-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css">
-
-    <!--=============== CSS ===============-->
-    <link rel="stylesheet" href="assets/css/style.css" />
-
-    <title>PD | Purulia Doctor</title>
-</head>
-
-<body>
-    <header>
-        <div class="navbar">
-            <div class="logo"><a href="index.php" class="nav__logo">PURULIA DOCTOR</a></div>
-            <ul class="links">
-                <li><a href="#" class="nav__link">Home</a></li>
-                <li><a href="#" class="nav__link">Services</a></li>
-                <li><a href="#" class="nav__link">Doctors</a></li>
-                <li><a href="#" class="nav__link">Clinics</a></li>
-                <li><a href="#" class="nav__link">About</a></li>
-            </ul>
-            <div class="a-group">
-                <a href="signup.php" class="a-login">Sign Up</a>
-                <a href="login.php" class="a-login">Log In</a>
-            </div>
-        </div>
-    </header>
     <main>
         <br>
         <div class="hero"
@@ -171,7 +138,7 @@ $conn->close();
         // Display success message and redirect
         alert("<?php echo $success_message; ?>");
         setTimeout(function() {
-            window.location.href = 'login.php';
+            window.location.href = 'verify.php?vid='.$vid;
         }, 3000); // Redirect after 3 seconds
         <?php endif; ?>
     </script>

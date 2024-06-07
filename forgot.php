@@ -1,36 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!--=============== REMIX-ICONS ===============-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css">
-
-    <!--=============== CSS ===============-->
-    <link rel="stylesheet" href="assets/css/style.css" />
-
-    <title>PD | Purulia Doctor</title>
-</head>
-
-<body>
-    <header>
-        <div class="navbar">
-            <div class="logo"><a href="index.php" class="nav__logo">PURULIA DOCTOR</a></div>
-            <ul class="links">
-                <li><a href="#" class="nav__link">Home</a></li>
-                <li><a href="#" class="nav__link">Services</a></li>
-                <li><a href="#" class="nav__link">Doctors</a></li>
-                <li><a href="#" class="nav__link">Clinics</a></li>
-                <li><a href="#" class="nav__link">About</a></li>
-            </ul>
-            <div class="a-group">
-                <a href="signup.php" class="a-login">Sign Up</a>
-                <a href="login.php" class="a-login">Log In</a>
-            </div>
-        </div>
-    </header>
+<?php
+// Include the connection file
+include('./common/header.php');
+// global $conn;
+?>
 
 
     <main>

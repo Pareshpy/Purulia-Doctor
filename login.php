@@ -1,19 +1,21 @@
 <?php
 // Include the connection file
-if (file_exists('connection.php')) {
-    include('connection.php');
-} else {
-    die('File not found.');
-}
+include('./common/header.php');
+// global $conn;
+
 
 // Initialize error message
 $error_message = "";
 
 // Handle form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = trim($_POST['email']);
-    $password = $_POST['password'];
+    $email = trim($conn->real_escape_string($_POST['email']));
+    $password = $conn->real_escape_string($_POST['password']);
 
+    $email = filter_var($email,FILTER_SANITIZE_EMAIL);
+    $password = filter_var($password,FILTER_DEFAULT);
+
+    
     // Validate form fields
     if (empty($email) || empty($password)) {
         $error_message = "Email and password are required.";
@@ -33,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     session_start();
                     $_SESSION['user_id'] = $user_id;
                     $_SESSION['user_name'] = $user_name;
-                    header("Location: welcome.php");
+                    header("Location: index.php");
                     exit();
                 } else {
                     $error_message = "Incorrect password.";
@@ -51,35 +53,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 // Close the connection
-$conn->close();
+// $conn->close();
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css">
-    <link rel="stylesheet" href="assets/css/style.css" />
-    <title>PD | Purulia Doctor</title>
-</head>
-<body>
-    <header>
-        <div class="navbar">
-            <div class="logo"><a href="index.php" class="nav__logo">PURULIA DOCTOR</a></div>
-            <ul class="links">
-                <li><a href="index.php" class="nav__link">Home</a></li>
-                <li><a href="services.php" class="nav__link">Services</a></li>
-                <li><a href="doctors.php" class="nav__link">Doctors</a></li>
-                <li><a href="clinics.php" class="nav__link">Clinics</a></li>
-                <li><a href="about.php" class="nav__link">About</a></li>
-            </ul>
-            <div class="a-group">
-                <a href="signup.php" class="a-login">Sign Up</a>
-                <a href="login.php" class="a-login">Log In</a>
-            </div>
-        </div>
-    </header>
     <main>
         <br>
         <div class="hero" style="background-image: url('assets/img/hero-bg.jpg'); background-size: cover; background-position: center;">
