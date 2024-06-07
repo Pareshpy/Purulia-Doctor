@@ -689,3 +689,12 @@ ul{
 
 
 /*END of it's your boy Sudip*/
+.a-group{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.a-login{
+  align-items: center;
+  justify-content: center;
+}
