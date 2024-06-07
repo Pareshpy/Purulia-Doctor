@@ -1,0 +1,15 @@
+Login
+Catagory 
+      ->Clinic 
+      ->Doctor
+Doctor Css
+Doctor pages
+Doctor dashboard 
+
+Clinic
+     ->Doctor 
+
+Sourav da
+
+Database 
+Payment system

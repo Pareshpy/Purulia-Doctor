@@ -7,46 +7,11 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 ?>
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome</title>
-    <link rel="stylesheet" href="assets/css/style.css" />
-    <style>
-        /* Center the main content */
-        .welcome-container {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 80vh; /* Adjust as needed */
-            text-align: center;
-        }
-
-        .welcome-message {
-            font-size: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .logout-button {
-            padding: 0.5rem 2rem;
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: background-color 0.3s;
-        }
-
-        .logout-button:hover {
-            background-color: #0056b3;
-        }
-    </style>
-</head>
+<?php
+// Include the connection file
+include('./common/header.php');
+// global $conn;
+?>
 
 <body>
     <header>

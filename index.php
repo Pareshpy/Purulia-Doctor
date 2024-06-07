@@ -1,36 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!--=============== REMIX-ICONS ===============-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css">
-
-    <!--=============== CSS ===============-->
-    <link rel="stylesheet" href="assets/css/style.css" />
-
-    <title>PD | Purulia Doctor</title>
-</head>
-
-<body>
-    <!-- Navbar -->
-    <header>
-        <div class="navbar">
-            <div class="logo"><a href="#" class="nav__logo">PURULIA DOCTOR</a></div>
-            <ul class="links">
-                <li><a href="#" class="nav__link">Home</a></li>
-                <li><a href="#" class="nav__link">Services</a></li>
-                <li><a href="#" class="nav__link">Doctors</a></li>
-                <li><a href="#" class="nav__link">Clinics</a></li>
-                <li><a href="#" class="nav__link">About</a></li>
-            </ul>
-            <a href="login.php" class="action_btn"><i class="ri-user-line" id="login"></i></a>
-        </div>
-    </header>
-
-
+<?php
+// Include the connection file
+include('./common/header.php');
+// global $conn;
+?>
     <!-- ======= Hero Section ======= -->
     <!-- <section id="hero" class="d-flex align-items-center">
         <div class="container">
@@ -55,7 +27,63 @@
             <p></p>
         </div>
     </main>
+        <!--Sujoy Chatterjee-->
 
+    <section> 
+        <div class="container-2">
+            <div class="left-panel">
+                <h2>Why Choose Medilab?</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit Asperiores dolores sed et. Tenetur quia eos. Autem tempore quibusdam vel necessitatibus optio ad corporis.</p>
+                <button>Learn More</button>
+            </div>
+            <div class="right-panel">
+                <div class="card">
+                    <div class="icon">logo</div>
+                    <h3>Corporis voluptates sit</h3>
+                    <p>Consequuntur sunt aut quasi enim aliquam quae harum pariatur laborios nisi ut aliquip.</p>
+                </div>
+                <div class="card">
+                    <div class="icon">logo</div>
+                    <h3>Ullamco laboris ladore pan</h3>
+                    <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.</p>
+                </div>
+                <div class="card">
+                    <div class="icon">logo</div>
+                    <h3>Labore consequatur</h3>
+                    <p>Aut suscipit aut cum nemo deleniti aut omnis. Doloribus ut maiores omnis facere.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    
+
+    <section>  
+    <div class="container-2">
+        <h1>Services</h1>
+        <p class="description">Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+        <div class="services">
+            <div class="service">
+                <div class="icon-2 heart"></div>
+                <h2>Nesciunt Mete</h2>
+                <p>Provident nihil minus qui consequatur non omnis maiores. Eos accusantium minus dolores iure perferendis tempore et consequatur.</p>
+            </div>
+            <div class="service">
+                <div class="icon-2 pills"></div>
+                <h2>Eosle Commodi</h2>
+                <p>Ut autem aut autem non a. Sint sint sit facilis nam iusto sint. Libero corrupti neque eum hic non ut nesciunt dolorem.</p>
+            </div>
+            <div class="service">
+                <div class="icon-2 report"></div>
+                <h2>Ledo Markt</h2>
+                <p>Ut excepturi voluptatem nisi sed. Quidem fuga consequatur. Minus ea aut. Vel qui id voluptas adipisci eos earum corrupti.</p>
+            </div>
+        </div>
+    </div>            
+
+    </section>
+
+    <!-- to here -->
 
     <!--it's your boy Sudip-->
 
