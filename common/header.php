@@ -25,6 +25,8 @@ if(isset($_SESSION['user_id'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css">
     <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/notify.css" />
+   
     <title>PD | Purulia Doctor</title>
 </head>
 <body>
@@ -44,7 +46,7 @@ if(isset($_SESSION['user_id'])){
                 <a href="login.php" class="a-login">Log In</a> -->
                 <a href="login.php" class="action_btn"><i class="ri-user-line" id="login"></i></a>
                 <?php else:?>
-                    <p>Welcome <br><?=$user->name?></p>
+                    <p><?=$user->name?></p>
                    <a href="logout.php"><i class="ri-logout-circle-r-line"></i></a>  
                     <?php endif?>
             </div>
