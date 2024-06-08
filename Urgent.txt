@@ -12,3 +12,19 @@ Sourav da
 
 Database 
 Payment system
+
+
+
+
+new issue
+Profile section 
+Doctor css
+Doctor page
+Doctor dashboard 
+Clinic page
+ Service ->category ->
+                        DOCTOR and Clinic in
+                  -> eye
+                  ->leg
+Database (from sourav da) & codes from (sourav da)
+Payment system
