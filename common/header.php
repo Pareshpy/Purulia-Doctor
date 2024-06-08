@@ -34,11 +34,11 @@ if(isset($_SESSION['user_id'])){
         <div class="navbar">
             <div class="logo"><a href="index.php" class="nav__logo">PURULIA DOCTOR</a></div>
             <ul class="links">
-                <li><a href="index.php" class="nav__link">Home</a></li>
+                <li><a href="#home" class="nav__link">Home</a></li>
                 <li><a href="services.php" class="nav__link">Services</a></li>
                 <li><a href="doctor.php" class="nav__link">Doctors</a></li>
                 <li><a href="clinics.php" class="nav__link">Clinics</a></li>
-                <li><a href="about.php" class="nav__link">About</a></li>
+                <li><a href="#about" class="nav__link">About</a></li>
             </ul>
             <div class="a-group">
                 <?php if(!$user):?>
