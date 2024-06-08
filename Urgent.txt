@@ -1,4 +1,3 @@
-Login
 Catagory 
       ->Clinic 
       ->Doctor
