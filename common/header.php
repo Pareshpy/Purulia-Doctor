@@ -5,18 +5,28 @@ session_start();
 
 $user = null;
 
-if(isset($_SESSION['user_id'])){
+if (isset($_SESSION['user_id'])) {
     $userid = $_SESSION['user_id'];
-    $get_user = "SELECT `id`,`name`,`email` FROM `users` WHERE `id` = '$userid'";
-    $run_user = $conn->query($get_user);
-    if($run_user->num_rows > 0){
-        $user = $run_user->fetch_object();
-        // print_r($user);
-    }
+    $get_user = "SELECT `id`, `first_name`, `email` FROM `users` WHERE `id` = ?";
+    
+    if ($stmt = $conn->prepare($get_user)) {
+        $stmt->bind_param("i", $userid);
+        $stmt->execute();
+        $stmt->bind_result($id, $first_name, $email);
+        
+        if ($stmt->fetch()) {
+            $user = (object)[
+                'id' => $id,
+                'first_name' => $first_name,
+                'email' => $email
+            ];
+        }
 
+        // Close the statement
+        $stmt->close();
+    }
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -26,7 +36,6 @@ if(isset($_SESSION['user_id'])){
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css">
     <link rel="stylesheet" href="assets/css/style.css" />
     <link rel="stylesheet" href="assets/css/notify.css" />
-   
     <title>PD | Purulia Doctor</title>
 </head>
 <body>
@@ -42,13 +51,13 @@ if(isset($_SESSION['user_id'])){
             </ul>
             <div class="a-group">
                 <?php if(!$user):?>
-                <!-- <a href="signup.php" class="a-login">Sign Up</a>
-                <a href="login.php" class="a-login">Log In</a> -->
                 <a href="login.php" class="action_btn"><i class="ri-user-line" id="login"></i></a>
                 <?php else:?>
-                    <p><?=$user->name?></p>
-                   <a href="logout.php"><i class="ri-logout-circle-r-line"></i></a>  
-                    <?php endif?>
+                    <p><?= htmlspecialchars($user->first_name) ?></p>
+                    <a href="logout.php"><i class="ri-logout-circle-r-line"></i></a>
+                <?php endif?>
             </div>
         </div>
     </header>
+</body>
+</html>

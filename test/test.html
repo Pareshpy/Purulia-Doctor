@@ -1,18 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Toast Notification Example</title>
-    <link rel="stylesheet" href="notify.css">
+	<title>Account Settings</title>
+	<link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="buttons">
-        <button>Success</button>
-        <button>Error</button>
-        <button>Invalid</button>
-    </div>
+	<div class="container">
+		<h1>Account Settings</h1>
+		<form>
+			<label for="name">Your Name:</label>
+			<input type="text" id="name" value="Paresh"><br><br>
+			<label for="email">Your Email:</label>
+			<input type="email" id="email" value="pareshnathnandi1234@gmail.com"><br><br>
+			<label for="title">Your Title:</label>
+			<input type="text" id="title" value=""><br><br>
+			<label for="position-title">Your Position Title:</label>
+			<input type="text" id="position-title" value=""><br><br>
+			<label for="mail-notifications">Mail Notifications:</label>
+			<select id="mail-notifications">
+				<option value="weekly-roundup">Weekly Roundup</option>
+				<!-- add more options here -->
+			</select><br><br>
+			<button id="delete-account">Delete Account</button>
+			<button id="save-changes">Save Changes</button>
+		</form>
+		<div class="profile-image">
+			<img src="" alt="Profile Image">
+			<button id="modify-profile-image">Modify Profile Image</button>
+		</div>
+		<div class="change-password">
+			<label for="current-password">Current Password:</label>
+			<input type="password" id="current-password"><br><br>
+			<label for="new-password">New Password:</label>
+			<input type="password" id="new-password"><br><br>
+			<button id="change-password">Change Password</button>
+		</div>
+	</div>
 
-    <script src="notification.js"></script>
+	<script src="script.js"></script>
 </body>
 </html>

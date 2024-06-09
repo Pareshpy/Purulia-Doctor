@@ -8,16 +8,17 @@ $form_success = false;
 
 // Handle form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $name = $_POST['name'];
+    $first_name = $_POST['first_name'];
+    $middle_name = isset($_POST['middle_name']) ? $_POST['middle_name'] : null;
+    $last_name = $_POST['last_name'];
     $email = $_POST['email'];
     $phone = $_POST['phone'];
     $password = $_POST['password'];
     $c_password = $_POST['c_password'];
 
-    // $email = strip_tags($email);
     // Validate form fields
-    if (empty($name) || empty($email) || empty($phone) || empty($password) || empty($c_password)) {
-        $error_message = "All fields are required.";
+    if (empty($first_name) || empty($last_name) || empty($email) || empty($phone) || empty($password) || empty($c_password)) {
+        $error_message = "All fields except middle name are required.";
     } elseif ($password !== $c_password) {
         $error_message = "Passwords do not match.";
     } else {
@@ -32,13 +33,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } else {
             // Hash the password
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-            
-            $otp = rand(111111,999999);
-            $vid = rand(11111111,99999999);
 
             // Prepare and bind
-            $stmt = $conn->prepare("INSERT INTO users (name, email, phone, password,otp,vid) VALUES (?, ?, ?, ?,?,?)");
-            $stmt->bind_param("ssssss", $name, $email, $phone, $hashed_password,$otp,$vid);
+            $stmt = $conn->prepare("INSERT INTO users (first_name, middle_name, last_name, email, phone, password) VALUES (?, ?, ?, ?, ?, ?)");
+            $stmt->bind_param("ssssss", $first_name, $middle_name, $last_name, $email, $phone, $hashed_password);
 
             // Execute the query
             if ($stmt->execute()) {
@@ -55,9 +53,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 // Close the connection
-
+$conn->close();
 ?>
-
     <main>
         <br>
         <div class="hero"
@@ -69,20 +66,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     <div class="login__group">
                         <div>
-                            <label for="name" class="login__label">Name</label>
-                            <input type="text" name="name" placeholder="Write your Name" id="Name" class="login__input" required>
+                            <label for="first_name" class="login__label">First Name</label>
+                            <input type="text" name="first_name" placeholder="Write your First Name" id="first_name" class="login__input" required>
                         </div>
-
+                        <div>
+                            <label for="middle_name" class="login__label">Middle Name</label>
+                            <input type="text" name="middle_name" placeholder="Write your Middle Name (optional)" id="middle_name" class="login__input">
+                        </div>
+                        <div>
+                            <label for="last_name" class="login__label">Last Name</label>
+                            <input type="text" name="last_name" placeholder="Write your Last Name" id="last_name" class="login__input" required>
+                        </div>
                         <div>
                             <label for="email" class="login__label">Email</label>
                             <input type="email" name="email" placeholder="Write your email" id="email" class="login__input" required>
                         </div>
-
                         <div>
                             <label for="phone" class="login__label">Phone No</label>
                             <input type="number" name="phone" placeholder="Write your Phone No" id="phone" class="login__input" required>
                         </div>
-
                         <div>
                             <label for="password" class="login__label">Password</label>
                             <input type="password" name="password" placeholder="Enter your password" id="password" class="login__input" required>
@@ -136,10 +138,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <?php if ($form_success): ?>
         // Display success message and redirect
-        alert("<?php echo $success_message; ?>");
-        setTimeout(function() {
-            window.location.href = 'verify.php?vid='.$vid;
-        }, 3000); // Redirect after 3 seconds
+        Swal.fire({
+            icon: 'success',
+            title: 'Success',
+            text: '<?php echo $success_message; ?>',
+        }).then(function() {
+            window.location.href = 'login.php';
+        });
         <?php endif; ?>
     </script>
 </body>
