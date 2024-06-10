@@ -707,6 +707,8 @@ ul{
   border-radius: 8px;
   width: 30%;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* align-items: center; */
+  justify-content: center;
 }
 
 .left-panel h2 {

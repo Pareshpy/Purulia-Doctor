@@ -33,7 +33,7 @@ include ('./common/header.php');
 <section>
     <div class="container-2" id="service">
         <div class="left-panel">
-            <h2>Why Choose Medilab?</h2>
+            <h2 id="edit">Why Choose Medilab?</h2>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
                 dolore magna aliqua. Duis aute irure dolor in reprehenderit Asperiores dolores sed et. Tenetur quia eos.
                 Autem tempore quibusdam vel necessitatibus optio ad corporis.</p>
@@ -62,6 +62,10 @@ include ('./common/header.php');
 <!-- <div>
     <button onclick="showToast"></button>
 </div> -->
+
+
+
+
 
 
 <section id="doctors" class="doctors">
@@ -128,10 +132,142 @@ include ('./common/header.php');
 
 
 <!-- ======= Doctors Section ======= -->
+
+
 <section id="doctors" class="doctors">
     <div class="container">
 
         <div class="section-title">
+            <a href="catagories.php">
+                <h2>Doctors</h2>
+            </a>
+            <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint
+                consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia
+                fugiat sit in iste officiis commodi quidem hic quas.</p>
+        </div>
+        <div class="container-2">
+            <div class="services">
+            <div class="member d-flex align-items-start">
+                    <div class="pic"><img src="assets/img/doctors/doctors-1.jpg" class="img-fluid" alt=""></div>
+                    <div class="member-info">
+                        <h4>Sarah Jhonson</h4>
+                        <span>Anesthesiologist</span>
+                        <p>Aut maiores voluptates amet et quis praesentium qui senda para</p>
+                        <div class="social">
+                            <a href=""><i class="ri-twitter-fill"></i></a>
+                            <a href=""><i class="ri-facebook-fill"></i></a>
+                            <a href=""><i class="ri-instagram-fill"></i></a>
+                            <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
+                        </div>
+                    </div>
+                </div>
+               <!-- <div class="member d-flex align-items-start">
+                    <div class="pic"><img src="assets/img/doctors/doctors-2.jpg" class="img-fluid" alt=""></div>
+                    <div class="member-info">
+                        <h4>Sarah Jhonson</h4>
+                        <span>Anesthesiologist</span>
+                        <p>Aut maiores voluptates amet et quis praesentium qui senda para</p>
+                        <div class="social">
+                            <a href=""><i class="ri-twitter-fill"></i></a>
+                            <a href=""><i class="ri-facebook-fill"></i></a>
+                            <a href=""><i class="ri-instagram-fill"></i></a>
+                            <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
+                        </div>
+                    </div>    -->
+                </div> 
+                <div class="member d-flex align-items-start">
+                    <div class="pic"><img src="assets/img/doctors/doctors-3.jpg" class="img-fluid" alt=""></div>
+                    <div class="member-info">
+                        <h4>Sarah Jhonson</h4>
+                        <span>Anesthesiologist</span>
+                        <p>Aut maiores voluptates amet et quis praesentium qui senda para</p>
+                        <div class="social">
+                            <a href=""><i class="ri-twitter-fill"></i></a>
+                            <a href=""><i class="ri-facebook-fill"></i></a>
+                            <a href=""><i class="ri-instagram-fill"></i></a>
+                            <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+        </div>
+
+        <div class="container-2">
+            <div class="services">
+                <div class="member d-flex align-items-start">
+                    <div class="pic"><img src="assets/img/doctors/doctors-1.jpg" class="img-fluid" alt=""></div>
+                    <div class="member-info">
+                        <h4>Sarah Jhonson</h4>
+                        <span>Anesthesiologist</span>
+                        <p>Aut maiores voluptates amet et quis praesentium qui senda para</p>
+                        <div class="social">
+                            <a href=""><i class="ri-twitter-fill"></i></a>
+                            <a href=""><i class="ri-facebook-fill"></i></a>
+                            <a href=""><i class="ri-instagram-fill"></i></a>
+                            <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
+                        </div>
+                    </div>
+                </div> 
+                <div class="member d-flex align-items-start">
+                    <div class="pic"><img src="assets/img/doctors/doctors-2.jpg" class="img-fluid" alt=""></div>
+                    <div class="member-info">
+                        <h4>Sarah Jhonson</h4>
+                        <span>Anesthesiologist</span>
+                        <p>Aut maiores voluptates amet et quis praesentium qui senda para</p>
+                        <div class="social">
+                            <a href=""><i class="ri-twitter-fill"></i></a>
+                            <a href=""><i class="ri-facebook-fill"></i></a>
+                            <a href=""><i class="ri-instagram-fill"></i></a>
+                            <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
+                        </div>
+                    </div>
+                </div>
+                  <!--<div class="member d-flex align-items-start">
+                    <div class="pic"><img src="assets/img/doctors/doctors-3.jpg" class="img-fluid" alt=""></div>
+                    <div class="member-info">
+                        <h4>Sarah Jhonson</h4>
+                        <span>Anesthesiologist</span>
+                        <p>Aut maiores voluptates amet et quis praesentium qui senda para</p>
+                        <div class="social">
+                            <a href=""><i class="ri-twitter-fill"></i></a>
+                            <a href=""><i class="ri-facebook-fill"></i></a>
+                            <a href=""><i class="ri-instagram-fill"></i></a>
+                            <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--hide doctors section-->
+
+
+<!-- <section id="doctors" class="doctors">
+    <div class="container">
+
+        <div class="section-title">
+
+
+
             <a href="doctor.php">
                 <h2>Doctors</h2>
             </a>
@@ -140,7 +276,7 @@ include ('./common/header.php');
                 fugiat sit in iste officiis commodi quidem hic quas.</p>
         </div>
 
-        <div class="row">
+        <div class="row" class="col-lg-6 mt-4 mt-lg-0">
 
             <div class="col-lg-6">
                 <div class="member d-flex align-items-start">
@@ -213,7 +349,7 @@ include ('./common/header.php');
         </div>
 
     </div>
-</section>
+</section> -->
 
 <!-- End Doctors Section -->
 

@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Validate form fields
     if (empty($first_name) || empty($last_name) || empty($email) || empty($phone) || empty($password) || empty($c_password)) {
         $error_message = "All fields except middle name are required.";
-    } elseif ($password !== $c_password) {
+    } else if ($password !== $c_password) {
         $error_message = "Passwords do not match.";
     } else {
         // Check if email already exists
