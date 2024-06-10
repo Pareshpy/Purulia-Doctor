@@ -100,7 +100,7 @@ $conn->close();
 
                     <div>
                         <p class="login__signup">
-                            Don't have an account? <a href="login.php">Log In</a>
+                            have an account? <a href="login.php">Log In</a>
                         </p>
 
                         <button type="submit" class="login__button">Sign Up</button>
