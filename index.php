@@ -138,7 +138,7 @@ include ('./common/header.php');
     <div class="container">
 
         <div class="section-title">
-            <a href="catagories.php">
+            <a href="doctor.php">
                 <h2>Doctors</h2>
             </a>
             <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint
