@@ -63,7 +63,6 @@ if (isset($_SESSION['user_id'])) {
                     <?php endif?>
                 </li> -->
 
-
                 
             </ul>
 
