@@ -1,8 +1,8 @@
 <?php
-$servername = "localhost";
-$username = "root"; 
-$password = ""; 
-$database = "pd"; 
+$servername = "152.67.7.221:3306";
+$username = "pdproject2"; 
+$password = "PDProject@1234$"; 
+$database = "pdproject2"; 
 
 // Establish a connection
 $conn = new mysqli($servername, $username, $password, $database);
