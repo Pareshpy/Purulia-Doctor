@@ -1,6 +1,6 @@
 <?php
 
-include('connection.php');
+include ('connection.php');
 session_start();
 
 $user = null;
@@ -8,14 +8,14 @@ $user = null;
 if (isset($_SESSION['user_id'])) {
     $userid = $_SESSION['user_id'];
     $get_user = "SELECT `id`, `first_name`, `email` FROM `users` WHERE `id` = ?";
-    
+
     if ($stmt = $conn->prepare($get_user)) {
         $stmt->bind_param("i", $userid);
         $stmt->execute();
         $stmt->bind_result($id, $first_name, $email);
-        
+
         if ($stmt->fetch()) {
-            $user = (object)[
+            $user = (object) [
                 'id' => $id,
                 'first_name' => $first_name,
                 'email' => $email
@@ -30,6 +30,7 @@ if (isset($_SESSION['user_id'])) {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -38,11 +39,12 @@ if (isset($_SESSION['user_id'])) {
     <link rel="stylesheet" href="assets/css/notify.css" />
 
 
-    
 
 
-   <title>PD | Purulia Doctor</title>
+
+    <title>PD | Purulia Doctor</title>
 </head>
+
 <body>
     <header>
         <div class="navbar">
@@ -53,35 +55,48 @@ if (isset($_SESSION['user_id'])) {
                 <li><a href="doctor.php" class="nav__link">Doctors</a></li>
                 <li><a href="clinics.php" class="nav__link">Clinics</a></li>
                 <li><a href="#about" class="nav__link">About</a></li>
-                <!-- <li>
-                    <?php if(!$user):?>
-                    <a href="login.php" class="action_btn" ><i class="ri-user-line" id="login"></i></a>
-                    <<?php else:?>
-                        <p class="nav__link">Hello , <?= htmlspecialchars($user->first_name) ?></p></li>
-                        <li>
-                        <a href="logout.php" class="nav__link"><i class="ri-logout-circle-r-line"></i></a>
-                    <?php endif?>
-                </li> -->
-
-                
             </ul>
 
 
-
-
-
-
             <div class="a-group">
-                <?php if(!$user):?>
-                <a href="login.php" class="action_btn"><i class="ri-user-line" id="login"></i></a>
-                <?php else:?>
-                        <p class="nav__link">Hi, <?= htmlspecialchars($user->first_name) ?></p></li>
-                        <li>
-                        <a href="logout.php" class="nav__link"><i class="ri-logout-circle-r-line"></i></a>
-                    <?php endif?>
+                <?php if (!$user): ?>
+                    <a href="login.php" class="action_btn"><i class="ri-user-line" id="login"></i></a>
+                <?php else: ?>
+                    <!-- <p onclick="toggleMenu()"   class="nav__link">Hi, <?= htmlspecialchars($user->first_name) ?></p></li> -->
+                    <img src="./assets/img/pic.avif" class="user-pic" onclick="toggleMenu()">
+                    <?php endif ?>
+            </div>
+            <!-- style="height: 20px; width: 20px; border-radius: 50%;" -->
+
+            <div class="sub-menu-wrap" id="subMenu">
+                <div class="sub-menu">
+                    <div class="user-info">
+                        <img src="./assets/img/pic.avif">
+                        <h3>Paresh Nath Nandi</h3>
+                    </div>
+                    <hr>
+                    <a href="" class="sub-menu-link">
+                        <i class="ri-settings-line"></i>
+                        <p>Profile</p>
+                        <span>></span>
+                    </a>
+                    <a href="logout.php" class="sub-menu-link">
+                       <i class="ri-logout-circle-line"></i>
+                        <p>Logout</p>
+                        <span>></span>
+                    </a>
+                </div>
             </div>
         </div>
-        
+
     </header>
+    <script>
+        let subMenu = document.getElementById("subMenu");
+        function toggleMenu() {
+            subMenu.classList.toggle("open-menu");
+        }
+    </script>
+
 </body>
+
 </html>

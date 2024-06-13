@@ -276,6 +276,76 @@ header {
   box-shadow: 0 4px 24px hsla(230, 75%, 40%, .4);
 }
 
+.user-pic{
+  width: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-left: 30px;
+}
+.sub-menu-wrap{
+  position: absolute;
+  top: 100%;
+  right: 0%;
+  width: 320px;
+  max-height: 0px;
+  overflow: hidden; 
+  transition: max-height 0.5s; 
+}
+.open-menu{
+  max-height: 400px;
+}
+
+.sub-menu{
+  background: #ffff;
+  padding: 20px;
+  margin: 10px;
+}
+.user-info{
+  display: flex;
+  align-items: center;
+}
+.user-info h3{
+  font-weight: 500;
+}
+.user-info img{
+  width: 60px; 
+  border-radius: 50%;
+  margin-right: 15px;
+}
+.sub-menu hr{
+  border: 0px;
+  height: 1px;
+  width: 100%;
+  background: #ccc;
+  margin: 15px 0 10px;
+}
+
+.sub-menu-link{
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: var(--text-color);
+  margin: 12px 0;
+
+}
+.sub-menu-link p{
+  width: 100%;
+}
+
+.sub-menu-link i{
+  width: 40px;
+  border-radius: 50%;
+  padding: 4px;
+  margin-right: 28px;
+  height: 40px;
+  font-size: 22px;
+  transition: color .4s;
+}
+
+.sub-menu-link span{
+  font-size: 26px;
+}
+
 
 /*=============== BREAKPOINTS ===============*/
 /* For medium devices */
