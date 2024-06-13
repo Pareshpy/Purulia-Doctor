@@ -62,17 +62,15 @@ if (isset($_SESSION['user_id'])) {
                 <?php if (!$user): ?>
                     <a href="login.php" class="action_btn"><i class="ri-user-line" id="login"></i></a>
                 <?php else: ?>
-                    <!-- <p onclick="toggleMenu()"   class="nav__link">Hi, <?= htmlspecialchars($user->first_name) ?></p></li> -->
                     <img src="./assets/img/pic.avif" class="user-pic" onclick="toggleMenu()">
                     <?php endif ?>
             </div>
-            <!-- style="height: 20px; width: 20px; border-radius: 50%;" -->
 
             <div class="sub-menu-wrap" id="subMenu">
                 <div class="sub-menu">
                     <div class="user-info">
                         <img src="./assets/img/pic.avif">
-                        <h3>Paresh Nath Nandi</h3>
+                        <h3><?= htmlspecialchars($user->first_name) ?></h3>
                     </div>
                     <hr>
                     <a href="" class="sub-menu-link">

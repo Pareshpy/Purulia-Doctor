@@ -62,7 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="login__group">
                     <div>
                         <label for="email" class="login__label">Email</label>
-                        <input type="email" name="email" placeholder="Write your email" id="email" class="login__input" required value="">
+                        <input type="email" name="email" placeholder="Write your email" id="email" class="login__input" required value="pareshnathnandi1234@gmail.com">
                     </div>
                     <div>
                         <label for="password" class="login__label">Password</label>
