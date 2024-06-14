@@ -1,5 +1,4 @@
 <?php
-
 include ('connection.php');
 session_start();
 
@@ -7,12 +6,12 @@ $user = null;
 
 if (isset($_SESSION['user_id'])) {
     $userid = $_SESSION['user_id'];
-    $get_user = "SELECT `id`, `first_name`, `middle_name`, `last_name`, `email` FROM `users` WHERE `id` = ?";
+    $get_user = "SELECT `id`, `first_name`, `middle_name`, `last_name`, `email`, `profile_image` FROM `users` WHERE `id` = ?";
 
     if ($stmt = $conn->prepare($get_user)) {
         $stmt->bind_param("i", $userid);
         $stmt->execute();
-        $stmt->bind_result($id, $first_name, $middle_name, $last_name, $email);
+        $stmt->bind_result($id, $first_name, $middle_name, $last_name, $email, $profile_image);
 
         if ($stmt->fetch()) {
             $user = (object) [
@@ -21,6 +20,7 @@ if (isset($_SESSION['user_id'])) {
                 'middle_name' => $middle_name,
                 'last_name' => $last_name,
                 'email' => $email,
+                'profile_image' => $profile_image,
                 'name' => trim($first_name . ' ' . $middle_name . ' ' . $last_name)
             ];
         }
@@ -40,11 +40,6 @@ if (isset($_SESSION['user_id'])) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css">
     <link rel="stylesheet" href="assets/css/style.css" />
     <link rel="stylesheet" href="assets/css/notify.css" />
-
-
-
-
-
     <title>PD | Purulia Doctor</title>
 </head>
 
@@ -60,19 +55,22 @@ if (isset($_SESSION['user_id'])) {
                 <li><a href="#about" class="nav__link">About</a></li>
             </ul>
 
-
             <div class="a-group">
                 <?php if (!$user): ?>
                     <a href="login.php" class="action_btn"><i class="ri-user-line" id="login"></i></a>
                 <?php else: ?>
-                    <img src="./assets/img/pic.avif" class="user-pic" onclick="toggleMenu()">
-                    <?php endif ?>
+                    <?php 
+                    // Use user's profile image if available, otherwise use default image
+                    $user_image = $user->profile_image ? $user->profile_image : './assets/img/pic.svg';
+                    ?>
+                    <img src="<?= htmlspecialchars($user_image) ?>" class="user-pic" onclick="toggleMenu()">
+                <?php endif ?>
             </div>
 
             <div class="sub-menu-wrap" id="subMenu">
                 <div class="sub-menu">
                     <div class="user-info">
-                        <img src="./assets/img/pic.avif">
+                        <img src="<?= htmlspecialchars($user_image) ?>">
                         <h3><?= htmlspecialchars($user->name) ?></h3>
                     </div>
                     <hr>
@@ -89,7 +87,6 @@ if (isset($_SESSION['user_id'])) {
                 </div>
             </div>
         </div>
-
     </header>
     <script>
         let subMenu = document.getElementById("subMenu");
@@ -97,7 +94,6 @@ if (isset($_SESSION['user_id'])) {
             subMenu.classList.toggle("open-menu");
         }
     </script>
-
 </body>
 
 </html>
