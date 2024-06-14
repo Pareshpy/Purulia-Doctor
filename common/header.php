@@ -7,18 +7,21 @@ $user = null;
 
 if (isset($_SESSION['user_id'])) {
     $userid = $_SESSION['user_id'];
-    $get_user = "SELECT `id`, `first_name`, `email` FROM `users` WHERE `id` = ?";
+    $get_user = "SELECT `id`, `first_name`, `middle_name`, `last_name`, `email` FROM `users` WHERE `id` = ?";
 
     if ($stmt = $conn->prepare($get_user)) {
         $stmt->bind_param("i", $userid);
         $stmt->execute();
-        $stmt->bind_result($id, $first_name, $email);
+        $stmt->bind_result($id, $first_name, $middle_name, $last_name, $email);
 
         if ($stmt->fetch()) {
             $user = (object) [
                 'id' => $id,
                 'first_name' => $first_name,
-                'email' => $email
+                'middle_name' => $middle_name,
+                'last_name' => $last_name,
+                'email' => $email,
+                'name' => trim($first_name . ' ' . $middle_name . ' ' . $last_name)
             ];
         }
 
@@ -70,7 +73,7 @@ if (isset($_SESSION['user_id'])) {
                 <div class="sub-menu">
                     <div class="user-info">
                         <img src="./assets/img/pic.avif">
-                        <h3><?= htmlspecialchars($user->first_name) ?></h3>
+                        <h3><?= htmlspecialchars($user->name) ?></h3>
                     </div>
                     <hr>
                     <a href="" class="sub-menu-link">
