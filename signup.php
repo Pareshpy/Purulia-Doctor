@@ -15,6 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $phone = $_POST['phone'];
     $password = $_POST['password'];
     $c_password = $_POST['c_password'];
+    $profile_image = null;
 
     // Validate form fields
     if (empty($first_name) || empty($last_name) || empty($email) || empty($phone) || empty($password) || empty($c_password)) {
@@ -31,19 +32,49 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($stmt->num_rows > 0) {
             $error_message = "Email already exists.";
         } else {
-            // Hash the password
-            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+            // Handle file upload
+            if (isset($_FILES['profile_image']) && $_FILES['profile_image']['error'] === UPLOAD_ERR_OK) {
+                $target_dir = "uploads/";
+                $file_name = basename($_FILES["profile_image"]["name"]);
+                $target_file = $target_dir . $file_name;
+                $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
-            // Prepare and bind
-            $stmt = $conn->prepare("INSERT INTO users (first_name, middle_name, last_name, email, phone, password) VALUES (?, ?, ?, ?, ?, ?)");
-            $stmt->bind_param("ssssss", $first_name, $middle_name, $last_name, $email, $phone, $hashed_password);
+                // Validate file type and size
+                $allowed_types = ['jpg', 'jpeg', 'png', 'gif'];
+                if (!in_array($imageFileType, $allowed_types)) {
+                    $error_message = "Only JPG, JPEG, PNG & GIF files are allowed.";
+                } else if ($_FILES["profile_image"]["size"] > 500000) { // 500KB max size
+                    $error_message = "Your file is too large.";
+                } else {
+                    // Check if the directory exists
+                    if (!is_dir($target_dir)) {
+                        mkdir($target_dir, 0777, true);
+                    }
 
-            // Execute the query
-            if ($stmt->execute()) {
-                $success_message = "New record created successfully. Redirecting to login page...";
-                $form_success = true;
-            } else {
-                $error_message = "Error: " . $stmt->error;
+                    if (move_uploaded_file($_FILES["profile_image"]["tmp_name"], $target_file)) {
+                        $profile_image = $target_file;
+                    } else {
+                        $error_message = "There was an error uploading your file.";
+                    }
+                }
+            }
+
+            // If no error, proceed to insert user data
+            if (empty($error_message)) {
+                // Hash the password
+                $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+                // Prepare and bind
+                $stmt = $conn->prepare("INSERT INTO users (first_name, middle_name, last_name, email, phone, password, profile_image) VALUES (?, ?, ?, ?, ?, ?, ?)");
+                $stmt->bind_param("sssssss", $first_name, $middle_name, $last_name, $email, $phone, $hashed_password, $profile_image);
+
+                // Execute the query
+                if ($stmt->execute()) {
+                    $success_message = "Your account has been created successfully.";
+                    $form_success = true;
+                } else {
+                    $error_message = "Error: " . $stmt->error;
+                }
             }
         }
 
@@ -61,7 +92,7 @@ $conn->close();
             style="background-image: url('assets/img/hero-bg.jpg'); background-size: cover; background-position: center;">
             <!--==================== LOGIN ====================-->
             <div class="login glass height" style="height : 200vh" id="login">
-                <form action="signup.php" method="POST" class="login__form">
+                <form action="signup.php" method="POST" class="login__form" enctype="multipart/form-data">
                     <h2 class="login__title">Sign up</h2>
 
                     <div class="login__group">
@@ -84,6 +115,10 @@ $conn->close();
                         <div>
                             <label for="phone" class="login__label">Phone No</label>
                             <input type="number" name="phone" placeholder="Write your Phone No" id="phone" class="login__input" required>
+                        </div>
+                        <div>
+                            <label for="profile_image" class="login__label">Profile Image</label>
+                            <input type="file" name="profile_image" id="profile_image" class="login__input">
                         </div>
                         <div>
                             <label for="password" class="login__label">Password</label>
@@ -110,43 +145,45 @@ $conn->close();
         </div>
     </main>
 
-    <!--=============== MAIN JS ===============-->
-    <script>
-        document.getElementById('phone').addEventListener('input', function (e) {
-            var phoneInput = e.target;
-            var phoneValue = phoneInput.value;
-            if (phoneValue.length > 10) {
-                phoneInput.value = phoneValue.slice(0, 10);
-            }
-        });
-        document.getElementById('c-password').addEventListener('input', function () {
-            var password = document.getElementById('password').value;
-            var confirmPassword = document.getElementById('c-password').value;
-            var errorMessage = document.getElementById('error-message');
+ <!--=============== MAIN JS ===============-->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    document.getElementById('phone').addEventListener('input', function (e) {
+        var phoneInput = e.target;
+        var phoneValue = phoneInput.value;
+        if (phoneValue.length > 10) {
+            phoneInput.value = phoneValue.slice(0, 10);
+        }
+    });
+    document.getElementById('c-password').addEventListener('input', function () {
+        var password = document.getElementById('password').value;
+        var confirmPassword = document.getElementById('c-password').value;
+        var errorMessage = document.getElementById('error-message');
 
-            if (confirmPassword === '') {
-                document.getElementById('c-password').classList.remove('error');
-                errorMessage.style.display = 'none';
-            } else if (password !== confirmPassword) {
-                document.getElementById('c-password').classList.add('error');
-                errorMessage.style.display = 'block';
-            } else {
-                document.getElementById('c-password').classList.remove('error');
-                errorMessage.style.display = 'none';
-            }
-        });
+        if (confirmPassword === '') {
+            document.getElementById('c-password').classList.remove('error');
+            errorMessage.style.display = 'none';
+        } else if (password !== confirmPassword) {
+            document.getElementById('c-password').classList.add('error');
+            errorMessage.style.display = 'block';
+        } else {
+            document.getElementById('c-password').classList.remove('error');
+            errorMessage.style.display = 'none';
+        }
+    });
 
-        <?php if ($form_success): ?>
-        // Display success message and redirect
-        Swal.fire({
-            icon: 'success',
-            title: 'Success',
-            text: '<?php echo $success_message; ?>',
-        }).then(function() {
-            window.location.href = 'login.php';
-        });
-        <?php endif; ?>
-    </script>
+    <?php if ($form_success): ?>
+    // Display success message and redirect
+    Swal.fire({
+        icon: 'success',
+        title: 'Success',
+        text: '<?php echo $success_message; ?>',
+        showConfirmButton: false,
+        timer: 3000 // Auto close after 3 seconds
+    }).then(function() {
+        window.location.href = 'login.php';
+    });
+    <?php endif; ?>
+</script>
 </body>
-
 </html>
