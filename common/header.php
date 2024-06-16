@@ -1,7 +1,7 @@
 <?php
 include ('connection.php');
-session_start();
 
+session_start();
 $user = null;
 
 if (isset($_SESSION['user_id'])) {
@@ -40,13 +40,13 @@ if (isset($_SESSION['user_id'])) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css">
     <link rel="stylesheet" href="assets/css/style.css" />
     <link rel="stylesheet" href="assets/css/notify.css" />
-    <title>PD | Purulia Doctor</title>
+    <title><?= isset($title) ? $title . ' - Purulia Doctors' : 'Purulia Doctors' ?></title>
 </head>
 
 <body>
     <header>
         <div class="navbar">
-            <div class="logo"><a href="index.php" class="nav__logo">PURULIA DOCTOR</a></div>
+            <div class="logo"><a href="index.php" class="nav__logo">PURULIA DOCTORS</a></div>
             <ul class="links">
                 <li><a href="#home" class="nav__link">Home</a></li>
                 <li><a href="catagories.php" class="nav__link">Catagories</a></li>
@@ -59,7 +59,7 @@ if (isset($_SESSION['user_id'])) {
                 <?php if (!$user): ?>
                     <a href="login.php" class="action_btn"><i class="ri-user-line" id="login"></i></a>
                 <?php else: ?>
-                    <?php 
+                    <?php
                     // Use user's profile image if available, otherwise use default image
                     $user_image = $user->profile_image ? $user->profile_image : './assets/img/pic.svg';
                     ?>
@@ -77,12 +77,12 @@ if (isset($_SESSION['user_id'])) {
                     <a href="" class="sub-menu-link">
                         <i class="ri-settings-line"></i>
                         <p>Profile</p>
-                        <span>></span>
+                        <!-- <span>></span> -->
                     </a>
                     <a href="logout.php" class="sub-menu-link">
-                       <i class="ri-logout-circle-line"></i>
+                        <i class="ri-logout-circle-line"></i>
                         <p>Logout</p>
-                        <span>></span>
+                        <!-- <span>></span> -->
                     </a>
                 </div>
             </div>
