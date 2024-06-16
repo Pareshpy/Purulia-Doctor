@@ -161,7 +161,7 @@ include ('./common/header.php');
                         </div>
                     </div>
                 </div>
-               <!-- <div class="member d-flex align-items-start">
+               <div class="member d-flex align-items-start">
                     <div class="pic"><img src="assets/img/doctors/doctors-2.jpg" class="img-fluid" alt=""></div>
                     <div class="member-info">
                         <h4>Sarah Jhonson</h4>
@@ -173,9 +173,9 @@ include ('./common/header.php');
                             <a href=""><i class="ri-instagram-fill"></i></a>
                             <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
                         </div>
-                    </div>    -->
+                    </div>   
                 </div> 
-                <div class="member d-flex align-items-start">
+                <!-- <div class="member d-flex align-items-start">
                     <div class="pic"><img src="assets/img/doctors/doctors-3.jpg" class="img-fluid" alt=""></div>
                     <div class="member-info">
                         <h4>Sarah Jhonson</h4>
@@ -188,7 +188,7 @@ include ('./common/header.php');
                             <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
                         </div>
                     </div>
-                </div> 
+                </div>  -->
             </div>
         </div>
 
