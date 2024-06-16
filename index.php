@@ -8,7 +8,7 @@ include ('./common/header.php');
  <section id="hero" class="d-flex align-items-center">
         <div class="container">
             <h1>Welcome to Purulia Doctor</h1>
-            <h2>We offer appointments for various clinics, providing essential health services to the community.</h2>
+            <!-- <h2>We offer appointments for various clinics, providing essential health services to the community.</h2> -->
             <a href="#about" class="btn-get-started scrollto">Get Started</a>
         </div>
     </section>
@@ -102,7 +102,7 @@ include ('./common/header.php');
             </div>
         </div>
 
-        <div class="container-2">
+        <div class="container-3">
             <div class="services">
                 <div class="service">
                     <div class="icon-2 heart"></div>
@@ -147,9 +147,9 @@ include ('./common/header.php');
         </div>
         <div class="container-2">
             <div class="services">
-            <div class="member d-flex align-items-start">
-                    <div class="pic"><img src="assets/img/doctors/doctors-1.jpg" class="img-fluid" alt=""></div>
-                    <div class="member-info">
+                 <div class="member d-flex align-items-start">
+                     <div class="pic"><img src="assets/img/doctors/doctors-1.jpg" class="img-fluid" alt=""></div>
+                       <div class="member-info">
                         <h4>Sarah Jhonson</h4>
                         <span>Anesthesiologist</span>
                         <p>Aut maiores voluptates amet et quis praesentium qui senda para</p>
@@ -161,7 +161,7 @@ include ('./common/header.php');
                         </div>
                     </div>
                 </div>
-               <!-- <div class="member d-flex align-items-start">
+               <div class="member d-flex align-items-start">
                     <div class="pic"><img src="assets/img/doctors/doctors-2.jpg" class="img-fluid" alt=""></div>
                     <div class="member-info">
                         <h4>Sarah Jhonson</h4>
@@ -173,9 +173,9 @@ include ('./common/header.php');
                             <a href=""><i class="ri-instagram-fill"></i></a>
                             <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
                         </div>
-                    </div>    -->
+                    </div>   
                 </div> 
-                <div class="member d-flex align-items-start">
+                <!-- <div class="member d-flex align-items-start">
                     <div class="pic"><img src="assets/img/doctors/doctors-3.jpg" class="img-fluid" alt=""></div>
                     <div class="member-info">
                         <h4>Sarah Jhonson</h4>
@@ -188,7 +188,7 @@ include ('./common/header.php');
                             <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
                         </div>
                     </div>
-                </div> 
+                </div>  -->
             </div>
         </div>
 
