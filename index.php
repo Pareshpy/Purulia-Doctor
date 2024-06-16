@@ -150,7 +150,7 @@ include ('./common/header.php');
                  <div class="member d-flex align-items-start">
                      <div class="pic"><img src="assets/img/doctors/doctors-1.jpg" class="img-fluid" alt=""></div>
                        <div class="member-info">
-                        <h4>Sarah Jhonson</h4>
+                        <h4>Sarah Mahato</h4>
                         <span>Anesthesiologist</span>
                         <p>Aut maiores voluptates amet et quis praesentium qui senda para</p>
                         <div class="social">
@@ -164,7 +164,7 @@ include ('./common/header.php');
                <div class="member d-flex align-items-start">
                     <div class="pic"><img src="assets/img/doctors/doctors-2.jpg" class="img-fluid" alt=""></div>
                     <div class="member-info">
-                        <h4>Sarah Jhonson</h4>
+                        <h4>Captain Purulia</h4>
                         <span>Anesthesiologist</span>
                         <p>Aut maiores voluptates amet et quis praesentium qui senda para</p>
                         <div class="social">
@@ -197,7 +197,7 @@ include ('./common/header.php');
                 <div class="member d-flex align-items-start">
                     <div class="pic"><img src="assets/img/doctors/doctors-1.jpg" class="img-fluid" alt=""></div>
                     <div class="member-info">
-                        <h4>Sarah Jhonson</h4>
+                        <h4>Dr.Mahato</h4>
                         <span>Anesthesiologist</span>
                         <p>Aut maiores voluptates amet et quis praesentium qui senda para</p>
                         <div class="social">
@@ -211,7 +211,7 @@ include ('./common/header.php');
                 <div class="member d-flex align-items-start">
                     <div class="pic"><img src="assets/img/doctors/doctors-2.jpg" class="img-fluid" alt=""></div>
                     <div class="member-info">
-                        <h4>Sarah Jhonson</h4>
+                        <h4>Turulove Dhibar</h4>
                         <span>Anesthesiologist</span>
                         <p>Aut maiores voluptates amet et quis praesentium qui senda para</p>
                         <div class="social">
