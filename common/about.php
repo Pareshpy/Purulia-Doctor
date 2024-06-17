@@ -37,7 +37,7 @@
                 <div class="social-links">
                     <a href="https://www.instagram.com/paresh.exe"><i class="ri-facebook-circle-fill"></i>
                         <a href="https://www.instagram.com/paresh.exe"><i class="ri-twitter-fill"></i></a>
-                        <a href="https://www.instagram.com/paresh.exe"><i class="ri-instagram-fill"></i>
+                        <a href="https://www.instagram.com/sudipn_13?igsh=YmU0NmFqazNzOXpw"><i class="ri-instagram-fill"></i>
                             <a href="https://www.instagram.com/paresh.exe"><i class="ri-linkedin-fill"></i></a>
                 </div>
             </div>
