@@ -934,4 +934,202 @@ h1 {
   /* Unicode for report symbol */
 }
 
-/* to here sujoy */
+/* doctors-details */
+.content {
+  min-height: 200px;
+  padding: 30px 0 0;
+}
+
+.container {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.card {
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, .125);
+  border-radius: .25rem;
+}
+
+.card-body {
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  min-height: 1px;
+  padding: 1.5rem;
+}
+
+.doctor-widget {
+  display: flex;
+}
+
+.doctor-info-left {
+  display: flex;
+}
+
+.doctor-img {
+  -ms-flex: 0 0 150px;
+  flex: 0 0 150px;
+  margin-right: 20px;
+  width: 150px;
+}
+
+.doctor-img img {
+  border-radius: 5px;
+}
+
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+
+img {
+  vertical-align: middle;
+  border-style: none;
+  overflow-clip-margin: content-box;
+  overflow: clip;
+}
+
+.doctor-widget .doc-name {
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 3px;
+}
+
+.doc-name {
+  color: #272b41;
+}
+
+h4 {
+  display: block;
+  margin-block-start: 1.33em;
+  margin-block-end: 1.33em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+  unicode-bidi: isolate;
+  margin-top: 0;
+  margin-bottom: .5rem;
+  line-height: 1.2;
+  color: #272b41;
+}
+
+.doc-speciality {
+  font-size: 14px;
+  color: #757575;
+  margin-bottom: 15px;
+}
+.doc-department {
+  color: #20c0f3;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.clinic-details {
+  margin-bottom: 15px;
+}
+
+.doc-location {
+  color: #757575;
+  font-size: 14px;
+  margin-bottom: 25px;
+}
+
+p {
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  unicode-bidi: isolate;
+  margin-top: 0;
+}
+
+.doc-info-right {
+  margin-left: auto;
+  -ms-flex: 0 0 200px;
+  flex: 0 0 200px;
+  max-width: 200px;
+}
+.clini-infos {
+  margin-bottom: 15px;
+}
+.clini-infos ul {
+  font-size: 14px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.clini-infos ul li {
+  display: block;
+  line-height: 30px;
+  color: #4E4852;
+}
+.clini-infos ul li i {
+  font-size: 15px;
+  min-width: 30px;
+}
+
+.doctor-action {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
+}
+.btn-white {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  color: #272b41;
+}
+.doctor-action a + a {
+  margin-left: 8px;
+}
+.btn {
+  display: inline-block;
+  font-weight: 400;
+  color: #212529;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-color: transparent;
+  border: 1px solid transparent;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: .25rem;
+  transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+.clinic-booking a.apt-btn {
+  background-color: #20c0f3;
+  color: #fff;
+}
+.clinic-booking a {
+  background-color: #fff;
+  border: 2px solid #20c0f3;
+  border-radius: 4px;
+  color: #20c0f3;
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  padding: 10px 20px;
+  text-align: center;
+  text-transform: uppercase;
+  width: 100%;
+}
