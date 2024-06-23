@@ -148,11 +148,11 @@ include ('./common/header.php');
         <div class="container-2">
             <div class="services">
             <div class="member d-flex align-items-start">
-                    <div class="pic"><img src="assets/img/doctors/doctors-1.jpg" class="img-fluid" alt=""></div>
+                    <div class="pic"><img src="assets/img/doctors/dortor1.jpg" class="img-fluid" alt=""></div>
                     <div class="member-info">
-                        <h4>Sudip Nandi</h4>
-                        <span>Senior Doctor</span>
-                        <p>Aut maiores voluptates amet et quis praesentium qui senda para</p>
+                        <a href="doctor-details.php"> <h4>Dr. Joydeep Mandal</h4>  </a>
+                        <span>ORTHOPEDICS</span>
+                        <p>MS ORTHOPEDICS &amp; Surgeon</p>
                         <div class="social">
                             <a href=""><i class="ri-twitter-fill"></i></a>
                             <a href=""><i class="ri-facebook-fill"></i></a>

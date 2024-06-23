@@ -581,12 +581,13 @@ section {
   box-shadow: 0px 2px 15px rgba(44, 73, 100, 0.08);
   padding: 30px;
   border-radius: 10px;
+  min-width: 550px;
 }
 
 .doctors .member .pic {
   overflow: hidden;
   width: 180px;
-  border-radius: 50%;
+  border-radius: 13%;
 }
 
 .doctors .member .pic img {
@@ -597,8 +598,11 @@ section {
   transform: scale(1.1);
 }
 
-.doctors .member .member-info {
-  padding-left: 10px;
+.member-info{
+  padding: 30px;
+}
+.member-info .a h4{
+  text-decoration: none;
 }
 
 .doctors .member h4 {
@@ -1132,4 +1136,247 @@ p {
   text-align: center;
   text-transform: uppercase;
   width: 100%;
+}
+
+.card {
+  border: 1px solid #f0f0f0;
+  margin-bottom: 1.875rem;
+}
+.card-body {
+  padding: 1.5rem;
+}
+.pt-0, .py-0 {
+  padding-top: 0 !important;
+}
+.card-body {
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  min-height: 1px;
+  padding: 1.25rem;
+}
+.mb-4, .my-4 {
+  margin-bottom: 1.5rem !important;
+}
+nav {
+  display: block;
+  unicode-bidi: isolate;
+}
+.nav-tabs {
+  border-bottom: 1px solid #f0f0f0;
+}
+.nav {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+}
+.nav-justified .nav-item {
+  -ms-flex-preferred-size: 0;
+  flex-basis: 0;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  text-align: center;
+}
+.nav-tabs .nav-item {
+  margin-bottom: -1px;
+}
+.user-tabs .nav-tabs.nav-tabs-bottom > li > a.active, .user-tabs .nav-tabs.nav-tabs-bottom > li > a.active:hover, .user-tabs .nav-tabs.nav-tabs-bottom > li > a.active:focus {
+  border-bottom-width: 3px;
+  color: #20c0f3;
+}
+.nav-tabs.nav-tabs-bottom > li > a.active, .nav-tabs.nav-tabs-bottom > li > a.active:hover, .nav-tabs.nav-tabs-bottom > li > a.active:focus {
+  border-bottom-width: 2px;
+  border-color: transparent;
+  border-bottom-color: #20c0f3;
+  background-color: transparent;
+  transition: none 0s ease 0s;
+  -moz-transition: none 0s ease 0s;
+  -o-transition: none 0s ease 0s;
+  -ms-transition: none 0s ease 0s;
+  -webkit-transition: none 0s ease 0s;
+}
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+  color: #495057;
+  background-color: #fff;
+  border-color: #dee2e6 #dee2e6 #fff;
+}
+.user-tabs .nav-tabs > li > a {
+  border: 0;
+  border-bottom: 3px solid transparent;
+  color: #3e3e3e;
+  font-weight: 600;
+  padding: 20px;
+}
+.nav-tabs.nav-justified > li > a {
+  border-radius: 0;
+  margin-bottom: 0;
+}
+.nav-tabs .nav-link {
+  border-radius: 0;
+}
+.nav-tabs > li > a {
+  margin-right: 0;
+  color: #888;
+  border-radius: 0;
+}
+.nav-link {
+  display: block;
+  padding: .5rem 1rem;
+}
+.tab-content>.active {
+  display: block;
+}
+.tab-content>.tab-pane {
+  display: none;
+}
+.fade {
+  transition: opacity .15s linear;
+}
+.fade:not(.show) {
+  opacity: 0;
+}
+.location-list {
+  border: 1px solid #f0f0f0;
+  border-radius: 4px;
+  padding: 20px;
+}
+.row {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+.col-md-6 {
+  position: relative;
+  width: 100%;
+  height: 300px; 
+  /* background-image: url(../img/clinic1.webp); 
+  background-size: cover; 
+  background-position: center; 
+  overflow: hidden;  */
+}
+
+
+.clinic-content .clinic-name {
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 3px;
+}
+input, button, a {
+  transition: all 0.4s ease;
+  -moz-transition: all 0.4s ease;
+  -o-transition: all 0.4s ease;
+  -ms-transition: all 0.4s ease;
+  -webkit-transition: all 0.4s ease;
+}
+.doc-speciality {
+  font-size: 14px;
+  color: #757575;
+  margin-bottom: 15px;
+}
+.clinic-details h5 {
+  font-weight: normal;
+  color: #757575;
+  margin-bottom: 25px;
+}
+.clinic-direction {
+  color: #757575;
+  font-size: 14px;
+  margin-bottom: 25px;
+}
+.clinic-details ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.clinic-details ul li {
+  display: inline-block;
+  padding-right: 5px;
+}
+.clinic-details ul li a img {
+  border-radius: 5px;
+  width: 40px;
+}
+@media (min-width: 768px) {
+  .col-md-4 {
+      -ms-flex: 0 0 33.333333%;
+      flex: 0 0 33.333333%;
+      max-width: 33.333333%;
+  }
+}
+.timings-days {
+  font-weight: bold;
+  color: #272b41;
+  margin-bottom: 5px;
+}
+.clinic-timing{
+  box-sizing: border-box;
+  display: block;
+}
+.business-widget {
+  background-color: #fcfcfc;
+  border: 1px solid #f0f0f0;
+  padding: 20px;
+  margin-bottom: 0;
+}
+.listing-day.current {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 13px;
+  margin-bottom: 13px;
+}
+.listing-day {
+  -webkit-box-align: flex-start;
+  -ms-flex-align: flex-start;
+  align-items: flex-start;
+  color: #000;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: space-between;
+  margin-bottom: 10px;
+}
+.listing-day .day {
+  font-weight: 500;
+}
+.time-items {
+  color: #757575;
+}
+.listing-day:last-child {
+  margin-bottom: 0;
+}
+.time-items > span.open-status {
+  margin-bottom: 3px;
+}
+.time-items > span {
+  display: block;
+  text-align: right;
+}
+.bg-success-light {
+  background-color: rgba(15, 183, 107, 0.12) !important;
+  color: #26af48 !important;
+}
+.badge {
+  display: inline-block;
+  padding: .25em .4em;
+  font-size: 75%;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: .25rem;
+  transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+.bg-danger-light {
+  background-color: rgba(242, 17, 54, 0.12) !important;
+  color: #e63c3c !important;
 }
