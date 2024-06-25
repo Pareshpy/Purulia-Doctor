@@ -13,9 +13,6 @@ include ('./common/header.php');
         </div>
     </section>
 
-
-
-
 <section>
     <div class="container-2" id="service">
         <div class="left-panel">
@@ -48,10 +45,6 @@ include ('./common/header.php');
 <!-- <div>
     <button onclick="showToast"></button>
 </div> -->
-
-
-
-
 
 
 <section id="doctors" class="doctors">
@@ -112,10 +105,6 @@ include ('./common/header.php');
         </div>
     </div>
 </section>
-
-<!--it's your boy Sudip-->
-
-
 
 <!-- ======= Doctors Section ======= -->
 
@@ -201,40 +190,11 @@ include ('./common/header.php');
     </div>
 </section>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <br><br><br><br>
-
-
-
-
 
 <?php
     include ('./common/about.php');
 ?>
-
-
-
-
 
 <div id="preloader"></div>
 <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i>
