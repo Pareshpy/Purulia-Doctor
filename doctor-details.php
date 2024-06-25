@@ -16,12 +16,16 @@ include ('./common/header.php');
                             <img src="assets/img/doctors/dortor1.jpg" class="img-fluid" alt="">
                         </div>
                         <div class="doctor-info-cont">
-                            <h4 class="doc-name">Dr.Joydeep Mandal </h4>
+                            <h4 class="doc-name">Dr. Joydeep Mandal </h4>
+                            
                             <p class="doc-speciality">MS ORTHOPEDICS &amp; Surgeon</p>
-                            <p class="doc-department">ORTHOPEDICS</p>
+                            <br>
+                            <p class="doc-department"style="color: #20c0f3;">ORTHOPEDICS</p>
+                            <br>
                             <div class="clinic-details">
                                 <p class="doc-location">
                                     <i class="ri-map-pin-2-fill"></i> Deep medical, E Lake Rd, <br> near science museum
+
                                     <a href="javascript:void(0);">Get Directions</a>
                                 </p>
                             </div>

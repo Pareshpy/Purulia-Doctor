@@ -1037,6 +1037,8 @@ h4 {
   color: #20c0f3;
   font-size: 14px;
   margin-bottom: 8px;
+  font-weight: 600;
+
 }
 
 .clinic-details {
@@ -1379,4 +1381,10 @@ input, button, a {
 .bg-danger-light {
   background-color: rgba(242, 17, 54, 0.12) !important;
   color: #e63c3c !important;
+}
+.widget {
+  margin-bottom: 30px;
+}
+.widget-title {
+  margin-bottom: 15px;
 }
