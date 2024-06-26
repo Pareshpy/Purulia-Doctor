@@ -141,6 +141,9 @@ header {
   align-items: center;
   justify-content: space-between;
 }
+.navbar a, header a, .navbar-link {
+  text-decoration: none;
+}
 
 .nav__logo {
   color: var(--first-color);
@@ -169,6 +172,7 @@ header {
 .navbar .links {
   display: flex;
   gap: 2.5rem;
+  text-decoration: none;
 }
 
 .action_btn {

@@ -41,7 +41,7 @@ if (isset($_SESSION['user_id'])) {
     <link rel="stylesheet" href="assets/css/style.css" />
     <link rel="stylesheet" href="assets/css/notify.css" />
     <!-- Bootstrap CSS -->
-<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
 
     <title><?= isset($title) ? $title . ' - Purulia Doctors' : 'Purulia Doctors' ?></title>
 </head>
@@ -49,18 +49,19 @@ if (isset($_SESSION['user_id'])) {
 <body>
     <header>
         <div class="navbar">
-            <div class="logo"><a href="index.php" class="nav__logo">PURULIA DOCTORS</a></div>
+            <div class="logo"><a style="text-decoration:none;" href="index.php" class="nav__logo">PURULIA DOCTORS</a>
+            </div>
             <ul class="links">
-                <li><a href="#home" class="nav__link">Home</a></li>
-                <li><a href="catagories.php" class="nav__link">Catagories</a></li>
-                <li><a href="doctor.php" class="nav__link">Doctors</a></li>
-                <li><a href="clinic.php" class="nav__link">Clinics</a></li>
-                <li><a href="#about" class="nav__link">About</a></li>
+                <li><a href="#home" style="text-decoration:none;" class="nav__link">Home</a></li>
+                <li><a href="catagories.php" style="text-decoration:none;" class="nav__link">Catagories</a></li>
+                <li><a href="doctor.php" style="text-decoration:none;" class="nav__link">Doctors</a></li>
+                <li><a href="clinic.php" style="text-decoration:none;" class="nav__link">Clinics</a></li>
+                <li><a href="#about" style="text-decoration:none;" class="nav__link">About</a></li>
             </ul>
 
             <div class="a-group">
                 <?php if (!$user): ?>
-                    <a href="login.php" class="action_btn"><i class="ri-user-line" id="login"></i></a>
+                    <a href="login.php" style="text-decoration:none;" class="action_btn"><i class="ri-user-line" id="login"></i></a>
                 <?php else: ?>
                     <?php
                     // Use user's profile image if available, otherwise use default image
