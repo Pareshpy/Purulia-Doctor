@@ -5,11 +5,11 @@ include ('./common/header.php');
 ?>
 <!-- ======= Hero Section ======= -->
 <span id="home"></span>
-<section id="hero" class="d-flex align-items-center">
+<section id="hero" class="d-flex align-items-center ">
     <div class="container">
         <h1>Welcome to Purulia Doctor</h1>
         <h2>We offer appointments for various clinics, providing essential health services to the community.</h2>
-        <a href="#about" class="btn-get-started scrollto">Get Started</a>
+        <!-- <a href="#about" class="btn-get-started scrollto">Get Started</a> -->
     </div>
 </section>
 
@@ -20,7 +20,7 @@ include ('./common/header.php');
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
                 dolore magna aliqua. Duis aute irure dolor in reprehenderit Asperiores dolores sed et. Tenetur quia eos.
                 Autem tempore quibusdam vel necessitatibus optio ad corporis.</p>
-            <button onclick="showToast">Learn More</button>
+            <!-- <button onclick="showToast">Learn More</button> -->
         </div>
         <div class="right-panel">
             <div class="card">
@@ -42,13 +42,57 @@ include ('./common/header.php');
     </div>
 </section>
 
+<section id="stats" class="stats section light-background">
+
+      <div class="container aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center">
+          <i class="ri-user-line"></i>
+            <div class="stats-item">
+              <span data-purecounter-start="0" data-purecounter-end="85" data-purecounter-duration="0" class="purecounter">85</span>
+              <p>Doctors</p>
+            </div>
+          </div><!-- End Stats Item -->
+
+          <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center">
+          <i class="ri-hospital-line"></i>
+            <div class="stats-item">
+              <span data-purecounter-start="0" data-purecounter-end="18" data-purecounter-duration="0" class="purecounter">18</span>
+              <p>Clinics</p>
+            </div>
+          </div><!-- End Stats Item -->
+
+          <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center">
+          <i class="ri-test-tube-line"></i>
+            <div class="stats-item">
+              <span data-purecounter-start="0" data-purecounter-end="12" data-purecounter-duration="0" class="purecounter">12</span>
+              <p>Catagories</p>
+            </div>
+          </div><!-- End Stats Item -->
+
+          <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center">
+          <i class="ri-contrast-drop-2-line"></i> 
+            <div class="stats-item">
+              <span data-purecounter-start="0" data-purecounter-end="150" data-purecounter-duration="0" class="purecounter">150</span>
+              <p>Blood Banks</p>
+            </div>
+          </div><!-- End Stats Item -->
+
+        </div>
+
+      </div>
+
+    </section>
+
 <!-- <div>
     <button onclick="showToast"></button>
 </div> -->
 
 
 <?php
-    include ('./common/catagories.php');
+    include ('./common/catagories-details.php');
 ?>
 
 <?php

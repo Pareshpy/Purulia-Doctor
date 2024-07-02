@@ -75,7 +75,7 @@ if (isset($_SESSION['user_id'])) {
                 <div class="sub-menu">
                     <div class="user-info">
                         <img src="<?= htmlspecialchars($user_image) ?>">
-                        <h3><?= htmlspecialchars($user->name) ?></h3>
+                        <h3><?= htmlspecialchars($user->first_name) ?></h3>
                     </div>
                     <hr>
                     <a href="" class="sub-menu-link">

@@ -40,7 +40,7 @@ include ('./common/header.php');
                                     <i class="ri-map-pin-2-fill"></i> Deep Medical
                                 </li>
                                 <li>
-                                    <i class="ri-money-rupee-circle-fill"></i> ₹550
+                                    <i class="ri-money-rupee-circle-fill"></i> ₹250
                                 </li>
                             </ul>
                         </div>
