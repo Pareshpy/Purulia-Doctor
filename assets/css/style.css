@@ -51,9 +51,11 @@
 .d-flex {
   display: flex;
 }
-.align-items-start{
+
+.align-items-start {
   align-items: start;
 }
+
 .align-items-center {
   align-items: center;
 }
@@ -143,7 +145,10 @@ header {
   align-items: center;
   justify-content: space-between;
 }
-.navbar a, header a, .navbar-link {
+
+.navbar a,
+header a,
+.navbar-link {
   text-decoration: none;
 }
 
@@ -604,10 +609,11 @@ section {
   transform: scale(1.1);
 }
 
-.member-info{
+.member-info {
   padding: 30px;
 }
-.member-info .a h4{
+
+.member-info .a h4 {
   text-decoration: none;
 }
 
@@ -1039,6 +1045,7 @@ h4 {
   color: #757575;
   margin-bottom: 15px;
 }
+
 .doc-department {
   color: #20c0f3;
   font-size: 14px;
@@ -1073,20 +1080,24 @@ p {
   flex: 0 0 200px;
   max-width: 200px;
 }
+
 .clini-infos {
   margin-bottom: 15px;
 }
+
 .clini-infos ul {
   font-size: 14px;
   list-style: none;
   margin: 0;
   padding: 0;
 }
+
 .clini-infos ul li {
   display: block;
   line-height: 30px;
   color: #4E4852;
 }
+
 .clini-infos ul li i {
   font-size: 15px;
   min-width: 30px;
@@ -1100,14 +1111,17 @@ p {
   flex-wrap: wrap;
   margin-bottom: 15px;
 }
+
 .btn-white {
   background-color: #fff;
   border: 1px solid #ccc;
   color: #272b41;
 }
-.doctor-action a + a {
+
+.doctor-action a+a {
   margin-left: 8px;
 }
+
 .btn {
   display: inline-block;
   font-weight: 400;
@@ -1127,10 +1141,12 @@ p {
   border-radius: .25rem;
   transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
+
 .clinic-booking a.apt-btn {
   background-color: #20c0f3;
   color: #fff;
 }
+
 .clinic-booking a {
   background-color: #fff;
   border: 2px solid #20c0f3;
@@ -1150,28 +1166,37 @@ p {
   border: 1px solid #f0f0f0;
   margin-bottom: 1.875rem;
 }
+
 .card-body {
   padding: 1.5rem;
 }
-.pt-0, .py-0 {
+
+.pt-0,
+.py-0 {
   padding-top: 0 !important;
 }
+
 .card-body {
   -ms-flex: 1 1 auto;
   flex: 1 1 auto;
   min-height: 1px;
   padding: 1.25rem;
 }
-.mb-4, .my-4 {
+
+.mb-4,
+.my-4 {
   margin-bottom: 1.5rem !important;
 }
+
 nav {
   display: block;
   unicode-bidi: isolate;
 }
+
 .nav-tabs {
   border-bottom: 1px solid #f0f0f0;
 }
+
 .nav {
   display: -ms-flexbox;
   display: flex;
@@ -1181,6 +1206,7 @@ nav {
   margin-bottom: 0;
   list-style: none;
 }
+
 .nav-justified .nav-item {
   -ms-flex-preferred-size: 0;
   flex-basis: 0;
@@ -1188,14 +1214,21 @@ nav {
   flex-grow: 1;
   text-align: center;
 }
+
 .nav-tabs .nav-item {
   margin-bottom: -1px;
 }
-.user-tabs .nav-tabs.nav-tabs-bottom > li > a.active, .user-tabs .nav-tabs.nav-tabs-bottom > li > a.active:hover, .user-tabs .nav-tabs.nav-tabs-bottom > li > a.active:focus {
+
+.user-tabs .nav-tabs.nav-tabs-bottom>li>a.active,
+.user-tabs .nav-tabs.nav-tabs-bottom>li>a.active:hover,
+.user-tabs .nav-tabs.nav-tabs-bottom>li>a.active:focus {
   border-bottom-width: 3px;
   color: #20c0f3;
 }
-.nav-tabs.nav-tabs-bottom > li > a.active, .nav-tabs.nav-tabs-bottom > li > a.active:hover, .nav-tabs.nav-tabs-bottom > li > a.active:focus {
+
+.nav-tabs.nav-tabs-bottom>li>a.active,
+.nav-tabs.nav-tabs-bottom>li>a.active:hover,
+.nav-tabs.nav-tabs-bottom>li>a.active:focus {
   border-bottom-width: 2px;
   border-color: transparent;
   border-bottom-color: #20c0f3;
@@ -1206,51 +1239,64 @@ nav {
   -ms-transition: none 0s ease 0s;
   -webkit-transition: none 0s ease 0s;
 }
-.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+
+.nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link.active {
   color: #495057;
   background-color: #fff;
   border-color: #dee2e6 #dee2e6 #fff;
 }
-.user-tabs .nav-tabs > li > a {
+
+.user-tabs .nav-tabs>li>a {
   border: 0;
   border-bottom: 3px solid transparent;
   color: #3e3e3e;
   font-weight: 600;
   padding: 20px;
 }
-.nav-tabs.nav-justified > li > a {
+
+.nav-tabs.nav-justified>li>a {
   border-radius: 0;
   margin-bottom: 0;
 }
+
 .nav-tabs .nav-link {
   border-radius: 0;
 }
-.nav-tabs > li > a {
+
+.nav-tabs>li>a {
   margin-right: 0;
   color: #888;
   border-radius: 0;
 }
+
 .nav-link {
   display: block;
   padding: .5rem 1rem;
 }
+
 .tab-content>.active {
   display: block;
 }
+
 .tab-content>.tab-pane {
   display: none;
 }
+
 .fade {
   transition: opacity .15s linear;
 }
+
 .fade:not(.show) {
   opacity: 0;
 }
+
 .location-list {
   border: 1px solid #f0f0f0;
   border-radius: 4px;
   padding: 20px;
 }
+
 .row {
   display: -ms-flexbox;
   display: flex;
@@ -1259,10 +1305,11 @@ nav {
   margin-right: -15px;
   margin-left: -15px;
 }
+
 .col-md-6 {
   position: relative;
   width: 100%;
-  height: 300px; 
+  height: 300px;
   /* background-image: url(../img/clinic1.webp); 
   background-size: cover; 
   background-position: center; 
@@ -1275,68 +1322,83 @@ nav {
   font-weight: 500;
   margin-bottom: 3px;
 }
-input, button, a {
+
+input,
+button,
+a {
   transition: all 0.4s ease;
   -moz-transition: all 0.4s ease;
   -o-transition: all 0.4s ease;
   -ms-transition: all 0.4s ease;
   -webkit-transition: all 0.4s ease;
 }
+
 .doc-speciality {
   font-size: 14px;
   color: #757575;
   margin-bottom: 15px;
 }
+
 .clinic-details h5 {
   font-weight: normal;
   color: #757575;
   margin-bottom: 25px;
 }
+
 .clinic-direction {
   color: #757575;
   font-size: 14px;
   margin-bottom: 25px;
 }
+
 .clinic-details ul {
   list-style: none;
   margin: 0;
   padding: 0;
 }
+
 .clinic-details ul li {
   display: inline-block;
   padding-right: 5px;
 }
+
 .clinic-details ul li a img {
   border-radius: 5px;
   width: 40px;
 }
+
 @media (min-width: 768px) {
   .col-md-4 {
-      -ms-flex: 0 0 33.333333%;
-      flex: 0 0 33.333333%;
-      max-width: 33.333333%;
+    -ms-flex: 0 0 33.333333%;
+    flex: 0 0 33.333333%;
+    max-width: 33.333333%;
   }
 }
+
 .timings-days {
   font-weight: bold;
   color: #272b41;
   margin-bottom: 5px;
 }
-.clinic-timing{
+
+.clinic-timing {
   box-sizing: border-box;
   display: block;
 }
+
 .business-widget {
   background-color: #fcfcfc;
   border: 1px solid #f0f0f0;
   padding: 20px;
   margin-bottom: 0;
 }
+
 .listing-day.current {
   border-bottom: 1px solid #ddd;
   padding-bottom: 13px;
   margin-bottom: 13px;
 }
+
 .listing-day {
   -webkit-box-align: flex-start;
   -ms-flex-align: flex-start;
@@ -1352,26 +1414,33 @@ input, button, a {
   -ms-flex-pack: space-between;
   margin-bottom: 10px;
 }
+
 .listing-day .day {
   font-weight: 500;
 }
+
 .time-items {
   color: #757575;
 }
+
 .listing-day:last-child {
   margin-bottom: 0;
 }
-.time-items > span.open-status {
+
+.time-items>span.open-status {
   margin-bottom: 3px;
 }
-.time-items > span {
+
+.time-items>span {
   display: block;
   text-align: right;
 }
+
 .bg-success-light {
   background-color: rgba(15, 183, 107, 0.12) !important;
   color: #26af48 !important;
 }
+
 .badge {
   display: inline-block;
   padding: .25em .4em;
@@ -1384,19 +1453,22 @@ input, button, a {
   border-radius: .25rem;
   transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
+
 .bg-danger-light {
   background-color: rgba(242, 17, 54, 0.12) !important;
   color: #e63c3c !important;
 }
+
 .widget {
   margin-bottom: 30px;
 }
+
 .widget-title {
   margin-bottom: 15px;
 }
 
 /* clinic css */
-.clinic-container{
+.clinic-container {
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -1404,19 +1476,104 @@ input, button, a {
   gap: 20px;
   background-color: red;
 }
+
 .clinic-pic {
   width: 400px;
   border-radius: 5px;
 }
-.member-info a h4{
+
+.member-info a h4 {
   font-weight: 700;
   margin-bottom: 5px;
   font-size: 20 px;
   color: #2c4964;
 }
+
 .member .pic img {
   transition: ease-in-out 0.2s;
 }
+
 .member:hover img {
   transform: scale(1.1);
 }
+
+.form-health-harbor {
+  display: flex;
+  width: 90%;
+  margin: 0px auto;
+  padding: 4rem;
+  gap: 24px;
+}
+/* 
+.catagories-options {
+  display: flex;
+  flex-direction: column;
+} */
+
+.catagories-p{
+margin: 0px;
+font-family: Roboto, Helvetica, Arial, sans-serif;
+line-height: 1.5;
+text-align: center;
+color: var(--text-color);
+font-size: 1.3rem;
+font-weight: var(--font-medium);
+animation: 1s ease-in-out 0s 1 normal none running animation-8a20q7;
+letter-spacing: 0.85px;
+}
+
+.catagories-options{
+display: flex;
+flex-wrap: wrap;
+-webkit-box-pack: center;
+justify-content: center;
+-webkit-box-align: center;
+align-items: center;
+width: 100%;
+padding-right: 15px;
+padding-left: 15px;
+margin-right: auto;
+margin-left: auto;
+}
+
+@media (min-width: 1200px) {
+  .catagories-options {
+      max-width: 1251px;
+  }
+}
+
+.opts{
+  display: flex;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    border-radius: 15px;
+    padding: 0rem 3rem;
+    height: 170px;
+    background-color: rgb(255, 255, 255);
+    margin: 2rem;
+    box-shadow: rgba(0, 0, 0, 0.2) 1px 5px 8px;
+    transition: transform 0.2s ease 0s;
+    cursor: pointer;
+}
+.opts:hover{
+  transform: scale(1.1);
+}
+
+.opt-img{
+  height: 65px;
+  width: 65px;
+  filter: invert(20%) sepia(98%) saturate(1951%) hue-rotate(198deg) brightness(96%) contrast(103%);
+}
+
+.opt-p{
+  margin: 0px;
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: 0.00938em;
+  font-size: 1.1rem;
+  color: var(--title-color);
+}
+

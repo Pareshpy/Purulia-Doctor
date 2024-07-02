@@ -187,7 +187,7 @@ $conn->close();
     <div class="hero"
         style="background-image: url('assets/img/hero-bg.jpg'); background-size: cover; background-position: center;">
         <!--==================== LOGIN ====================-->
-        <div class="login glass height" style="height : 200vh" id="login">
+        <div class="login glass height" style="height : 180vh" id="login">
             <form action="signup.php" method="POST" class="login__form" enctype="multipart/form-data">
                 <h2 class="login__title">Sign up</h2>
 
