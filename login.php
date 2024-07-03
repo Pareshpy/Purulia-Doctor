@@ -32,14 +32,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
                     if ($status != 1) {
                         // print_r($status);
                         // exit();
-                        header("Location: verify.php?vid=$vid");
+                        echo "<script>location.href='verify.php?vid='$vid</script>";
                         exit();
                     } else {
                         // Start a session and store user information
                         session_start();
                         $_SESSION['user_id'] = $user_id;
                         $_SESSION['user_name'] = trim($first_name . ' ' . $middle_name . ' ' . $last_name);
-                        header("Location: index.php");
+                        echo "<script>location.href='index.php'</script>";
                         exit();
                     }
                 } else {
