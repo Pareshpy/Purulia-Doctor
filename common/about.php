@@ -1,4 +1,5 @@
 <!--footer start-->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <footer class="footer" id="about">
     <div class="container">

@@ -34,10 +34,21 @@ if (!isset($_GET['vid'])) {
                 if ($stmt->execute()) {
                     $success_message = "Your account has been verified successfully.";
                     $form_success = true;
-                    echo "<script>location.href='./login.php'</script>";
+                    echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
+                    echo "<script>
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Your account has been verified successfully',
+                            confirmButtonText: 'OK'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                location.href = './login.php';
+                            }
+                        });
+                    </script>";
                 } else {
-                    $error_message = "Error: " . $stmt->error;
-                }
+                    $error_message = 'Error: ' . $stmt->error;
+                }  
             }
         }
     }
@@ -78,3 +89,5 @@ if (!isset($_GET['vid'])) {
         </div>
     </div>
 </main>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

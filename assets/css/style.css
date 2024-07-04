@@ -32,6 +32,8 @@
 
   /* max height */
   --max-height: 100vh;
+
+  color-scheme: light only;
 }
 
 .glass {
