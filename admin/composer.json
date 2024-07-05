@@ -1,0 +1,9 @@
+{
+    "name": "stringocean/pd",
+    "type": "project",
+    "require": {
+        "vlucas/phpdotenv": "^5.4",
+        "predis/predis": "^1.1"
+    },
+    "license": "String Ocean"
+}
