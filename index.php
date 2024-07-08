@@ -16,7 +16,7 @@ include ('./common/header.php');
 <section>
     <div class="container-2" id="service">
         <div class="left-panel">
-            <h2 id="edit">Why Choose Medilab?</h2>
+            <h2 id="edit">Why Choose us?</h2>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
                 dolore magna aliqua. Duis aute irure dolor in reprehenderit Asperiores dolores sed et. Tenetur quia eos.
                 Autem tempore quibusdam vel necessitatibus optio ad corporis.</p>
