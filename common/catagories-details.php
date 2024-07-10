@@ -2,7 +2,7 @@
 
 <section id="doctors" class="doctors">
     <div class="section-title">
-        <a href="catagories.php">
+        <a style="text-decoration: none;" href="catagories.php">
             <h2>Categories</h2>
         </a>
         <p class="catagories-p"> Different types of Department we have for your Healthcare </p>
