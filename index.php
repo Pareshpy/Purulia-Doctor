@@ -122,6 +122,8 @@ include ('./common/about.php');
 <!--=============== MAIN JS ===============-->
 <!-- <script src="assets/js/main.js"></script> -->
 <script src="assets/js/notify.js"></script>
+<script src="../path/to/flowbite/dist/flowbite.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.js"></script>
 </body>
 
 </html>
