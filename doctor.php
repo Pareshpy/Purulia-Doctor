@@ -21,7 +21,7 @@ include ('./common/header.php');
         <br>
 
         <!-- =========== searchbox =========== -->
-        <form class="max-w-2xl mx-auto" method="POST">  
+        <form class="max-w-2xl mx-auto" method="POST">
             <div class="flex">
                 <label for="search-dropdown" class="mb-2 text-sm font-medium text-gray-900 sr-only">Your Email</label>
                 <div class="relative">
@@ -80,11 +80,12 @@ include ('./common/header.php');
                 while ($row = mysqli_fetch_assoc($query_run)) {
                     ?>
                     <div class="col-md-6 ">
-                        <a href="doctor-details.php">
+                        <a href="doctor-details.php?doctor_id=<?php echo $row['id']; ?>">
                             <div class="member d-flex">
                                 <div class="pic"><img src="<?php echo $row['photo'] ?>" class="img-fluid" alt=""></div>
                                 <div class="member-info">
-                                    <a style="text-decoration: none;" href="doctor-details.php">
+                                    <a style="text-decoration: none;"
+                                        href="doctor-details.php?doctor_id=<?php echo $row['id']; ?>">
                                         <h4><?php echo $row['full_name'] ?></h4>
                                     </a>
                                     <span><?php echo $row['category'] ?></span>
@@ -105,7 +106,7 @@ include ('./common/header.php');
                 echo "No Doctor Found";
             }
             ?>
-        </div> 
+        </div>
     </div>
     </div>
 </section>

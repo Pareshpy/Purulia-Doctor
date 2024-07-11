@@ -1,5 +1,27 @@
 <?php
 include ('./common/header.php');
+include ('./common/connection.php');
+
+// Check if 'doctor_id' parameter is set in the URL
+$doctor_id = isset($_GET['doctor_id']) ? intval($_GET['doctor_id']) : 0;
+
+if ($doctor_id > 0) {
+    // SQL query to fetch doctor data based on doctor_id
+    $query = "SELECT * FROM doctors WHERE id = $doctor_id";
+    $result = mysqli_query($conn, $query);
+
+    if (mysqli_num_rows($result) > 0) {
+        // Fetch the doctor's data
+        $doctor = mysqli_fetch_assoc($result);
+    } else {
+        echo "Doctor not found.";
+        exit;
+    }
+} else {
+    echo "Invalid doctor ID.";
+}
+
+// Close database connection
 ?>
 <br>
 <br>
@@ -13,18 +35,18 @@ include ('./common/header.php');
                 <div class="doctor-widget">
                     <div class="doctor-info-left">
                         <div class="doctor-img">
-                            <img src="assets/img/doctors/dortor1.jpg" class="img-fluid" alt="">
+                            <img src="<?php echo $doctor['photo']; ?>" class="img-fluid" alt="">
                         </div>
                         <div class="doctor-info-cont">
-                            <h4 class="doc-name">Dr. Joydeep Mandal </h4>
-                            
-                            <p class="doc-speciality">MS ORTHOPEDICS &amp; Surgeon</p>
+                            <h4 class="doc-name"><?php echo $doctor['full_name']; ?></h4>
+
+                            <p class="doc-speciality"><?php echo $doctor['category'] ?></p>
                             <br>
-                            <p class="doc-department"style="color: #20c0f3;">ORTHOPEDICS</p>
+                            <p class="doc-department" style="color: #20c0f3;"><?php echo $doctor['category'] ?></p>
                             <br>
                             <div class="clinic-details">
                                 <p class="doc-location">
-                                    <i class="ri-map-pin-2-fill"></i> Deep medical, E Lake Rd, <br> near science museum
+                                    <i class="text-wrap" class="ri-map-pin-2-fill"></i><?php echo $doctor['address'] ?>
 
                                     <a href="javascript:void(0);">Get Directions</a>
                                 </p>
@@ -34,13 +56,17 @@ include ('./common/header.php');
                     <div class="doc-info-right">
                         <div class="clini-infos">
                             <ul>
-                                <li><i class="ri-thumb-up-fill"></i> 99%</li>
-                                <li><i class="ri-chat-1-fill"></i> 35 Feedback</li>
+                                <li  class="fond-medium " ><i class="ri-service-fill"></i> Experience <?php echo $doctor['exp'] ?> </li>
+                                <li><p class="font-medium">Degrees <?php echo $doctor['degrees'] ?> </p></li>
                                 <li>
-                                    <i class="ri-map-pin-2-fill"></i> Deep Medical
+                                    <i class="ri-map-pin-2-fill"></i><?php
+                                    $address_words = explode(" ", $doctor['address']);
+                                    $first_two_words_address = implode(" ", array_slice($address_words, 0, 3));
+                                    echo $first_two_words_address;
+                                    ?>
                                 </li>
                                 <li>
-                                    <i class="ri-money-rupee-circle-fill"></i> ₹250
+                                <i class="ri-money-rupee-circle-fill"></i> <p class="font-medium" >Fees: ₹<?php echo number_format($doctor['fees'], 2); ?></p>
                                 </li>
                             </ul>
                         </div>
@@ -303,7 +329,7 @@ include ('./common/header.php');
                                         </p>
                                         <div class="clinic-details mb-0">
                                             <h5 class="clinic-direction">
-                                            <i class="ri-map-pin-2-fill"></i>  Deep medical, E Lake Rd,
+                                                <i class="ri-map-pin-2-fill"></i> Deep medical, E Lake Rd,
                                                 near science museum <br><br><a href="javascript:void(0);">Get
                                                     Directions</a>
                                             </h5>
@@ -320,8 +346,8 @@ include ('./common/header.php');
                                                 <span> Mon - Sat </span>
                                             </p>
                                             <p class="timings-times">
-                                                <div>10:00 AM - 2:00 PM</div>
-                                                <div>4:00 PM - 9:00 PM</div>
+                                            <div>10:00 AM - 2:00 PM</div>
+                                            <div>4:00 PM - 9:00 PM</div>
                                             </p>
                                         </div>
                                         <div>

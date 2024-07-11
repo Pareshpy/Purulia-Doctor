@@ -1827,12 +1827,6 @@ body[data-aos-duration="600"] [data-aos] {
   justify-content: flex-end;
 }
 
-.more button {
-  box-shadow: 0px 2px 35px rgba(0, 0, 0, 0.1);
-  color: #003a8a;
-
-}
-
 .search {
   &__container {
     padding-top: 64px;
