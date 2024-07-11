@@ -15,7 +15,7 @@
         <div class="main-div">
             <div class="row gy-4">
                 <?php
-                $query = "SELECT * FROM doctors";
+                $query = "SELECT * FROM doctors LIMIT 4";
                 $query_run = mysqli_query($conn, $query);
                 $check_doctor = mysqli_num_rows($query_run) > 0;
 
@@ -49,6 +49,12 @@
                 }
                 ?>
             </div>
+        </div>
+        <div class="more">
+            <a href="doctor.php"
+                class="py-3 px-5 bg-indigo-500 text-white text-sm font-semibold rounded-md shadow-lg shadow-indigo-500/50 focus:outline-none">
+                All Doctors
+            </a>
         </div>
     </div>
 </section>

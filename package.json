@@ -1,5 +1,13 @@
 {
+  "name": "Purulia Doctors",
+  "version": "1.0.0",
+  "description": "Your project description",
+  "main": "index.js",
+  "scripts": {
+    "build:css": "tailwindcss -i ./assets/css/main.css -o ./assets/css/tailwind.css --watch"
+  },
+  "dependencies": {},
   "devDependencies": {
-    "tailwindcss": "^3.4.4"
+    "tailwindcss": "^3.0.0"
   }
 }
