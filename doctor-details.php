@@ -46,18 +46,41 @@ if ($doctor_id > 0) {
                             <br>
                             <div class="clinic-details">
                                 <p class="doc-location">
-                                    <i class="text-wrap" class="ri-map-pin-2-fill"></i><?php echo $doctor['address'] ?>
-
-                                    <a href="javascript:void(0);">Get Directions</a>
+                                    <i class="text-wrap" class="ri-map-pin-2-fill"></i> <?php echo $doctor['address'] ?>
+                                    <a href="javascript:void(0);"
+                                        onclick="openDirections('<?php echo $doctor['address']; ?>')">Get Directions</a>
                                 </p>
                             </div>
+
+                            <script>
+                                function openDirections(destination) {
+                                    if (navigator.geolocation) {
+                                        navigator.geolocation.getCurrentPosition(function (position) {
+                                            var origin = `${position.coords.latitude},${position.coords.longitude}`;
+                                            var url = `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(origin)}&destination=${encodeURIComponent(destination)}`;
+                                            window.open(url, '_blank');
+                                        });
+                                    } else {
+                                        alert("Geolocation is not supported by this browser.");
+                                        // Fallback to a default location or just show the destination
+                                        var origin = 'Current Location'; // Default location or static value
+                                        var url = `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(origin)}&destination=${encodeURIComponent(destination)}`;
+                                        window.open(url, '_blank');
+                                    }
+                                }
+                            </script>
+
                         </div>
                     </div>
                     <div class="doc-info-right">
                         <div class="clini-infos">
                             <ul>
-                                <li  class="fond-medium " ><i class="ri-service-fill"></i> Experience <?php echo $doctor['exp'] ?> </li>
-                                <li><p class="font-medium">Degrees <?php echo $doctor['degrees'] ?> </p></li>
+                                <li class="fond-medium "><i class="ri-service-fill"></i> Experience
+                                    <?php echo $doctor['exp'] ?>
+                                </li>
+                                <li>
+                                    <p class="font-medium">Degrees <?php echo $doctor['degrees'] ?> </p>
+                                </li>
                                 <li>
                                     <i class="ri-map-pin-2-fill"></i><?php
                                     $address_words = explode(" ", $doctor['address']);
@@ -66,7 +89,8 @@ if ($doctor_id > 0) {
                                     ?>
                                 </li>
                                 <li>
-                                <i class="ri-money-rupee-circle-fill"></i> <p class="font-medium" >Fees: ₹<?php echo number_format($doctor['fees'], 2); ?></p>
+                                    <i class="ri-money-rupee-circle-fill"></i>
+                                    <p class="font-medium">Fees: ₹<?php echo number_format($doctor['fees'], 2); ?></p>
                                 </li>
                             </ul>
                         </div>
@@ -321,129 +345,145 @@ if ($doctor_id > 0) {
                                     <div class="clinic-content">
                                         <h4 class="clinic-name">
                                             <br>
-                                            <a href="#">Deep Medical</a>
+                                            <a href="#"><?php
+                                            $address_words = explode(" ", $doctor['address']);
+                                            $first_two_words_address = implode(" ", array_slice($address_words, 0, 3));
+                                            echo $first_two_words_address;
+                                            ?></a>
                                         </h4>
                                         <p class="doc-speciality">
                                             <br>
-                                            MS ORTHOPEDICS & Surgeon
+                                            <?php echo $doctor['category'] ?>
                                         </p>
                                         <div class="clinic-details mb-0">
                                             <h5 class="clinic-direction">
-                                                <i class="ri-map-pin-2-fill"></i> Deep medical, E Lake Rd,
-                                                near science museum <br><br><a href="javascript:void(0);">Get
+                                                <i class="ri-map-pin-2-fill"></i> <?php echo $doctor['address'] ?>
+                                                <br><br><a href="javascript:void(0);"
+                                                    onclick="openDirections('<?php echo $doctor['address']; ?>')">Get
                                                     Directions</a>
                                             </h5>
                                         </div>
                                     </div>
                                 </div>
-                                <!-- /Clinic Content -->
-
-                                <!-- Clinic Timing -->
-                                <div class="col-md-4">
-                                    <div class="clinic-timing">
-                                        <div>
-                                            <p class="timings-days">
-                                                <span> Mon - Sat </span>
-                                            </p>
-                                            <p class="timings-times">
-                                            <div>10:00 AM - 2:00 PM</div>
-                                            <div>4:00 PM - 9:00 PM</div>
-                                            </p>
-                                        </div>
-                                        <div>
-                                            <p class="timings-days">
-                                                <span>Sun</span>
-                                            </p>
-                                            <p class="timings-times">
-                                                <span>10:00 AM - 2:00 PM</span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /Clinic Timing -->
-
-                                <div class="col-md-2">
-                                    <div class="consult-price">$250</div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /Location List -->
-                    </div>
-                    <!-- /Locations Content -->
-
-                    <!-- Business Hours Content -->
-                    <div role="tabpanel" id="doc_business_hours" class="tab-pane fade">
-                        <div class="row">
-                            <div class="col-md-6 offset-md-3">
-                                <!-- Business Hours Widget -->
-                                <div class="widget business-widget">
-                                    <div class="widget-content">
-                                        <div class="listing-hours">
-                                            <div class="listing-day current">
-                                                <div class="day">
-                                                    Today <span>5 Nov 2019</span>
-                                                </div>
-                                                <div class="time-items">
-                                                    <span class="open-status"><span class="badge bg-success-light">Open
-                                                            Now</span></span>
-                                                    <span class="time">07:00 AM - 09:00 PM</span>
-                                                </div>
-                                            </div>
-                                            <div class="listing-day">
-                                                <div class="day">Monday</div>
-                                                <div class="time-items">
-                                                    <span class="time">07:00 AM - 09:00 PM</span>
-                                                </div>
-                                            </div>
-                                            <div class="listing-day">
-                                                <div class="day">Tuesday</div>
-                                                <div class="time-items">
-                                                    <span class="time">07:00 AM - 09:00 PM</span>
-                                                </div>
-                                            </div>
-                                            <div class="listing-day">
-                                                <div class="day">Wednesday</div>
-                                                <div class="time-items">
-                                                    <span class="time">07:00 AM - 09:00 PM</span>
-                                                </div>
-                                            </div>
-                                            <div class="listing-day">
-                                                <div class="day">Thursday</div>
-                                                <div class="time-items">
-                                                    <span class="time">07:00 AM - 09:00 PM</span>
-                                                </div>
-                                            </div>
-                                            <div class="listing-day">
-                                                <div class="day">Friday</div>
-                                                <div class="time-items">
-                                                    <span class="time">07:00 AM - 09:00 PM</span>
-                                                </div>
-                                            </div>
-                                            <div class="listing-day">
-                                                <div class="day">Saturday</div>
-                                                <div class="time-items">
-                                                    <span class="time">07:00 AM - 09:00 PM</span>
-                                                </div>
-                                            </div>
-                                            <div class="listing-day closed">
-                                                <div class="day">Sunday</div>
-                                                <div class="time-items">
-                                                    <span class="time"><span
-                                                            class="badge bg-danger-light">Closed</span></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /Business Hours Widget -->
                             </div>
                         </div>
                     </div>
-                    <!-- /Business Hours Content -->
+
+                    <script>
+                        function openDirections(destination) {
+                            var origin = 'Current Location'; // You can replace this with the user's actual location if available
+                            var url = `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(origin)}&destination=${encodeURIComponent(destination)}`;
+                            window.open(url, '_blank');
+                        }
+                    </script>
+
+                    <!-- /Clinic Content -->
+
+                    <!-- Clinic Timing -->
+                    <div class="col-md-4">
+                        <div class="clinic-timing">
+                            <div>
+                                <p class="timings-days">
+                                    <span> Mon - Sat </span>
+                                </p>
+                                <p class="timings-times">
+                                <div>10:00 AM - 2:00 PM</div>
+                                <div>4:00 PM - 9:00 PM</div>
+                                </p>
+                            </div>
+                            <div>
+                                <p class="timings-days">
+                                    <span>Sun</span>
+                                </p>
+                                <p class="timings-times">
+                                    <span>10:00 AM - 2:00 PM</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Clinic Timing -->
+
+                    <div class="col-md-2">
+                        <div class="consult-price">$250</div>
+                    </div>
+                </div>
+            </div>
+            <!-- /Location List -->
+        </div>
+        <!-- /Locations Content -->
+
+        <!-- Business Hours Content -->
+        <div role="tabpanel" id="doc_business_hours" class="tab-pane fade">
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    <!-- Business Hours Widget -->
+                    <div class="widget business-widget">
+                        <div class="widget-content">
+                            <div class="listing-hours">
+                                <div class="listing-day current">
+                                    <div class="day">
+                                        Today <span>5 Nov 2019</span>
+                                    </div>
+                                    <div class="time-items">
+                                        <span class="open-status"><span class="badge bg-success-light">Open
+                                                Now</span></span>
+                                        <span class="time">07:00 AM - 09:00 PM</span>
+                                    </div>
+                                </div>
+                                <div class="listing-day">
+                                    <div class="day">Monday</div>
+                                    <div class="time-items">
+                                        <span class="time">07:00 AM - 09:00 PM</span>
+                                    </div>
+                                </div>
+                                <div class="listing-day">
+                                    <div class="day">Tuesday</div>
+                                    <div class="time-items">
+                                        <span class="time">07:00 AM - 09:00 PM</span>
+                                    </div>
+                                </div>
+                                <div class="listing-day">
+                                    <div class="day">Wednesday</div>
+                                    <div class="time-items">
+                                        <span class="time">07:00 AM - 09:00 PM</span>
+                                    </div>
+                                </div>
+                                <div class="listing-day">
+                                    <div class="day">Thursday</div>
+                                    <div class="time-items">
+                                        <span class="time">07:00 AM - 09:00 PM</span>
+                                    </div>
+                                </div>
+                                <div class="listing-day">
+                                    <div class="day">Friday</div>
+                                    <div class="time-items">
+                                        <span class="time">07:00 AM - 09:00 PM</span>
+                                    </div>
+                                </div>
+                                <div class="listing-day">
+                                    <div class="day">Saturday</div>
+                                    <div class="time-items">
+                                        <span class="time">07:00 AM - 09:00 PM</span>
+                                    </div>
+                                </div>
+                                <div class="listing-day closed">
+                                    <div class="day">Sunday</div>
+                                    <div class="time-items">
+                                        <span class="time"><span class="badge bg-danger-light">Closed</span></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Business Hours Widget -->
                 </div>
             </div>
         </div>
+        <!-- /Business Hours Content -->
     </div>
+</div>
+</div>
+</div>
 </div>
 <script>
     $(document).ready(function () {
@@ -452,11 +492,27 @@ if ($doctor_id > 0) {
         });
     });
 </script>
+<script>
+    function openDirections(destination) {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                var origin = `${position.coords.latitude},${position.coords.longitude}`;
+                var url = `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(origin)}&destination=${encodeURIComponent(destination)}`;
+                window.open(url, '_blank');
+            });
+        } else {
+            alert("Geolocation is not supported by this browser.");
+        }
+    }
+</script>
+
 
 <!-- Bootstrap JS and dependencies -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places"></script>
+
 
 
 
