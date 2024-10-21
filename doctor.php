@@ -81,17 +81,18 @@ include ('./common/header.php');
                     ?>
                     <div class="col-md-6 ">
                         <a href="doctor-details.php?doctor_id=<?php echo $row['id']; ?>">
-                            <div class="member d-flex">
-                                <div class="pic"><img src="<?php echo $row['photo'] ?>" class="img-fluid" alt=""></div>
-                                <div class="member-info">
-                                    <a style="text-decoration: none;"
+                            <div class="relative d-flex shadow-md p-8 rounded-xl min-w-96 mb-14	max-w-min h-full  ">
+                                <div class="overflow-hidden	w-48 rounded-3xl "><img class="ease-in-out duration-300 hover:scale-110	" src="<?php echo $row['photo'] ?>" class="img-fluid" alt=""></div>
+                                <div class="p-8">
+                                    <a class="no-underline"
                                         href="doctor-details.php?doctor_id=<?php echo $row['id']; ?>">
-                                        <h4><?php echo $row['full_name'] ?></h4>
+                                        <h4 class="font-bold mb-1.5 text-xl	text-cyan-800 no-underline	"><?php echo $row['full_name'] ?></h4>
                                     </a>
-                                    <span><?php echo $row['category'] ?></span>
-                                    <p><?php echo $row['category'] ?></p>
-                                    <div class="clinic-details">
-                                        <p class="doc-location">
+                                    <span class="inline-block text-sm pb-2.5 relative font-medium w-auto
+                                        after:content-[''] after:absolute after:inline-block after:w-full after:h-px after:bg-slate-300 after:bottom-0	after:left-0 after:min-w-fit " ><?php echo $row['category'] ?></span>
+                                    <p class="m-2.5	text-sm	" ><?php echo $row['category'] ?></p>
+                                    <div class="mb-4">
+                                        <p class="text-gray-500 text-sm mb-6">
                                             <i class="ri-map-pin-2-fill"></i> <?php echo $row['address'] ?>
                                             <a href="javascript:void(0);">Get Directions</a>
                                         </p>

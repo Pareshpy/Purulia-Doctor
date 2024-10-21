@@ -2,121 +2,132 @@
 <html lang="en">
 
 <head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css">
+  <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" />
 
-   <!--=============== REMIXICONS ===============-->
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css">
-
-   <!--=============== CSS ===============-->
-   <link rel="stylesheet" href="assets/css/styles.css">
-
-   <title>PD | Purulia Doctor</title>
+  <title>Purulia Doctors</title>
 </head>
 
 <body>
-   <!--==================== HEADER ====================-->
-   <header class="header" id="header">
-      <nav class="nav container">
-         <a href="#" class="nav__logo">PURULIA DOCTOR</a>
-
-         <div class="nav__menu" id="nav-menu">
-            <ul class="nav__list">
-               <li class="nav__item">
-                  <a href="#" class="nav__link">Home</a>
-               </li>
-
-               <li class="nav__item">
-                  <a href="#" class="nav__link">About Us</a>
-               </li>
-
-               <li class="nav__item">
-                  <a href="#" class="nav__link">Services</a>
-               </li>
-
-               <li class="nav__item">
-                  <a href="#" class="nav__link">Featured</a>
-               </li>
-
-               <li class="nav__item">
-                  <a href="#" class="nav__link">Contact Me</a>
-               </li>
-            </ul>
-
-            <!-- Close button -->
-            <div class="nav__close" id="nav-close">
-               <i class="ri-close-line"></i>
-            </div>
-         </div>
-
-         <div class="nav__actions">
-            <!-- Search button -->
-            <i class="ri-search-line nav__search" id="search-btn"></i>
-
-            <!-- Login button -->
-            <i class="ri-user-line nav__login" id="login-btn"></i>
-
-            <!-- Toggle button -->
-            <div class="nav__toggle" id="nav-toggle">
-               <i class="ri-menu-line"></i>
-            </div>
-         </div>
+  <div class="bg-white">
+    <header class="absolute inset-x-0 top-0 z-50">
+      <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
+        <div class="flex lg:flex-1">
+          <a href="#" class="-m-1.5 p-2">
+            <span class="self-center text-2xl font-semibold whitespace-nowrap text-white ml-10 ">Purulia Doctors</span>
+          </a>
+        </div>
+        <div class="flex lg:hidden">
+          <button type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
+            <span class="sr-only">Open main menu</span>
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+              aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+            </svg>
+          </button>
+        </div>
+        <div class="hidden lg:flex lg:gap-x-12">
+          <a href="#" class="text-base font-semibold leading-6 text-white">Categories</a>
+          <a href="#" class="text-base font-semibold leading-6 text-white">Doctors</a>
+          <a href="#" class="text-base font-semibold leading-6 text-white">Clinics</a>
+          <a href="#" class="text-base font-semibold leading-6 text-white">About</a>
+        </div>
+        <div class="hidden lg:flex lg:flex-1 lg:justify-end mr-10">
+          <a href="#" class="text-base font-semibold leading-6 text-white">Log in <span
+              aria-hidden="true">&rarr;</span></a>
+        </div>
       </nav>
-   </header>
-
-   <!--==================== SEARCH ====================-->
-   <div class="search" id="search">
-      <form action="" class="search__form">
-         <i class="ri-search-line search__icon"></i>
-         <input type="search" placeholder="What are you looking for?" class="search__input">
-      </form>
-
-      <i class="ri-close-line search__close" id="search-close"></i>
-   </div>
-
-   <!--==================== LOGIN ====================-->
-   <div class="login" id="login">
-      <form action="" class="login__form">
-         <h2 class="login__title">Log In</h2>
-
-         <div class="login__group">
-            <div>
-               <label for="email" class="login__label">Email</label>
-               <input type="email" placeholder="Write your email" id="email" class="login__input">
-            </div>
-
-            <div>
-               <label for="password" class="login__label">Password</label>
-               <input type="password" placeholder="Enter your password" id="password" class="login__input">
-            </div>
-         </div>
-
-         <div>
-            <p class="login__signup">
-               You do not have an account? <a href="signup.php">Sign up</a>
-            </p>
-
-            <a href="#" class="login__forgot">
-               You forgot your password
+      <!-- Mobile menu, show/hide based on menu open state. -->
+      <div class="lg:hidden" role="dialog" aria-modal="true">
+        <!-- Background backdrop, show/hide based on slide-over state. -->
+        <div class="fixed inset-0 z-50 bg-black/50"></div>
+        <div
+          class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+          <div class="flex items-center justify-between">
+            <a href="#" class="-m-1.5 p-1.5">
+              <span class="sr-only">Purulia Doctors</span>
+              <span class="text-xl font-semibold whitespace-nowrap text-indigo-600">Purulia Doctors</span>
             </a>
+            <button type="button" class="-m-2.5 rounded-md p-2.5 text-gray-700">
+              <span class="sr-only">Close menu</span>
+              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+          <div class="mt-6 flow-root">
+            <div class="-my-6 divide-y divide-gray-500/10">
+              <div class="space-y-2 py-6">
+                <a href="#"
+                  class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Categories</a>
+                <a href="#"
+                  class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Doctors</a>
+                <a href="#"
+                  class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Clinics</a>
+                <a href="#"
+                  class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">About</a>
+              </div>
+              <div class="py-6">
+                <a href="#"
+                  class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Log
+                  in</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
 
-            <button type="submit" class="login__button">Log In</button>
-         </div>
-      </form>
+    <section class="hero h-[80vh] bg-cover bg-center flex flex-col justify-center items-center relative"
+      style="background-image: url('assets/img/hero-bg.jpg');">
+      <!-- Background overlay for fade effect -->
+      <div class="absolute inset-0 bg-gradient-to-b from-black/60 to-transparent">  
+      </div>
 
-      <i class="ri-close-line login__close" id="login-close"></i>
-   </div>
+      <!-- Text content -->
+      <div class="text-center relative z-10 px-4">
+        <h1 class="text-4xl font-bold text-white">Expert Specialist Doctors at Your Fingertips</h1>
+        <p class="mt-2 text-base text-white">Book online consultations with top specialists from the comfort of your
+          home.</p>
+        <p class="mt-2 text-lg font-semibold text-white">Get your first appointment absolutely free!</p>
+        <a href="#signup"
+          class="mt-4 inline-block bg-blue-600 text-white font-semibold py-3 px-6 rounded-full hover:bg-blue-700">Sign
+          In / Register</a>
+      </div>
+    </section>
+  </div>
 
-   <!--==================== MAIN ====================-->
-   <main class="main">
-      <img src="assets/img/hero-bg.jpg" alt="image" class="main__bg">
-   </main>
+  <section id="stats" class="flex flex-row w-full h-80 justify-center gap-28 bg-slate-50 ">
+    <div class="w-64 h-40 rounded text-center self-center bg-white shadow-2xl">
+      <i class="ri-user-line w-12 h-12 text-2xl rounded-full border-2 border-black inline-flex item-center justify-center relative z-10 p-1	" style="box-shadow: 0px 2px 25px rgba(0, 0, 0, 0.1); filter: invert(20%) sepia(98%) saturate(1951%) hue-rotate(198deg) brightness(96%) contrast(103%); top:-22px"></i>
+      <div>
+        <span class="text-3xl font-bold block my-2.5 mx-0">0</span>
+        <p class="text-xl font-medium">Doctors</p>
+      </div>
+    </div>
+    <div class=" w-64 h-40 rounded text-center self-center bg-white shadow-2xl">
+      <i class="ri-hospital-line w-12 h-12 text-2xl rounded-full border-2 border-black inline-flex item-center justify-center relative z-10 p-1	" style="box-shadow: 0px 2px 25px rgba(0, 0, 0, 0.1); filter: invert(20%) sepia(98%) saturate(1951%) hue-rotate(198deg) brightness(96%) contrast(103%); top:-22px"></i>
+      <div>
+      <span class="text-3xl font-bold block my-2.5 mx-0">0</span>
+         <p class="text-xl font-medium">Clinics</p>
+      </div>
+    </div>
+    <div class="w-64 h-40 rounded text-center self-center bg-white shadow-2xl">
+      <i class="ri-contrast-drop-2-line w-12 h-12 text-2xl rounded-full border-2 border-black inline-flex item-center justify-center relative z-10 p-1	" style="box-shadow: 0px 2px 25px rgba(0, 0, 0, 0.1); filter: invert(20%) sepia(98%) saturate(1951%) hue-rotate(198deg) brightness(96%) contrast(103%); top:-22px"></i>
+      <div>
+      <span class="text-3xl font-bold block my-2.5 mx-0">0</span>
+        <p class="text-xl font-medium">Blood Banks</p>
+      </div>
+    </div>
+  </section>
 
-   <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur expedita dolorum temporibus voluptates obcaecati
-      quos eius deserunt asperiores pariatur, dolor animi adipisci veritatis quasi at libero mollitia laboriosam,
-      molestias consequatur.</p>
-   <!--=============== MAIN JS ===============-->
-   <script src="assets/js/main.js"></script>
+  
+
+  <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
 </body>
 
 </html>

@@ -102,28 +102,13 @@ include ('./common/header.php');
 
 <br><br><br><br>
 
-<?php
-include ('./common/about.php');
-?>
 
 <div id="preloader"></div>
 <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i>
 </a>
 
-<!-- Vendor JS Files -->
-<!-- <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
-    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-    <script src="assets/vendor/php-email-form/validate.js"></script> -->
+<?php
+include ('./common/footer.php');
+?>
 
 
-<div id="toastBox"></div>
-<!--=============== MAIN JS ===============-->
-<!-- <script src="assets/js/main.js"></script> -->
-<script src="assets/js/notify.js"></script>
-<script src="../path/to/flowbite/dist/flowbite.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.js"></script>
-</body>
-
-</html>
