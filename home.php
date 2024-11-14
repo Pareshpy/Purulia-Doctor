@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" />
 
   <title>Purulia Doctors</title>
@@ -13,22 +14,24 @@
 
 <body>
   <div class="bg-white">
+    <!-- navbar -->
     <header class="absolute inset-x-0 top-0 z-50">
-      <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
-        <div class="flex lg:flex-1">
-          <a href="#" class="-m-1.5 p-2">
-            <span class="self-center text-2xl font-semibold whitespace-nowrap text-white ml-10 ">Purulia Doctors</span>
-          </a>
-        </div>
+      <nav class="flex items-center lg:justify-between md:justify-start p-6 lg:px-4" aria-label="Global">
         <div class="flex lg:hidden">
           <button id="menu-button"
-            class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
+            class="-m-2.5 inline-flex items-center justify-start rounded-md pr-2.5 text-gray-700">
             <span class="sr-only">Open main menu</span>
-            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
               aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
             </svg>
           </button>
+        </div>
+        <div class="flex lg:flex-1">
+          <a href="#" class="-m-1.5 p-1">
+            <span class="self-center lg:text-2xl md:text-xl font-semibold whitespace-nowrap text-white ml-4 ">Purulia
+              Doctors</span>
+          </a>
         </div>
         <div class="hidden lg:flex lg:gap-x-12">
           <a href="#" class="text-base font-semibold leading-6 text-white">Categories</a>
@@ -45,7 +48,7 @@
       <div id="mobile-menu" class="lg:hidden hidden" role="dialog" aria-modal="true">
         <div class="fixed inset-0 z-50 bg-black/50"></div>
         <div
-          class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+          class="fixed inset-y-0 left-0 z-50 w-2/3 overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div class="flex items-center justify-between">
             <a href="#" class="-m-1.5 p-1.5">
               <span class="text-xl font-semibold whitespace-nowrap text-indigo-600">Purulia Doctors</span>
@@ -80,7 +83,9 @@
         </div>
       </div>
     </header>
+    <!-- navbar end -->
 
+    <!-- hero section -->
     <section class="hero h-[80vh] bg-cover bg-center flex flex-col justify-center items-center relative"
       style="background-image: url('assets/img/hero-bg.jpg');">
       <!-- Background overlay for fade effect -->
@@ -99,35 +104,45 @@
       </div>
     </section>
   </div>
+  <!-- hero section ends -->
 
-  <section id="stats" class="flex flex-row w-full h-80 justify-center gap-28 bg-slate-50 ">
-    <div class="w-64 h-40 rounded text-center self-center bg-white shadow-2xl">
-      <i class="ri-user-line w-12 h-12 text-2xl rounded-full border-2 border-black inline-flex item-center justify-center relative z-10 p-1	"
-        style="box-shadow: 0px 2px 25px rgba(0, 0, 0, 0.1); filter: invert(20%) sepia(98%) saturate(1951%) hue-rotate(198deg) brightness(96%) contrast(103%); top:-22px"></i>
-      <div>
-        <span class="text-3xl font-bold block my-2.5 mx-0">0</span>
-        <p class="text-xl font-medium">Doctors</p>
+  <!-- stats section -->
+  <section id="stats"
+    class="h-auto flex flex-col justify-center items-center w-full gap-28 bg-slate-50 overflow-x-auto">
+    <div class="w-[70vw] flex flex-wrap justify-center gap-10 m-9 ">
+
+      <div
+        class=" w-64 h-40  text-center self-center bg-white max-w-xs overflow rounded-lg shadow-md  hover:shadow-xl transition-shadow duration-300 ease-in-out">
+        <i class="ri-user-line w-12 h-12 text-2xl rounded-full border-2 border-black inline-flex item-center justify-center relative z-10 p-1	"
+          style="box-shadow: 0px 2px 25px rgba(0, 0, 0, 0.1); filter: invert(20%) sepia(98%) saturate(1951%) hue-rotate(198deg) brightness(96%) contrast(103%); top:-22px"></i>
+        <div>
+          <span class="text-3xl font-bold block my-2.5 mx-0 ">0</span>
+          <p class="text-xl font-medium">Doctors</p>
+        </div>
       </div>
-    </div>
-    <div class=" w-64 h-40 rounded text-center self-center bg-white shadow-2xl">
-      <i class="ri-hospital-line w-12 h-12 text-2xl rounded-full border-2 border-black inline-flex item-center justify-center relative z-10 p-1	"
-        style="box-shadow: 0px 2px 25px rgba(0, 0, 0, 0.1); filter: invert(20%) sepia(98%) saturate(1951%) hue-rotate(198deg) brightness(96%) contrast(103%); top:-22px"></i>
-      <div>
-        <span class="text-3xl font-bold block my-2.5 mx-0">0</span>
-        <p class="text-xl font-medium">Clinics</p>
+      <div
+        class=" w-64 h-40  text-center self-center bg-white max-w-xs overflow rounded-lg shadow-md  hover:shadow-xl transition-shadow duration-300 ease-in-out">
+        <i class="ri-hospital-line w-12 h-12 text-2xl rounded-full border-2 border-black inline-flex item-center justify-center relative z-10 p-1	"
+          style="box-shadow: 0px 2px 25px rgba(0, 0, 0, 0.1); filter: invert(20%) sepia(98%) saturate(1951%) hue-rotate(198deg) brightness(96%) contrast(103%); top:-22px"></i>
+        <div>
+          <span class="text-3xl font-bold block my-2.5 mx-0 ">0</span>
+          <p class="text-xl font-medium">Clinics</p>
+        </div>
       </div>
-    </div>
-    <div class="w-64 h-40 rounded text-center self-center bg-white shadow-2xl">
-      <i class="ri-contrast-drop-2-line w-12 h-12 text-2xl rounded-full border-2 border-black inline-flex item-center justify-center relative z-10 p-1	"
-        style="box-shadow: 0px 2px 25px rgba(0, 0, 0, 0.1); filter: invert(20%) sepia(98%) saturate(1951%) hue-rotate(198deg) brightness(96%) contrast(103%); top:-22px"></i>
-      <div>
-        <span class="text-3xl font-bold block my-2.5 mx-0">0</span>
-        <p class="text-xl font-medium">Blood Banks</p>
+      <div
+        class=" w-64 h-40  text-center self-center bg-white max-w-xs overflow rounded-lg shadow-md  hover:shadow-xl transition-shadow duration-300 ease-in-out">
+        <i class="ri-contrast-drop-2-line w-12 h-12 text-2xl rounded-full border-2 border-black inline-flex item-center justify-center relative z-10 p-1	"
+          style="box-shadow: 0px 2px 25px rgba(0, 0, 0, 0.1); filter: invert(20%) sepia(98%) saturate(1951%) hue-rotate(198deg) brightness(96%) contrast(103%); top:-22px"></i>
+        <div>
+          <span class="text-3xl font-bold block my-2.5 mx-0 ">0</span>
+          <p class="text-xl font-medium">Blood Banks</p>
+        </div>
       </div>
     </div>
   </section>
+  <!-- stats section end -->
 
-
+  <!-- categories section -->
   <section class="h-auto flex flex-col justify-center items-center">
     <div>
       <p class="flex items-center justify-center text-3xl font-bold text-slate-600 item-center mt-6">Categories</p>
@@ -136,7 +151,6 @@
         have for your Healthcare</p>
     </div>
 
-    <!-- Container with flexbox for categories -->
     <div class="w-[70vw] flex flex-wrap justify-center gap-4 m-9">
 
       <div
@@ -226,31 +240,189 @@
           alt="">
         <p class="text-lg font-medium">Radiologist</p>
       </div>
-
     </div>
   </section>
+  <!-- categories section end -->
+
+  <section class="h-auto flex flex-col justify-center items-center">
+    <div>
+      <p class="flex items-center justify-center text-3xl font-bold text-slate-600 item-center mt-6">Doctors</p>
+      <hr class="w-24 h-px mx-auto my-4 bg-gray-100 border-0 rounded dark:bg-gray-500">
+      <p class="flex items-center justify-center mb-3 text-lg text-gray-500 md:text-xl">Book appointments with verified
+        doctors & minimum waiting time </p>
+    </div>
+
+    <div
+      class="w-[70vw] grid lg:grid-cols-2 sm:grid-cols-1 gap-4 justify-center m-9 from-slate-50 to-gray-100 bg-gradient-to-br">
+      <div
+        class="p-4 items-center justify-center w-full rounded-xl group sm:flex space-x-6 bg-white bg-opacity-50 shadow-xl bg-gradient-to-br">
+        <img
+          class="mx-auto block xl:w-4/12 xl:h-full lg:w-1/2 lg:h-1/2 md:w-3/5 md:h-3/5 sm:w-1/6 sm:h-1/6 rounded-lg object-scale-down"
+          src="uploads\dr.jaydeepmandal.jpg" alt="Dortor-Name" loading="lazy">
+        <div class="sm:w-8/12 pl-0 p-5">
+          <div class="space-y-2">
+            <div class="space-y-4 pb-5">
+              <h4 class="lg:text-xl md:text-lg font-bold text-cyan-900 text-justify pb-2">Dr. Jaydeep Mandal</h4>
+              <span class="md:text-sm sm:text-xs font-semibold text-gray-500">Orthopaedist</span>
+            </div>
+            <div class="">
+              <span class="md:text-sm sm:text-xs font-semibold text-gray-500 pt-2">12+ Years of experience</span>
+              <br>
+              <i class="fa fa-map-marker" aria-hidden="true" style="color:#767676;"></i>
+              <span class="lg:text-medium md:text-sm sm:text-xs font-bold text-gray-500 ">Deep medical</span>
+              <span class="lg:text-medium md:text-sm sm:text-xs font-semibold text-gray-500">, E Lake Rd, near science
+                museum</span>
+              <br>
+              <i class="fa fa-rupee " style="color:#767676;"></i>
+              <span class="lg:text-lg md:text-medium sm:text-sm font-bold text-gray-500 pt-4">500</span>
+              <span class="lg:text-medium md:text-sm sm:text-xs font-semibold text-gray-500 pt-4"> Consultation fee at
+                clinic</span>
+            </div>
+            <div class="py-6 min-w-10 min-h-7 object-scale-down">
+              <a href="#" style="text-decoration:none"
+                class="object-scale-down py-3 px-5 min-w-10 min-h-7 bg-indigo-500 text-white lg:text-medium md:text-xs font-semibold rounded-md shadow-lg shadow-indigo-500/50 focus:outline-none">
+                Book Clinic Visit
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="bg-slate-300 w-full">
+        2
+      </div>
+      <div class="bg-slate-300 w-full">
+        3
+      </div>
+
+    </div>
 
 
-  <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const mobileMenuButton = document.getElementById("menu-button");
-      const mobileMenu = document.getElementById("mobile-menu");
-      const closeMenuButton = document.getElementById("close-menu-button");
 
-      // Function to open the mobile menu
-      mobileMenuButton.addEventListener("click", function () {
-        mobileMenu.classList.remove("hidden");
-        mobileMenu.classList.add("flex");
+  </section>
+
+  <!-- scroll example -->
+  <div class=" hidden flex flex-col bg-white m-auto p-auto">
+    <h1 class="flex py-5 lg:px-20 md:px-10 px-5 lg:mx-40 md:mx-20 mx-5 font-bold text-4xl text-gray-800">
+      Example
+    </h1>
+    <div class="flex overflow-x-scroll pb-10 hide-scroll-bar">
+      <div class="flex flex-nowrap lg:ml-40 md:ml-20 ml-10 ">
+        <div class="inline-block px-3 pt-10">
+
+          <div
+            class=" w-64 h-40  text-center self-center bg-white max-w-xs overflow rounded-lg shadow-md  hover:shadow-xl transition-shadow duration-300 ease-in-out">
+            <i class="ri-user-line w-12 h-12 text-2xl rounded-full border-2 border-black inline-flex item-center justify-center relative z-10 p-1	"
+              style="box-shadow: 0px 2px 25px rgba(0, 0, 0, 0.1); filter: invert(20%) sepia(98%) saturate(1951%) hue-rotate(198deg) brightness(96%) contrast(103%); top:-22px"></i>
+            <div>
+              <span class="text-3xl font-bold block my-2.5 mx-0 ">0</span>
+              <p class="text-xl font-medium">Doctors</p>
+            </div>
+
+          </div>
+        </div>
+        <div class="flex flex-nowrap lg:ml-40 md:ml-20 ml-10 ">
+          <div class="inline-block px-3 pt-10">
+
+            <div
+              class=" w-64 h-40  text-center self-center bg-white max-w-xs overflow rounded-lg shadow-md  hover:shadow-xl transition-shadow duration-300 ease-in-out">
+              <i class="ri-user-line w-12 h-12 text-2xl rounded-full border-2 border-black inline-flex item-center justify-center relative z-10 p-1	"
+                style="box-shadow: 0px 2px 25px rgba(0, 0, 0, 0.1); filter: invert(20%) sepia(98%) saturate(1951%) hue-rotate(198deg) brightness(96%) contrast(103%); top:-22px"></i>
+              <div>
+                <span class="text-3xl font-bold block my-2.5 mx-0 ">0</span>
+                <p class="text-xl font-medium">Doctors</p>
+              </div>
+
+            </div>
+          </div>
+          <div class="flex flex-nowrap lg:ml-40 md:ml-20 ml-10 ">
+            <div class="inline-block px-3 pt-10">
+
+              <div
+                class=" w-64 h-40  text-center self-center bg-white max-w-xs overflow rounded-lg shadow-md  hover:shadow-xl transition-shadow duration-300 ease-in-out">
+                <i class="ri-user-line w-12 h-12 text-2xl rounded-full border-2 border-black inline-flex item-center justify-center relative z-10 p-1	"
+                  style="box-shadow: 0px 2px 25px rgba(0, 0, 0, 0.1); filter: invert(20%) sepia(98%) saturate(1951%) hue-rotate(198deg) brightness(96%) contrast(103%); top:-22px"></i>
+                <div>
+                  <span class="text-3xl font-bold block my-2.5 mx-0 ">0</span>
+                  <p class="text-xl font-medium">Doctors</p>
+                </div>
+
+              </div>
+            </div>
+            <div class="inline-block px-3">
+              <div
+                class="w-64 h-64 max-w-xs overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out">
+
+
+              </div>
+            </div>
+            <div class="inline-block px-3">
+              <div
+                class="w-64 h-64 max-w-xs overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out">
+              </div>
+            </div>
+            <div class="inline-block px-3">
+              <div
+                class="w-64 h-64 max-w-xs overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out">
+              </div>
+            </div>
+            <div class="inline-block px-3">
+              <div
+                class="w-64 h-64 max-w-xs overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out">
+              </div>
+            </div>
+            <div class="inline-block px-3">
+              <div
+                class="w-64 h-64 max-w-xs overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out">
+              </div>
+            </div>
+            <div class="inline-block px-3">
+              <div
+                class="w-64 h-64 max-w-xs overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out">
+              </div>
+            </div>
+            <div class="inline-block px-3">
+              <div
+                class="w-64 h-64 max-w-xs overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <style>
+      .hide-scroll-bar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+
+      .hide-scroll-bar::-webkit-scrollbar {
+        display: none;
+      }
+    </style>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const mobileMenuButton = document.getElementById("menu-button");
+        const mobileMenu = document.getElementById("mobile-menu");
+        const closeMenuButton = document.getElementById("close-menu-button");
+
+        // Function to open the mobile menu
+        mobileMenuButton.addEventListener("click", function () {
+          mobileMenu.classList.remove("hidden");
+          mobileMenu.classList.add("flex");
+        });
+
+        // Function to close the mobile menu
+        closeMenuButton.addEventListener("click", function () {
+          mobileMenu.classList.remove("flex");
+          mobileMenu.classList.add("hidden");
+        });
       });
-
-      // Function to close the mobile menu
-      closeMenuButton.addEventListener("click", function () {
-        mobileMenu.classList.remove("flex");
-        mobileMenu.classList.add("hidden");
-      });
-    });
-  </script>
+    </script>
 </body>
 
 </html>
