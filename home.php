@@ -1,3 +1,4 @@
+<?php include 'common\connection.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,9 +14,9 @@
 </head>
 
 <body>
-  <div class="bg-white">
+  <div class="bg-transparent">
     <!-- navbar -->
-    <header class="absolute inset-x-0 top-0 z-50">
+    <header class="absolute inset-x-0 top-0 z-50 ">
       <nav class="flex items-center lg:justify-between md:justify-start p-6 lg:px-4" aria-label="Global">
         <div class="flex lg:hidden">
           <button id="menu-button"
@@ -33,7 +34,7 @@
               Doctors</span>
           </a>
         </div>
-        <div class="hidden lg:flex lg:gap-x-12">
+        <div class="hidden lg:flex lg:gap-x-12 ">
           <a href="#" class="text-base font-semibold leading-6 text-white">Categories</a>
           <a href="#" class="text-base font-semibold leading-6 text-white">Doctors</a>
           <a href="#" class="text-base font-semibold leading-6 text-white">Clinics</a>
@@ -252,49 +253,59 @@
         doctors & minimum waiting time </p>
     </div>
 
+
     <div
       class="w-[70vw] grid lg:grid-cols-2 sm:grid-cols-1 gap-4 justify-center m-9 from-slate-50 to-gray-100 bg-gradient-to-br">
-      <div
-        class="p-4 items-center justify-center w-full rounded-xl group sm:flex space-x-6 bg-white bg-opacity-50 shadow-xl bg-gradient-to-br">
-        <img
-          class="mx-auto block xl:w-4/12 xl:h-full lg:w-1/2 lg:h-1/2 md:w-3/5 md:h-3/5 sm:w-1/6 sm:h-1/6 rounded-lg object-scale-down"
-          src="uploads\dr.jaydeepmandal.jpg" alt="Dortor-Name" loading="lazy">
-        <div class="sm:w-8/12 pl-0 p-5">
-          <div class="space-y-2">
-            <div class="space-y-4 pb-5">
-              <h4 class="lg:text-xl md:text-lg font-bold text-cyan-900 text-justify pb-2">Dr. Jaydeep Mandal</h4>
-              <span class="md:text-sm sm:text-xs font-semibold text-gray-500">Orthopaedist</span>
-            </div>
-            <div class="">
-              <span class="md:text-sm sm:text-xs font-semibold text-gray-500 pt-2">12+ Years of experience</span>
-              <br>
-              <i class="fa fa-map-marker" aria-hidden="true" style="color:#767676;"></i>
-              <span class="lg:text-medium md:text-sm sm:text-xs font-bold text-gray-500 ">Deep medical</span>
-              <span class="lg:text-medium md:text-sm sm:text-xs font-semibold text-gray-500">, E Lake Rd, near science
-                museum</span>
-              <br>
-              <i class="fa fa-rupee " style="color:#767676;"></i>
-              <span class="lg:text-lg md:text-medium sm:text-sm font-bold text-gray-500 pt-4">500</span>
-              <span class="lg:text-medium md:text-sm sm:text-xs font-semibold text-gray-500 pt-4"> Consultation fee at
-                clinic</span>
-            </div>
-            <div class="py-6 min-w-10 min-h-7 object-scale-down">
-              <a href="#" style="text-decoration:none"
-                class="object-scale-down py-3 px-5 min-w-10 min-h-7 bg-indigo-500 text-white lg:text-medium md:text-xs font-semibold rounded-md shadow-lg shadow-indigo-500/50 focus:outline-none">
-                Book Clinic Visit
-              </a>
+      <?php
+      $query = "SELECT * FROM doctors LIMIT 5";
+      $query_run = mysqli_query($conn, $query);
+      $check_doctor = mysqli_num_rows($query_run) > 0;
+
+      if ($check_doctor) {
+        while ($row = mysqli_fetch_assoc($query_run)) {
+          ?>
+          <div
+            class="p-4 items-center justify-center w-full rounded-xl group sm:flex space-x-6 bg-white bg-opacity-50 shadow-xl bg-gradient-to-br">
+            <img
+              class="mx-auto block max-h-80 xl:w-4/12 xl:h-full lg:w-1/2 lg:h-1/2 md:w-3/5 md:h-3/5 sm:w-1/6 sm:h-1/6 rounded-lg object-scale-down"
+              src="<?php echo $row['photo'] ?>" alt="<?php echo $row['full_name'] ?>" loading="lazy">
+            <div class="sm:w-8/12 pl-0 p-5">
+              <div class="space-y-2">
+                <div class="space-y-4 pb-5">
+                  <h4 class="lg:text-xl md:text-lg font-bold text-cyan-900 text-justify pb-2">
+                    <?php echo $row['full_name'] ?></h4>
+                  <span class="md:text-sm sm:text-xs font-semibold text-gray-500"><?php echo $row['category'] ?></span>
+                </div>
+                <div class="">
+                  <span class="md:text-sm sm:text-xs font-semibold text-gray-500 pt-2">12+ Years of experience</span>
+                  <br>
+                  <i class="fa fa-map-marker" aria-hidden="true" style="color:#767676;"></i>
+                  <!-- <span class="lg:text-medium md:text-sm sm:text-xs font-bold text-gray-500 ">Deep medical</span> -->
+                  <span
+                    class="lg:text-medium md:text-sm sm:text-xs font-semibold text-gray-500"><?php echo $row['address'] ?></span>
+                  <br>
+                  <i class="fa fa-rupee " style="color:#164E63;"></i>
+                  <span class="lg:text-lg md:text-medium sm:text-sm font-bold text-cyan-900 pt-4">500</span>
+                  <span class="lg:text-medium md:text-sm sm:text-xs font-semibold text-gray-500 pt-4"> Consultation fee at
+                    clinic</span>
+                </div>
+                <div class="py-6 min-w-10 min-h-7 object-scale-down">
+                  <a href="#" style="text-decoration:none"
+                    class="object-scale-down py-3 px-5 min-w-10 min-h-7 bg-indigo-500 text-white lg:text-medium md:text-xs font-semibold rounded-md shadow-lg shadow-indigo-500/50 focus:outline-none">
+                    Book Clinic Visit
+                  </a>
+                </div>
+
+              </div>
             </div>
 
-          </div>
-        </div>
       </div>
-      <div class="bg-slate-300 w-full">
-        2
-      </div>
-      <div class="bg-slate-300 w-full">
-        3
-      </div>
-
+            <?php
+        }
+      } else {
+        echo "No Doctor Found";
+      }
+      ?>
     </div>
 
 
