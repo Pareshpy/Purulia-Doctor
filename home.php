@@ -1,4 +1,6 @@
-<?php include 'common\connection.php'; ?>
+<?php
+include 'common/connection.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -245,6 +247,7 @@
   </section>
   <!-- categories section end -->
 
+  <!-- Doctor section -->
   <section class="h-auto flex flex-col justify-center items-center">
     <div>
       <p class="flex items-center justify-center text-3xl font-bold text-slate-600 item-center mt-6">Doctors</p>
@@ -257,7 +260,7 @@
     <div
       class="w-[70vw] grid lg:grid-cols-2 sm:grid-cols-1 gap-4 justify-center m-9 from-slate-50 to-gray-100 bg-gradient-to-br">
       <?php
-      $query = "SELECT * FROM doctors LIMIT 5";
+      $query = "SELECT * FROM doctors ";
       $query_run = mysqli_query($conn, $query);
       $check_doctor = mysqli_num_rows($query_run) > 0;
 
@@ -273,7 +276,8 @@
               <div class="space-y-2">
                 <div class="space-y-4 pb-5">
                   <h4 class="lg:text-xl md:text-lg font-bold text-cyan-900 text-justify pb-2">
-                    <?php echo $row['full_name'] ?></h4>
+                    <?php echo $row['full_name'] ?>
+                  </h4>
                   <span class="md:text-sm sm:text-xs font-semibold text-gray-500"><?php echo $row['category'] ?></span>
                 </div>
                 <div class="">
@@ -299,19 +303,50 @@
               </div>
             </div>
 
-      </div>
-            <?php
+          </div>
+          <?php
         }
       } else {
         echo "No Doctor Found";
       }
       ?>
     </div>
-
-
-
+    <div class="more">
+      <a href="doctor.php" style="text-decoration:none"
+        class="py-3 px-5 bg-indigo-500 text-white text-sm font-semibold rounded-md shadow-lg shadow-indigo-500/50 focus:outline-none">
+        More
+      </a>
+    </div>
   </section>
+  <!-- Doctor section end -->
 
+  <!-- Article section -->
+  <section class="h-auto flex flex-col justify-center items-center">
+    <div class="w-[70vw] gap-4 justify-center m-9 ">
+      <div class="mt-6 item-center text-gray-500 ">
+        <hr class="border-gray-300 ">
+      </div>
+      <div class="mt-10">
+        <h2 class="text-center text-2xl font-semibold text-gray-800">Read top articles from health experts</h2>
+        <?php
+        include('./common/blogPost.php');
+        ?>
+      </div>
+      <div class="mt-6 item-center text-gray-500 ">
+        <hr class="border-gray-300 ">
+      </div>
+    </div>
+  </section>
+  <!-- Article section ends -->
+
+
+
+
+
+
+
+
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
   <!-- scroll example -->
   <div class=" hidden flex flex-col bg-white m-auto p-auto">
     <h1 class="flex py-5 lg:px-20 md:px-10 px-5 lg:mx-40 md:mx-20 mx-5 font-bold text-4xl text-gray-800">
