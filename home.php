@@ -107,24 +107,22 @@ if (isset($_SESSION['user_id'])) {
           </button>
         </div>
 
-        
-        <div class="hidden lg:flex lg:justify-end mr-10">
+
+        <div class="lg:flex lg:justify-end mr-10" id="profile">
           <div>
             <?php if (!$user): ?>
-              <a href="login.php" class="text-xl font-medium leading-6 text-slate-800"> <i class="ri-user-line"
-                  id="login"></i></a>
+              <a href="login.php" class="text-xl font-medium leading-6 text-slate-800">
+                <i class="ri-user-line" id="login"></i>
+              </a>
             <?php else: ?>
-              <?php
-              // Use user's profile image if available, otherwise use default image
-              $user_image = $user->profile_image ? $user->profile_image : './assets/img/pic.svg';
-              ?>
+              <?php $user_image = $user->profile_image ? $user->profile_image : './assets/img/pic.svg'; ?>
               <img src="<?= htmlspecialchars($user_image) ?>" class="w-10 h-10 rounded-full cursor-pointer object-cover"
-                onclick="toggleMenu()">
+                onclick="profileDropDown()">
             <?php endif ?>
           </div>
         </div>
       </nav>
-      <div class="p-5 min-w-56 max-w-64 absolute right-44 left-auto mt-0 border bg-sky-50" id="subMenu">
+      <div class="p-5 min-w-56 max-w-64 absolute right-44 left-auto mt-0 border bg-sky-50 hidden" id="dropDown">
         <!-- dropdown show -->
 
         <div class="border-b-2 flex flex-col items-center mb-2">
@@ -154,7 +152,8 @@ if (isset($_SESSION['user_id'])) {
 
           <div class="w-full py-2 pr-4">
             <!-- profile -->
-            <a href="" class="sub-menu-link text-base font-normal leading-6 text-slate-800 ml-4 sub-menu-link transition ease-in-out delay-150 hover:text-indigo-500 duration-200">
+            <a href=""
+              class="sub-menu-link text-base font-normal leading-6 text-slate-800 ml-4 sub-menu-link transition ease-in-out delay-150 hover:text-indigo-500 duration-200">
               <i class="ri-settings-line"></i>
               <span class="ml-6">Profile</span>
             </a>
@@ -162,9 +161,10 @@ if (isset($_SESSION['user_id'])) {
           </div>
           <div class="w-full py-2 pr-4 ">
             <!-- logout -->
-            <a href="logout.php" class="text-base font-normal leading-6 text-slate-800 ml-4 sub-menu-link transition ease-in-out delay-150 hover:text-indigo-500 duration-200">
+            <a href="logout.php"
+              class="text-base font-normal leading-6 text-slate-800 ml-4 sub-menu-link transition ease-in-out delay-150 hover:text-indigo-500 duration-200">
               <i class="ri-logout-circle-line"></i>
-              <span class="ml-6 w-max">Logout</span> 
+              <span class="ml-6 w-max">Logout</span>
             </a>
           </div>
         </div>
@@ -466,9 +466,6 @@ if (isset($_SESSION['user_id'])) {
 
 
 
-
-
-
   <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
   <!-- scroll example -->
   <div class=" hidden flex flex-col bg-white m-auto p-auto">
@@ -569,35 +566,39 @@ if (isset($_SESSION['user_id'])) {
         display: none;
       }
     </style>
+  </div>
 
 
 
-    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const mobileMenuButton = document.getElementById("menu-button");
-        const mobileMenu = document.getElementById("mobile-menu");
-        const closeMenuButton = document.getElementById("close-menu-button");
+  <script>
+  // Define the profileDropDown function globally
+  function profileDropDown() {
+    let dropDown = document.querySelector('#dropDown');
+    dropDown.classList.toggle("hidden");
+  }
 
-        let subMenu = document.getElementById("subMenu");
-        function toggleMenu() {
-            subMenu.classList.toggle("open-menu");
-        }
+  // Wait for the DOM to be fully loaded before attaching event listeners
+  document.addEventListener("DOMContentLoaded", function () {
+    const mobileMenuButton = document.getElementById("menu-button");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const closeMenuButton = document.getElementById("close-menu-button");
 
-        // Function to open the mobile menu
-        mobileMenuButton.addEventListener("click", function () {
-          mobileMenu.classList.remove("hidden");
-          mobileMenu.classList.add("flex");
-        });
+    // Function to open the mobile menu
+    mobileMenuButton.addEventListener("click", function () {
+      mobileMenu.classList.remove("hidden");
+      mobileMenu.classList.add("flex");
+    });
 
-        // Function to close the mobile menu
-        closeMenuButton.addEventListener("click", function () {
-          mobileMenu.classList.remove("flex");
-          mobileMenu.classList.add("hidden");
-        });
-      });
+    // Function to close the mobile menu
+    closeMenuButton.addEventListener("click", function () {
+      mobileMenu.classList.remove("flex");
+      mobileMenu.classList.add("hidden");
+    });
+  });
+</script>
 
-    </script>
+  <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
+
 </body>
 
 </html>
