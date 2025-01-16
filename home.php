@@ -45,6 +45,7 @@ if (isset($_SESSION['user_id'])) {
 </head>
 
 <body>
+
   <div class="bg-transparent">
     <!-- navbar -->
     <header class="absolute inset-x-0 top-0 z-50 ">
@@ -81,8 +82,9 @@ if (isset($_SESSION['user_id'])) {
           <!-- Full Search Bar (Visible on lg and above) -->
           <form class="hidden lg:flex relative items-center max-w-md w-full">
             <label for="search-input" class="sr-only">Search</label>
+            <!-- use ajax search -->
             <input type="search" id="search-input"
-              class="w-full p-2.5 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-sky-50 focus:ring-indigo-300 focus:border-indigo-300"
+              class="hidden md:flex md:w-full p-2.5 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-sky-50 focus:ring-indigo-300 focus:border-indigo-300"
               placeholder="Search doctors, clinics..." aria-label="Search" required />
             <button type="submit"
               class="absolute right-[5px] top-1/2 transform -translate-y-1/2 bg-indigo-400 text-white hover:bg-indigo-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2">
@@ -100,10 +102,11 @@ if (isset($_SESSION['user_id'])) {
           <!-- Search Icon (Visible on md and below) -->
           <button class="lg:hidden flex items-center text-gray-500 hover:text-blue-600 focus:outline-none"
             aria-label="Search">
-            <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
-              stroke="currentColor" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M10 20l6-6m0-6a6 6 0 11-12 0 6 6 0 0112 0z" />
-            </svg>
+            <svg class="w-5 h-5 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                viewBox="0 0 20 20">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+              </svg>
           </button>
         </div>
 
@@ -111,8 +114,8 @@ if (isset($_SESSION['user_id'])) {
         <div class="lg:flex lg:justify-end mr-10" id="profile">
           <div>
             <?php if (!$user): ?>
-              <a href="login.php" class="text-xl font-medium leading-6 text-slate-800">
-                <i class="ri-user-line" id="login"></i>
+              <a href="#" class="text-xl font-medium leading-6 text-slate-800">
+                <i data-modal-target="authentication-modal" data-modal-toggle="authentication-modal" class="ri-user-line" id="login"></i>
               </a>
             <?php else: ?>
               <?php $user_image = $user->profile_image ? $user->profile_image : './assets/img/pic.svg'; ?>
@@ -169,7 +172,7 @@ if (isset($_SESSION['user_id'])) {
           </div>
         </div>
       </div>
-
+      
       <!-- Mobile menu -->
       <div id="mobile-menu" class="lg:hidden hidden" role="dialog" aria-modal="true">
         <div class="fixed inset-0 z-50 bg-black/50"></div>
@@ -210,7 +213,9 @@ if (isset($_SESSION['user_id'])) {
       </div>
     </header>
     <!-- navbar end -->
-
+    <?php
+      include('login2.php');
+?>
     <!-- hero section -->
     <section class="hero h-[80vh] bg-cover bg-center flex flex-col justify-center items-center relative"
       style="background-image: url('assets/img/hero-bg.jpg');">
@@ -568,34 +573,109 @@ if (isset($_SESSION['user_id'])) {
     </style>
   </div>
 
+  <div class="bg-cover bg-center flex items-center justify-center min-h-screen min-w-full overflow-hidden"
+    style=" background-repeat: no-repeat; background-size: cover;">
+    
+    <div class="backdrop-blur-sm bg-white/30 p-8 min-h-screen min-w-full flex items-center justify-center">
+        <div class="min-h-screen flex flex-col items-center justify-center py-6 px-4">
+            <div class="max-w-md w-full">
+                <div class="p-8 rounded-2xl bg-white shadow">
+                    <h2 class="text-gray-800 text-center text-2xl font-bold">Sign in</h2>
+                    <form class="mt-8 space-y-4">
+                        <div>
+                            <label class="text-gray-800 text-sm mb-2 block">User name</label>
+                            <div class="relative flex items-center">
+                                <input name="username" type="text" required
+                                    class="w-full text-gray-800 text-sm border border-gray-300 px-4 py-3 rounded-md outline-blue-600"
+                                    placeholder="Enter user name" />
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="#bbb" stroke="#bbb"
+                                    class="w-4 h-4 absolute right-4" viewBox="0 0 24 24">
+                                    <circle cx="10" cy="7" r="6" data-original="#000000"></circle>
+                                    <path
+                                        d="M14 15H6a5 5 0 0 0-5 5 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 5 5 0 0 0-5-5zm8-4h-2.59l.3-.29a1 1 0 0 0-1.42-1.42l-2 2a1 1 0 0 0 0 1.42l2 2a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42l-.3-.29H22a1 1 0 0 0 0-2z"
+                                        data-original="#000000"></path>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="text-gray-800 text-sm mb-2 block">Password</label>
+                            <div class="relative flex items-center">
+                                <input name="password" type="password" required
+                                    class="w-full text-gray-800 text-sm border border-gray-300 px-4 py-3 rounded-md outline-blue-600"
+                                    placeholder="Enter password" />
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="#bbb" stroke="#bbb"
+                                    class="w-4 h-4 absolute right-4 cursor-pointer" viewBox="0 0 128 128">
+                                    <path
+                                        d="M64 104C22.127 104 1.367 67.496.504 65.943a4 4 0 0 1 0-3.887C1.367 60.504 22.127 24 64 24s62.633 36.504 63.496 38.057a4 4 0 0 1 0 3.887C126.633 67.496 105.873 104 64 104zM8.707 63.994C13.465 71.205 32.146 96 64 96c31.955 0 50.553-24.775 55.293-31.994C114.535 56.795 95.854 32 64 32 32.045 32 13.447 56.775 8.707 63.994zM64 88c-13.234 0-24-10.766-24-24s10.766-24 24-24 24 10.766 24 24-10.766 24-24 24zm0-40c-8.822 0-16 7.178-16 16s7.178 16 16 16 16-7.178 16-16-7.178-16-16-16z"
+                                        data-original="#000000"></path>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-wrap items-center justify-between gap-4 select-none">
+                            <div class="flex items-center select-none">
+                                <input id="remember-me" name="remember-me" type="checkbox"
+                                    class="h-4 w-4 shrink-0 text-blue-600 border-gray-300 rounded select-none" />
+                                <label for="remember-me" class="ml-3 block text-sm text-gray-800">
+                                    Remember me
+                                </label>
+                            </div>
+                            <div class="text-sm">
+                                <a href="javascript:void(0);" class="text-blue-600 hover:underline font-semibold">
+                                    Forgot your password?
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="!mt-8">
+                            <button type="button"
+                                class="w-full py-3 px-4 text-sm tracking-wide rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none">
+                                Sign in
+                            </button>
+                        </div>
+                        <p class="text-gray-800 text-sm !mt-8 text-center">Don't have an account? <a
+                                href="javascript:void(0);"
+                                class="text-blue-600 hover:underline ml-1 whitespace-nowrap font-semibold">Register
+                                here</a></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 
   <script>
-  // Define the profileDropDown function globally
-  function profileDropDown() {
-    let dropDown = document.querySelector('#dropDown');
-    dropDown.classList.toggle("hidden");
-  }
+    // Define the profileDropDown function globally
+    function profileDropDown() {
+      let dropDown = document.querySelector('#dropDown');
+      dropDown.classList.toggle("hidden");
+    }
 
-  // Wait for the DOM to be fully loaded before attaching event listeners
-  document.addEventListener("DOMContentLoaded", function () {
-    const mobileMenuButton = document.getElementById("menu-button");
-    const mobileMenu = document.getElementById("mobile-menu");
-    const closeMenuButton = document.getElementById("close-menu-button");
+  function login(){
+      let login = document.querySelector()
+    }
 
-    // Function to open the mobile menu
-    mobileMenuButton.addEventListener("click", function () {
-      mobileMenu.classList.remove("hidden");
-      mobileMenu.classList.add("flex");
+    // Wait for the DOM to be fully loaded before attaching event listeners
+    document.addEventListener("DOMContentLoaded", function () {
+      const mobileMenuButton = document.getElementById("menu-button");
+      const mobileMenu = document.getElementById("mobile-menu");
+      const closeMenuButton = document.getElementById("close-menu-button");
+
+      // Function to open the mobile menu
+      mobileMenuButton.addEventListener("click", function () {
+        mobileMenu.classList.remove("hidden");
+        mobileMenu.classList.add("flex");
+      });
+
+      // Function to close the mobile menu
+      closeMenuButton.addEventListener("click", function () {
+        mobileMenu.classList.remove("flex");
+        mobileMenu.classList.add("hidden");
+      });
     });
-
-    // Function to close the mobile menu
-    closeMenuButton.addEventListener("click", function () {
-      mobileMenu.classList.remove("flex");
-      mobileMenu.classList.add("hidden");
-    });
-  });
-</script>
+  </script>
 
   <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
 
