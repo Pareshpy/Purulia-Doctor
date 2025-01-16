@@ -473,7 +473,7 @@ if (isset($_SESSION['user_id'])) {
 
   <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
   <!-- scroll example -->
-  <div class=" hidden flex flex-col bg-white m-auto p-auto">
+  <div class=" hidden flex-col bg-white m-auto p-auto">
     <h1 class="flex py-5 lg:px-20 md:px-10 px-5 lg:mx-40 md:mx-20 mx-5 font-bold text-4xl text-gray-800">
       Example
     </h1>
@@ -602,7 +602,7 @@ if (isset($_SESSION['user_id'])) {
                             <label class="text-gray-800 text-sm mb-2 block">Password</label>
                             <div class="relative flex items-center">
                                 <input name="password" type="password" required
-                                    class="w-full text-gray-800 text-sm border border-gray-300 px-4 py-3 rounded-md outline-blue-600"
+                                    class="block w-full text-gray-800 text-sm border border-gray-300 px-4 py-3 rounded-md outline-blue-600"
                                     placeholder="Enter password" />
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="#bbb" stroke="#bbb"
                                     class="w-4 h-4 absolute right-4 cursor-pointer" viewBox="0 0 128 128">
