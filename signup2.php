@@ -190,7 +190,7 @@ $conn->close();
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
   <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" />
 
   <title>Purulia Doctors</title>
@@ -198,8 +198,8 @@ $conn->close();
 
 <body class="bg-gray-1 ">
   <!-- navbar -->
-  <header class="absolute inset-x-0 top-0  ">
-    <nav class="flex items-center lg:justify-between md:justify-start p-6 lg:px-44 h-20 bg-white drop-shadow-lg"
+  <header class=" inset-x-0 top-0  ">
+    <nav class="flex items-center lg:justify-between md:justify-start p-6 lg:px-44 h-16 bg-white drop-shadow-lg"
       aria-label="Global">
       <div class="flex lg:hidden">
         <button id="menu-button" class="-m-2.5 inline-flex items-center justify-start rounded-md pr-2.5 text-gray-700">
@@ -282,81 +282,164 @@ $conn->close();
 
 
   <main class="w-full h-screen flex flex-col items-center justify-center bg-gray-50 sm:px-4">
-    <div class="flex flex-col items-center mb-20 -mt-10">
+    <div class="flex flex-col items-center mb-16 -mt-36">
       <ol
         class="flex items-center w-full text-sm font-medium text-center text-gray-500 dark:text-gray-400 sm:text-base">
         <li
           class="flex md:w-full items-center text-blue-600 dark:text-blue-500 sm:after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-200 after:border-1 after:hidden sm:after:inline-block after:mx-6 xl:after:mx-10 dark:after:border-gray-700">
           <span
             class="flex items-center after:content-['-'] sm:after:hidden after:mx-2 after:text-gray-200 dark:after:text-gray-500">
-            <svg class="w-5 h-5 sm:w-4 sm:h-4 me-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+            <svg id="svg" class="w-5 h-5 sm:w-4 sm:h-4 me-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
               fill="currentColor" viewBox="0 0 20 20">
               <path
                 d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
             </svg>
-            Personal <span class="hidden sm:inline-flex sm:ms-2">Info</span>
+            Valid <span class="hidden sm:inline-flex sm:ms-2">Email</span>
           </span>
         </li>
-        <li
+        <li id="firstOneColor"
           class="flex md:w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-200 after:border-1 after:hidden sm:after:inline-block after:mx-6 xl:after:mx-10 dark:after:border-gray-700">
-          <span
-            class="flex items-center after:content-['-'] sm:after:hidden after:mx-2 after:text-gray-200 dark:after:text-gray-500">
-            <span class="me-2">2</span>
-            Account <span class="hidden sm:inline-flex sm:ms-2">Info</span>
+          <span class="flex items-center after:content-['-'] sm:after:hidden after:mx-2 after:text-gray-200 dark:after:text-gray-500">
+            <span  class="me-2">2</span> Account <span id="firstOnePNG" class="hidden sm:inline-flex sm:ms-2">Info</span>
           </span>
         </li>
-        <li class="flex items-center">
-          <span class="me-2">3</span>
-          Confirmation
-        </li>
+        <li id="secondOneColor" class="flex items-center"><span id="svg" class="me-2">3</span>Verify</li>
       </ol>
     </div>
-    <div class="flex items-center justify-center text-center mb-14">
-      <h2 class="text-2xl font-bold text-slate-600">Verify your email</h2>
-    </div>
-    <div class="w-full space-y-6 text-gray-600 sm:max-w-md">
-      <div class="bg-white shadow p-4 py-6 sm:p-6 sm:rounded-lg">
-        <div class="mt-5">
-          <button
-            class="w-full flex items-center justify-center gap-x-3 py-2.5 mt-5 border rounded-lg text-sm font-medium hover:bg-gray-50 duration-150 active:bg-gray-100">
-            <!-- Comment: Google Icon SVG here -->
-            <img
-              src="https://raw.githubusercontent.com/sidiDev/remote-assets/7cd06bf1d8859c578c2efbfda2c68bd6bedc66d8/google-icon.svg"
-              alt="Google" class="w-5 h-5" />
-            Continue with Google
-          </button>
-        </div>
-        <div class="inline-flex items-center justify-center w-full">
-          <hr class="w-64 h-px my-8 bg-gray-200 border-0 ">
-          <span
-            class="absolute px-3 font-medium text-gray-600 -translate-x-1/2 bg-white left-1/2  ">or</span>
-        </div>
-        <form onSubmit="event.preventDefault()" class="space-y-5">
-          <div>
-            <label class="font-medium">Email</label>
-            <input type="email" required
-              class="w-full mt-2 px-3 py-2 text-gray-700 bg-transparent outline-none border-gray-200 focus:border-indigo-200 shadow-sm rounded-lg" />
+
+    <div class="w-full space-y-6 text-gray-600 sm:max-w-md sm:max-h-md " id="eVerify">
+      <div class="flex items-center justify-center text-center mb-14">
+        <h2 class="text-2xl font-bold text-slate-600">Verify your email</h2>
+      </div>
+      <div class="w-full space-y-6 text-gray-600 sm:max-w-md sm:max-h-md">
+        <div class="bg-white shadow p-4 py-6 sm:p-6 sm:rounded-lg">
+          <div class="mt-5">
+            <button
+              class="w-full flex items-center justify-center gap-x-3 py-2.5 mt-5 border rounded-lg text-sm font-medium hover:bg-gray-50 duration-150 active:bg-gray-100">
+              <!-- Comment: Google Icon SVG here -->
+              <img
+                src="https://raw.githubusercontent.com/sidiDev/remote-assets/7cd06bf1d8859c578c2efbfda2c68bd6bedc66d8/google-icon.svg"
+                alt="Google" class="w-5 h-5" />
+              Continue with Google
+            </button>
           </div>
-          <button
-            class="w-full px-4 py-2 text-white font-medium bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-600 rounded-lg duration-150">
-            Verify
-          </button>
+          <div class="inline-flex items-center justify-center w-full">
+            <hr class="w-64 h-px my-8 bg-gray-200 border-0 ">
+            <span class="absolute px-3 font-medium text-gray-600 -translate-x-1/2 bg-white left-1/2  ">or</span>
+          </div>
+          <form onSubmit="event.preventDefault()" class="space-y-5">
+            <div>
+              <label class="font-medium">Email</label>
+              <input type="email" required
+                class="w-full mt-2 px-3 py-2 text-gray-700 bg-transparent outline-none border-gray-200 focus:border-indigo-200 shadow-sm rounded-lg" />
+              <div class="py-4">
+                <input type="checkbox" name="policy" id="policy"
+                  class="text-indigo-500 bg-transparent outline-none border-gray-400 focus:border-indigo-200 shadow-sm rounded">
+                <label for="" class="px-3 mr-7 my-3  text-gray-600 hover:text-gray-800">
+                  I accept
+                  <a href="#" class="underline text-gray-600 hover:text-gray-800">Privacy Policy</a>
+                </label>
+              </div>
+              <button onclick="emailVerify()"
+                class="w-full px-4 py-2 text-white font-medium bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-600 rounded-lg duration-150 my-3">
+                Continue
+              </button>
+            </div>
+        </div>
         </form>
       </div>
     </div>
+
+
+    <div class="w-full space-y-6 text-gray-600 sm:max-w-md sm:max-h-md hidden" id="accInfo">
+      <div class="flex items-center justify-center text-center mb-14">
+        <h2 class="text-2xl font-bold text-slate-600">Account Details</h2>
+      </div>
+
+      <div class="w-full space-y-6 text-gray-600 sm:max-w-md sm:max-h-md">
+        <div class="bg-white shadow p-4 py-6 sm:p-6 sm:rounded-lg">
+          <form onSubmit="event.preventDefault()" class="space-y-5">
+            <div>
+              <div class="">
+                <label class="font-medium">First Name</label>
+                <input type="email" required
+                  class="w-full mt-2 px-3 py-2 my-3 text-gray-700 bg-transparent outline-none border-gray-200 focus:border-indigo-200 shadow-sm rounded-lg" />
+                <label class="font-medium">Last Name</label>
+                <input type="email" required
+                  class="w-full mt-2 px-3 py-2 my-3 text-gray-700 bg-transparent outline-none border-gray-200 focus:border-indigo-200 shadow-sm rounded-lg" />
+                <label class="font-medium">Mobile Number</label>
+                <input type="email" required
+                  class="w-full mt-2 px-3 py-2 my-3 text-gray-700 bg-transparent outline-none border-gray-200 focus:border-indigo-200 shadow-sm rounded-lg" />
+                <label class="font-medium">Password</label>
+                <input type="email" required
+                  class="w-full mt-2 px-3 py-2 my-3 text-gray-700 bg-transparent outline-none border-gray-200 focus:border-indigo-200 shadow-sm rounded-lg" />
+                <label class="font-medium">Confirm Password</label>
+                <input type="email" required
+                  class="w-full mt-2 px-3 py-2 my-3 text-gray-700 bg-transparent outline-none border-gray-200 focus:border-indigo-200 shadow-sm rounded-lg" />
+                <input type="checkbox" name="policy" id="policy"
+                  class="text-indigo-500 bg-transparent outline-none border-gray-400 focus:border-indigo-200 shadow-sm rounded">
+                <label for="" class="px-3 mr-7 my-3 text-sm text-gray-600 hover:text-gray-800">
+                  Receive relevant offers and promotional communication from us.
+                </label>
+              </div>
+              <button onclick="submitAccInfo()"
+                class="w-full px-4 py-2 text-white font-medium bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-600 rounded-lg duration-150 my-3">
+                Submit and Continue
+              </button>
+            </div>
+        </div>
+        </form>
+      </div>
+    </div>
+
+
+
+    <div class="w-full space-y-6 text-gray-600 sm:max-w-md sm:max-h-md hidden" id="optVerify">
+      <div class="flex items-center justify-center text-center mb-14">
+        <h2 class="text-2xl font-bold text-slate-600">Verify</h2>
+      </div>
+
+      <div class="bg-white shadow p-4 py-6 sm:p-6 sm:rounded-lg">
+        <!-- Change the id to be associated with the div -->
+        <div class="px-4 py-6" >
+          <div class="py-2 mb-8">
+            <p class="text-sm text-center">
+              OTP has been sent to <span class="font-medium text-base text-indigo-500">example@gmail.com</span>
+              <br>
+              If this is not your email address
+              <a href="#" class="pointer hover:underline text-blue-500">click here</a>
+            </p>
+          </div>
+          <form class="flex justify-center gap-10 mb-6" id="otp-form">
+            <input
+              class="w-12 h-12 text-center border rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+              type="text" maxlength="1" required>
+            <input
+              class="w-12 h-12 text-center border rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+              type="text" maxlength="1" required>
+            <input
+              class="w-12 h-12 text-center border rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+              type="text" maxlength="1" required>
+            <input
+              class="w-12 h-12 text-center border rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+              type="text" maxlength="1" required>
+          </form>
+          <div class="flex items-center justify-center mt-8">
+            <button
+              class="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              type="button">
+              Verify
+            </button>
+            <a class="inline-block align-baseline font-bold text-sm text-indigo-500 hover:text-indigo-600 ml-4"
+              href="#">
+              Resend OTP
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </main>
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -388,6 +471,90 @@ $conn->close();
         errorMessage.style.display = 'none';
       }
     });
+
+
+    function emailVerify() {
+      let firstDiv = document.querySelector('#eVerify');
+      let secondDiv = document.querySelector('#accInfo');
+      let color = document.querySelector('#firstOneColor');
+
+      firstDiv.classList.add("hidden");
+      color.classList.add("text-blue-600");
+      secondDiv.classList.remove("hidden");
+    }
+
+    function submitAccInfo() {
+      let firstDiv = document.querySelector('#accInfo');
+      let secondDiv = document.querySelector('#optVerify');
+      let color = document.querySelector('#secondOneColor');
+
+      firstDiv.classList.add("hidden");
+      color.classList.add("text-blue-600");
+      secondDiv.classList.remove("hidden");
+    }
+
+    // otp starts
+    document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("otp-form");
+    const inputs = [...form.querySelectorAll("input[type=text]")];
+
+    const handleKeyDown = (e) => {
+        if (
+            !/^[0-9]{1}$/.test(e.key) &&
+            e.key !== "Backspace" &&
+            e.key !== "Delete" &&
+            e.key !== "Tab" &&
+            !e.metaKey
+        ) {
+            e.preventDefault();
+        }
+
+        if (e.key === "Delete" || e.key === "Backspace") {
+            const index = inputs.indexOf(e.target);
+            if (index > 0) {
+                inputs[index - 1].value = "";
+                inputs[index - 1].focus();
+            }
+        }
+    };
+
+    const handleInput = (e) => {
+        const target = e.target;
+        const index = inputs.indexOf(target);
+
+        // Ensure only the first character is retained
+        target.value = target.value.slice(0, 1);
+
+        // Move to the next input if available
+        if (target.value && index < inputs.length - 1) {
+            inputs[index + 1].focus();
+        }
+    };
+
+    const handleFocus = (e) => {
+        e.target.select();
+    };
+
+    const handlePaste = (e) => {
+        e.preventDefault();
+        const text = e.clipboardData.getData("text");
+        if (!new RegExp(`^[0-9]{${inputs.length}}$`).test(text)) {
+            return;
+        }
+        const digits = text.split("");
+        inputs.forEach((input, index) => (input.value = digits[index] || ""));
+    };
+
+    inputs.forEach((input) => {
+        input.addEventListener("input", handleInput);
+        input.addEventListener("keydown", handleKeyDown);
+        input.addEventListener("focus", handleFocus);
+        input.addEventListener("paste", handlePaste);
+    });
+});
+
+
+    // otp end
 
     <?php if ($form_success): ?>
       // Display success message and redirect
