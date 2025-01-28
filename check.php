@@ -78,10 +78,11 @@
 
 
 
-     <!-- SVG Sprite Definition -->
-     <svg style="display: none;">
+    <!-- SVG Sprite Definition -->
+    <svg style="display: none;">
         <symbol id="check-icon" viewBox="0 0 20 20">
-            <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
+            <path
+                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
         </symbol>
     </svg>
 
@@ -97,8 +98,35 @@
 
 
 
+    <input type="email" id="email" required>
+    <input type="checkbox" id="policy">
+    <button id="continue" disabled onclick="submit()">Continue</button>
+    <p id="massage" class="hidden">all filed entered</p>
+
 
     <script>
+        function submit(){
+            const click =document.getElementById("continue");
+            const massage =document.getElementById("massage");
+
+            massage.classList.remove("hidden");
+            
+        }
+        document.addEventListener("DOMContentLoaded", function () {
+            const continueButton = document.getElementById("continue");
+            const emailInput = document.getElementById("email");
+            const policyCheckbox = document.getElementById("policy");
+
+            function validateForm() {
+                const email = emailInput.value.trim();
+                const isEmailValid = email !== ""; // Check if email is not empty
+                const isPolicyChecked = policyCheckbox.checked;
+                continueButton.disabled = !(isEmailValid && isPolicyChecked);
+            }
+
+            emailInput.addEventListener("input", validateForm);
+            policyCheckbox.addEventListener("change", validateForm);
+        });
         document.addEventListener("DOMContentLoaded", () => {
             const form = document.getElementById("otp-form");
             const inputs = [...form.querySelectorAll("input[type=text]")];
@@ -157,7 +185,7 @@
 
 
 
-        document.getElementById('replaceButton').addEventListener('click', function() {
+        document.getElementById('replaceButton').addEventListener('click', function () {
             const spanElement = document.getElementById('secondOnePNG');
             // Clear the existing content
             spanElement.innerHTML = '';
@@ -176,36 +204,3 @@
     </script>
     <!-- ====== OTP End -->
 
-
-
-
-
-    <div class="max-w-md mx-auto border max-w-sm mt-20 rounded">
-        <form class="shadow-md px-4 py-6">
-            <div class="flex justify-center gap-2 mb-6">
-                <input
-                    class="w-12 h-12 text-center border rounded-md shadow-sm focus:border-teal-500 focus:ring-teal-500"
-                    type="text" maxlength="1" pattern="[0-9]" inputmode="numeric" autocomplete="one-time-code" required>
-                <input
-                    class="w-12 h-12 text-center border rounded-md shadow-sm focus:border-teal-500 focus:ring-teal-500"
-                    type="text" maxlength="1" pattern="[0-9]" inputmode="numeric" autocomplete="one-time-code" required>
-                <input
-                    class="w-12 h-12 text-center border rounded-md shadow-sm focus:border-teal-500 focus:ring-teal-500"
-                    type="text" maxlength="1" pattern="[0-9]" inputmode="numeric" autocomplete="one-time-code" required>
-                <input
-                    class="w-12 h-12 text-center border rounded-md shadow-sm focus:border-teal-500 focus:ring-teal-500"
-                    type="text" maxlength="1" pattern="[0-9]" inputmode="numeric" autocomplete="one-time-code" required>
-            </div>
-            <div class="flex items-center justify-center">
-                <button
-                    class="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                    type="button">
-                    Verify
-                </button>
-                <a class="inline-block align-baseline font-bold text-sm text-teal-500 hover:text-teal-800 ml-4"
-                    href="#">
-                    Resend OTP
-                </a>
-            </div>
-        </form>
-    </div>

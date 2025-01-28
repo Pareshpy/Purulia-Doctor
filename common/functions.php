@@ -19,6 +19,37 @@ class PD
 
         return json_encode($doctors);
     }
+
+    public function getEmails()
+    {
+        global $conn;
+        $query = "SELECT * FROM users";
+        $query_run = mysqli_query($conn, $query);
+
+        if (!$query_run) {
+            die("Database query failed: " . mysqli_error($conn));
+        }
+
+        $emails = [];
+        while ($row = mysqli_fetch_assoc($query_run)) {
+            $emails[] = $row;
+        }
+
+        return json_encode($emails);
+    }
+    function checkEmail($data)
+    {
+        global $conn;
+        $email = $data->email;
+        $query = "SELECT * FROM users WHERE email = '$email'";
+        $query_run = mysqli_query($conn, $query);
+        if ($query_run->num_rows > 0) {
+            json_encode(['status' => 'error', 'message' => 'Email already exists']);
+        } else {
+            json_encode(['status' => 'success', 'message' => 'Email available']);
+        }
+
+    }
 }
 
 

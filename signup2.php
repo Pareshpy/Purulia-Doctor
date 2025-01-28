@@ -1,6 +1,7 @@
 <?php
 $title = "Signup";
-include('common/connection.php');
+
+include('common/functions.php');
 use Ramsey\Uuid\Uuid;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -22,6 +23,8 @@ $mail->setFrom('no-reply@stringocean.com', 'Purulia Doctors');
 $error_message = "";
 $success_message = "";
 $form_success = false;
+
+
 
 // Handle form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signup'])) {
@@ -181,6 +184,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signup'])) {
 
 // Close the connection
 $conn->close();
+
+$pd = new PD();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -192,6 +197,7 @@ $conn->close();
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
   <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" />
+
 
   <title>Purulia Doctors</title>
 </head>
@@ -299,8 +305,9 @@ $conn->close();
         </li>
         <li id="firstOneColor"
           class="flex md:w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-200 after:border-1 after:hidden sm:after:inline-block after:mx-6 xl:after:mx-10 dark:after:border-gray-700">
-          <span class="flex items-center after:content-['-'] sm:after:hidden after:mx-2 after:text-gray-200 dark:after:text-gray-500">
-            <span  class="me-2">2</span> Account <span id="firstOnePNG" class="hidden sm:inline-flex sm:ms-2">Info</span>
+          <span
+            class="flex items-center after:content-['-'] sm:after:hidden after:mx-2 after:text-gray-200 dark:after:text-gray-500">
+            <span class="me-2">2</span> Account <span id="firstOnePNG" class="hidden sm:inline-flex sm:ms-2">Info</span>
           </span>
         </li>
         <li id="secondOneColor" class="flex items-center"><span id="svg" class="me-2">3</span>Verify</li>
@@ -327,10 +334,10 @@ $conn->close();
             <hr class="w-64 h-px my-8 bg-gray-200 border-0 ">
             <span class="absolute px-3 font-medium text-gray-600 -translate-x-1/2 bg-white left-1/2  ">or</span>
           </div>
-          <form onSubmit="event.preventDefault()" class="space-y-5">
+          <form method="" id="checkEmail" class="space-y-5">
             <div>
-              <label class="font-medium">Email</label>
-              <input type="email" required
+              <label for="email" class="font-medium">Email</label>
+              <input type="email" id="email" name="email" required autocomplete="disable"
                 class="w-full mt-2 px-3 py-2 text-gray-700 bg-transparent outline-none border-gray-200 focus:border-indigo-200 shadow-sm rounded-lg" />
               <div class="py-4">
                 <input type="checkbox" name="policy" id="policy"
@@ -340,13 +347,13 @@ $conn->close();
                   <a href="#" class="underline text-gray-600 hover:text-gray-800">Privacy Policy</a>
                 </label>
               </div>
-              <button onclick="emailVerify()"
+              <button onclick="emailVerify(event)" id="continue" type="submit" name="checkEmail"
                 class="w-full px-4 py-2 text-white font-medium bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-600 rounded-lg duration-150 my-3">
                 Continue
               </button>
             </div>
+          </form>
         </div>
-        </form>
       </div>
     </div>
 
@@ -358,27 +365,27 @@ $conn->close();
 
       <div class="w-full space-y-6 text-gray-600 sm:max-w-md sm:max-h-md">
         <div class="bg-white shadow p-4 py-6 sm:p-6 sm:rounded-lg">
-          <form onSubmit="event.preventDefault()" class="space-y-5">
+          <form class="space-y-5" id="checkFrom" method="GET">
             <div>
               <div class="">
-                <label class="font-medium">First Name</label>
-                <input type="email" required
+                <label for="fName" class="font-medium">First Name</label>
+                <input type="text" id="fName" name="fName" required 
                   class="w-full mt-2 px-3 py-2 my-3 text-gray-700 bg-transparent outline-none border-gray-200 focus:border-indigo-200 shadow-sm rounded-lg" />
-                <label class="font-medium">Last Name</label>
-                <input type="email" required
+                <label for="lName" class="font-medium">Last Name</label>
+                <input type="text" id="lName" name="lName" required
                   class="w-full mt-2 px-3 py-2 my-3 text-gray-700 bg-transparent outline-none border-gray-200 focus:border-indigo-200 shadow-sm rounded-lg" />
-                <label class="font-medium">Mobile Number</label>
-                <input type="email" required
+                <label for="mNumber" class="font-medium">Mobile Number</label>
+                <input type="number" id="mNumber" name="mNumber" required
                   class="w-full mt-2 px-3 py-2 my-3 text-gray-700 bg-transparent outline-none border-gray-200 focus:border-indigo-200 shadow-sm rounded-lg" />
-                <label class="font-medium">Password</label>
-                <input type="email" required
+                <label for="password" class="font-medium">Password</label>
+                <input type="password" id="password" name="password" required
                   class="w-full mt-2 px-3 py-2 my-3 text-gray-700 bg-transparent outline-none border-gray-200 focus:border-indigo-200 shadow-sm rounded-lg" />
-                <label class="font-medium">Confirm Password</label>
-                <input type="email" required
+                <label for="cPassword" class="font-medium">Confirm Password</label>
+                <input type="password" id="cPassword" name="cPassword" required
                   class="w-full mt-2 px-3 py-2 my-3 text-gray-700 bg-transparent outline-none border-gray-200 focus:border-indigo-200 shadow-sm rounded-lg" />
-                <input type="checkbox" name="policy" id="policy"
+                <input type="checkbox" name="offers" id="offers"
                   class="text-indigo-500 bg-transparent outline-none border-gray-400 focus:border-indigo-200 shadow-sm rounded">
-                <label for="" class="px-3 mr-7 my-3 text-sm text-gray-600 hover:text-gray-800">
+                <label for="offers" class="px-3 mr-7 my-3 text-sm text-gray-600 hover:text-gray-800">
                   Receive relevant offers and promotional communication from us.
                 </label>
               </div>
@@ -387,8 +394,8 @@ $conn->close();
                 Submit and Continue
               </button>
             </div>
+          </form>
         </div>
-        </form>
       </div>
     </div>
 
@@ -401,7 +408,7 @@ $conn->close();
 
       <div class="bg-white shadow p-4 py-6 sm:p-6 sm:rounded-lg">
         <!-- Change the id to be associated with the div -->
-        <div class="px-4 py-6" >
+        <div class="px-4 py-6">
           <div class="py-2 mb-8">
             <p class="text-sm text-center">
               OTP has been sent to <span class="font-medium text-base text-indigo-500">example@gmail.com</span>
@@ -442,11 +449,13 @@ $conn->close();
   </main>
 
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+    integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.0/dist/sweetalert2.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.0/dist/sweetalert2.min.js"></script>
 
 
-
-
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script>
     document.getElementById('phone').addEventListener('input', function (e) {
       var phoneInput = e.target;
@@ -472,15 +481,60 @@ $conn->close();
       }
     });
 
+    document.addEventListener("DOMContentLoaded", function () {
+      const continueButton = document.getElementById("continue");
+      const emailInput = document.getElementById("email");
+      const policyCheckbox = document.getElementById("policy");
 
-    function emailVerify() {
+      function validateForm() {
+        const email = emailInput.value.trim();
+        const isEmailValid = email !== ""; // Check if email is not empty
+        const isPolicyChecked = policyCheckbox.checked;
+        continueButton.disabled = !(isEmailValid && isPolicyChecked);
+      }
+
+      emailInput.addEventListener("input", validateForm);
+      policyCheckbox.addEventListener("change", validateForm);
+    });
+
+
+    function emailVerify(event) {
+      event.preventDefault()
       let firstDiv = document.querySelector('#eVerify');
       let secondDiv = document.querySelector('#accInfo');
       let color = document.querySelector('#firstOneColor');
+      const email = $('#email');
+      console.log('here', email.val())
+      const data = {
+        email: email.val()
+      }
+      $.ajax({
+        url: './check_email.php',
+        method: 'POST',
+        data: { data },
+        success: (res) => {
+          const data = JSON.parse(res)
+          const status = data.status
+          if (status == 'error') {
+            Swal.fire({
+              icon: "error",
+              title: data.message,
 
-      firstDiv.classList.add("hidden");
-      color.classList.add("text-blue-600");
-      secondDiv.classList.remove("hidden");
+              showConfirmButton: true,
+
+            });
+          } else {
+            firstDiv.classList.add("hidden");
+            color.classList.add("text-blue-600");
+            secondDiv.classList.remove("hidden");
+          }
+        }, error: (err) => {
+          console.error(err)
+        }
+      })
+
+
+
     }
 
     function submitAccInfo() {
@@ -495,30 +549,30 @@ $conn->close();
 
     // otp starts
     document.addEventListener("DOMContentLoaded", () => {
-    const form = document.getElementById("otp-form");
-    const inputs = [...form.querySelectorAll("input[type=text]")];
+      const form = document.getElementById("otp-form");
+      const inputs = [...form.querySelectorAll("input[type=text]")];
 
-    const handleKeyDown = (e) => {
+      const handleKeyDown = (e) => {
         if (
-            !/^[0-9]{1}$/.test(e.key) &&
-            e.key !== "Backspace" &&
-            e.key !== "Delete" &&
-            e.key !== "Tab" &&
-            !e.metaKey
+          !/^[0-9]{1}$/.test(e.key) &&
+          e.key !== "Backspace" &&
+          e.key !== "Delete" &&
+          e.key !== "Tab" &&
+          !e.metaKey
         ) {
-            e.preventDefault();
+          e.preventDefault();
         }
 
         if (e.key === "Delete" || e.key === "Backspace") {
-            const index = inputs.indexOf(e.target);
-            if (index > 0) {
-                inputs[index - 1].value = "";
-                inputs[index - 1].focus();
-            }
+          const index = inputs.indexOf(e.target);
+          if (index > 0) {
+            inputs[index - 1].value = "";
+            inputs[index - 1].focus();
+          }
         }
-    };
+      };
 
-    const handleInput = (e) => {
+      const handleInput = (e) => {
         const target = e.target;
         const index = inputs.indexOf(target);
 
@@ -527,45 +581,32 @@ $conn->close();
 
         // Move to the next input if available
         if (target.value && index < inputs.length - 1) {
-            inputs[index + 1].focus();
+          inputs[index + 1].focus();
         }
-    };
+      };
 
-    const handleFocus = (e) => {
+      const handleFocus = (e) => {
         e.target.select();
-    };
+      };
 
-    const handlePaste = (e) => {
+      const handlePaste = (e) => {
         e.preventDefault();
         const text = e.clipboardData.getData("text");
         if (!new RegExp(`^[0-9]{${inputs.length}}$`).test(text)) {
-            return;
+          return;
         }
         const digits = text.split("");
         inputs.forEach((input, index) => (input.value = digits[index] || ""));
-    };
+      };
 
-    inputs.forEach((input) => {
+      inputs.forEach((input) => {
         input.addEventListener("input", handleInput);
         input.addEventListener("keydown", handleKeyDown);
         input.addEventListener("focus", handleFocus);
         input.addEventListener("paste", handlePaste);
+      });
     });
-});
 
 
     // otp end
-
-    <?php if ($form_success): ?>
-      // Display success message and redirect
-      Swal.fire({
-        icon: 'success',
-        title: 'Success',
-        text: '<?php echo $success_message; ?>',
-        showConfirmButton: false,
-        timer: 3000 // Auto close after 3 seconds
-      }).then(function () {
-        window.location.href = 'verify.php?vid='<?= $vid ?>;
-      });
-    <?php endif; ?>
   </script>
