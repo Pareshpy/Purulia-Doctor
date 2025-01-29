@@ -1,0 +1,8 @@
+{
+    "require": {
+        "slim/slim": "3.*",
+        "vlucas/phpdotenv": "^5.6",
+        "ramsey/uuid": "^4.7",
+        "phpmailer/phpmailer": "^6.9"
+    }
+}

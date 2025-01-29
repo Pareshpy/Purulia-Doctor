@@ -365,11 +365,11 @@ $pd = new PD();
 
       <div class="w-full space-y-6 text-gray-600 sm:max-w-md sm:max-h-md">
         <div class="bg-white shadow p-4 py-6 sm:p-6 sm:rounded-lg">
-          <form class="space-y-5" id="checkFrom" method="GET">
+          <form class="space-y-5" id="checkFrom">
             <div>
               <div class="">
                 <label for="fName" class="font-medium">First Name</label>
-                <input type="text" id="fName" name="fName" required 
+                <input type="text" id="fName" name="fName" required
                   class="w-full mt-2 px-3 py-2 my-3 text-gray-700 bg-transparent outline-none border-gray-200 focus:border-indigo-200 shadow-sm rounded-lg" />
                 <label for="lName" class="font-medium">Last Name</label>
                 <input type="text" id="lName" name="lName" required
@@ -378,6 +378,7 @@ $pd = new PD();
                 <input type="number" id="mNumber" name="mNumber" required
                   class="w-full mt-2 px-3 py-2 my-3 text-gray-700 bg-transparent outline-none border-gray-200 focus:border-indigo-200 shadow-sm rounded-lg" />
                 <label for="password" class="font-medium">Password</label>
+
                 <input type="password" id="password" name="password" required
                   class="w-full mt-2 px-3 py-2 my-3 text-gray-700 bg-transparent outline-none border-gray-200 focus:border-indigo-200 shadow-sm rounded-lg" />
                 <label for="cPassword" class="font-medium">Confirm Password</label>
@@ -389,7 +390,7 @@ $pd = new PD();
                   Receive relevant offers and promotional communication from us.
                 </label>
               </div>
-              <button onclick="submitAccInfo()"
+              <button onclick="submitAccInfo(event)"
                 class="w-full px-4 py-2 text-white font-medium bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-600 rounded-lg duration-150 my-3">
                 Submit and Continue
               </button>
@@ -503,27 +504,28 @@ $pd = new PD();
       let firstDiv = document.querySelector('#eVerify');
       let secondDiv = document.querySelector('#accInfo');
       let color = document.querySelector('#firstOneColor');
+
       const email = $('#email');
       console.log('here', email.val())
       const data = {
         email: email.val()
       }
       $.ajax({
-        url: './check_email.php',
+        url: './api/checkEmail',
         method: 'POST',
-        data: { data },
+        data: data,
         success: (res) => {
-          const data = JSON.parse(res)
-          const status = data.status
+          const status = res.status
           if (status == 'error') {
             Swal.fire({
               icon: "error",
-              title: data.message,
+              title: res.message,
 
               showConfirmButton: true,
 
             });
           } else {
+            sessionStorage.setItem('email', email.val())
             firstDiv.classList.add("hidden");
             color.classList.add("text-blue-600");
             secondDiv.classList.remove("hidden");
@@ -537,14 +539,63 @@ $pd = new PD();
 
     }
 
-    function submitAccInfo() {
+    function submitAccInfo(event) {
+      event.preventDefault()
       let firstDiv = document.querySelector('#accInfo');
       let secondDiv = document.querySelector('#optVerify');
       let color = document.querySelector('#secondOneColor');
 
-      firstDiv.classList.add("hidden");
-      color.classList.add("text-blue-600");
-      secondDiv.classList.remove("hidden");
+      const fName = $('#fName');
+      const lName = $('#lName');
+      const mNumber = $('#mNumber');
+      const password = $('#password');
+      const cPassword = $('#cPassword');
+      const offers = $('#offers');
+      const email = sessionStorage.getItem('email')
+      console.log('here', fName.val(), lName.val(), mNumber.val(), password.val(), cPassword.val(), offers.val())
+      const signUpData = {
+        fName: fName.val(),
+        lName: lName.val(),
+        mNumber: mNumber.val(),
+        password: password.val(),
+        cPassword: cPassword.val(),
+        offers: offers.val(),
+        email: email
+      }
+      $.ajax({
+        url: './api/signup',
+        method: 'POST',
+        data: signUpData,
+        success: (res) => {
+          const status = res.status
+          if (status == 'error') {
+            Swal.fire({
+              icon: "error",
+              title: res.message,
+
+              showConfirmButton: true,
+
+            });
+          } else {
+            Swal.fire({
+              icon: "success",
+              title: res.message,
+
+              showConfirmButton: true,
+
+            });
+            firstDiv.classList.add("hidden");
+            color.classList.add("text-blue-600");
+            secondDiv.classList.remove("hidden");
+          }
+        }, error: (err) => {
+          console.error(err)
+        }
+      })
+
+      // firstDiv.classList.add("hidden");
+      // color.classList.add("text-blue-600");
+      // secondDiv.classList.remove("hidden");
     }
 
     // otp starts
