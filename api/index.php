@@ -12,6 +12,20 @@ use Slim\Http\Request;
 use Ramsey\Uuid\Uuid;
 use PHPMailer\PHPMailer\PHPMailer;
 
+
+$mail = new PHPMailer(true);
+
+$mail->isSMTP();
+$mail->Host = $_ENV['MAIL_HOSTNAME'];
+$mail->SMTPAuth = true;
+$mail->Username = $_ENV['MAIL_USERNAME'];
+$mail->Password = $_ENV['MAIL_PASSWORD'];
+$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+$mail->Port = 587;
+
+// Recipients
+$mail->setFrom('no-reply@stringocean.com', 'Purulia Doctors');
+
 $app = new App($appConfig);
 
 $container = $app->getContainer();
@@ -78,6 +92,7 @@ $app->post('/checkEmail', function (Request $req, Response $res, array $args) {
 });
 
 $app->post('/signup', function (Request $req, Response $res, array $args) {
+    global $mail;
     $db = $this->get('db');
     $data = (object) $req->getParsedBody();
     try {
@@ -91,18 +106,7 @@ $app->post('/signup', function (Request $req, Response $res, array $args) {
 
         $vid = Uuid::uuid4();
         $otp = rand(111111, 999999);
-        $mail = new PHPMailer(true);
 
-        $mail->isSMTP();
-        $mail->Host = 'us1-mta1.sendclean.net';
-        $mail->SMTPAuth = true;
-        $mail->Username = 'smtp94454398';
-        $mail->Password = 'rZ7dMEh2sS';
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-        $mail->Port = 587;
-
-        // Recipients
-        $mail->setFrom('no-reply@stringocean.com', 'Purulia Doctors');
 
         if ($password == $cPassword) {
             $hashed = password_hash($password, PASSWORD_DEFAULT);
