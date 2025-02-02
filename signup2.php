@@ -368,6 +368,9 @@ $pd = new PD();
           <form class="space-y-5" id="checkFrom">
             <div>
               <div class="">
+                <label for="email" class="font-medium">Email</label>
+                <input type="email" id="user-email" name="email" readonly
+                  class="w-full mt-2 px-3 py-2 my-3 text-gray-700 bg-transparent outline-none border-gray-200 shadow-sm rounded-lg cursor-not-allowed" />
                 <label for="fName" class="font-medium">First Name</label>
                 <input type="text" id="fName" name="fName" required
                   class="w-full mt-2 px-3 py-2 my-3 text-gray-700 bg-transparent outline-none border-gray-200 focus:border-indigo-200 shadow-sm rounded-lg" />
@@ -431,22 +434,27 @@ $pd = new PD();
             <input
               class="w-12 h-12 text-center border rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
               type="text" maxlength="1" required>
+            <input
+              class="w-12 h-12 text-center border rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+              type="text" maxlength="1" required>
+            <input
+              class="w-12 h-12 text-center border rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+              type="text" maxlength="1" required>
+            <div class="flex items-center justify-center mt-8">
+              <button onclick="verify(event)"
+                class="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                type="button">
+                Verify
+              </button>
+              <a class="inline-block align-baseline font-bold text-sm text-indigo-500 hover:text-indigo-600 ml-4"
+                href="#">
+                Resend OTP
+              </a>
           </form>
-          <div class="flex items-center justify-center mt-8">
-            <button
-              class="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-              type="button">
-              Verify
-            </button>
-            <a class="inline-block align-baseline font-bold text-sm text-indigo-500 hover:text-indigo-600 ml-4"
-              href="#">
-              Resend OTP
-            </a>
-          </div>
         </div>
       </div>
     </div>
-
+    </div>
   </main>
 
 
@@ -458,30 +466,6 @@ $pd = new PD();
 
 
   <script>
-    document.getElementById('phone').addEventListener('input', function (e) {
-      var phoneInput = e.target;
-      var phoneValue = phoneInput.value;
-      if (phoneValue.length > 10) {
-        phoneInput.value = phoneValue.slice(0, 10);
-      }
-    });
-    document.getElementById('c-password').addEventListener('input', function () {
-      var password = document.getElementById('password').value;
-      var confirmPassword = document.getElementById('c-password').value;
-      var errorMessage = document.getElementById('error-message');
-
-      if (confirmPassword === '') {
-        document.getElementById('c-password').classList.remove('error');
-        errorMessage.style.display = 'none';
-      } else if (password !== confirmPassword) {
-        document.getElementById('c-password').classList.add('error');
-        errorMessage.style.display = 'block';
-      } else {
-        document.getElementById('c-password').classList.remove('error');
-        errorMessage.style.display = 'none';
-      }
-    });
-
     document.addEventListener("DOMContentLoaded", function () {
       const continueButton = document.getElementById("continue");
       const emailInput = document.getElementById("email");
@@ -534,10 +518,32 @@ $pd = new PD();
           console.error(err)
         }
       })
-
-
-
     }
+    document.addEventListener("DOMContentLoaded", function () {
+      const email = sessionStorage.getItem('email');
+      console.log("loaded", email);
+      if (email) {
+        document.getElementById('user-email').value = email;
+      }
+    });
+    document.getElementById('c-password').addEventListener('input', function () {
+      var password = document.getElementById('password').value;
+      var confirmPassword = document.getElementById('c-password').value;
+      var errorMessage = document.getElementById('error-message');
+
+      if (confirmPassword === '') {
+        document.getElementById('c-password').classList.remove('error');
+        errorMessage.style.display = 'none';
+      } else if (password !== confirmPassword) {
+        document.getElementById('c-password').classList.add('error');
+        errorMessage.style.display = 'block';
+      } else {
+        document.getElementById('c-password').classList.remove('error');
+        errorMessage.style.display = 'none';
+      }
+    });
+
+
 
     function submitAccInfo(event) {
       event.preventDefault()
@@ -545,13 +551,17 @@ $pd = new PD();
       let secondDiv = document.querySelector('#optVerify');
       let color = document.querySelector('#secondOneColor');
 
+
       const fName = $('#fName');
       const lName = $('#lName');
       const mNumber = $('#mNumber');
       const password = $('#password');
       const cPassword = $('#cPassword');
       const offers = $('#offers');
-      const email = sessionStorage.getItem('email')
+      const email = sessionStorage.getItem('email');
+
+      console.log(email);
+
       console.log('here', fName.val(), lName.val(), mNumber.val(), password.val(), cPassword.val(), offers.val())
       const signUpData = {
         fName: fName.val(),
@@ -584,6 +594,9 @@ $pd = new PD();
               showConfirmButton: true,
 
             });
+            sessionStorage.setItem('vid', res.vid);
+            console.log("VID stored:", res.vid);
+
             firstDiv.classList.add("hidden");
             color.classList.add("text-blue-600");
             secondDiv.classList.remove("hidden");
@@ -598,66 +611,161 @@ $pd = new PD();
       // secondDiv.classList.remove("hidden");
     }
 
-    // otp starts
-    document.addEventListener("DOMContentLoaded", () => {
-      const form = document.getElementById("otp-form");
-      const inputs = [...form.querySelectorAll("input[type=text]")];
+    function verify(event) {
+      event.preventDefault();
 
-      const handleKeyDown = (e) => {
-        if (
-          !/^[0-9]{1}$/.test(e.key) &&
-          e.key !== "Backspace" &&
-          e.key !== "Delete" &&
-          e.key !== "Tab" &&
-          !e.metaKey
-        ) {
-          e.preventDefault();
-        }
+      const inputs = document.querySelectorAll("#otp-form input[type=text]");
+      let otp = "";
+      inputs.forEach(input => otp += input.value.trim());
 
-        if (e.key === "Delete" || e.key === "Backspace") {
-          const index = inputs.indexOf(e.target);
-          if (index > 0) {
-            inputs[index - 1].value = "";
-            inputs[index - 1].focus();
+      if (otp.length !== inputs.length) {
+        Swal.fire({
+          icon: "warning",
+          title: "Please enter the complete OTP.",
+          showConfirmButton: true,
+        });
+        return;
+      }
+
+      // Retrieve vid from sessionStorage
+      const vid = sessionStorage.getItem('vid');
+      if (!vid) {
+        Swal.fire({
+          icon: "error",
+          title: "Session expired. Please sign up again.",
+          showConfirmButton: true,
+        });
+        return;
+      }
+
+      // Send OTP and vid to backend
+      $.ajax({
+        url: './api/verify',
+        method: 'POST',
+        data: { vid: vid, otp: otp }, // Send both OTP and vid
+        success: (res) => {
+          if (res.status === 'error') {
+            Swal.fire({
+              icon: "error",
+              title: res.message,
+              showConfirmButton: true,
+            });
+          } else {
+            Swal.fire({
+              icon: "success",
+              title: "OTP verified successfully!",
+              text: "Redirecting to main page...",
+              showConfirmButton: false, // Hide the confirm button
+              timer: 4000, // 2 seconds delay
+              timerProgressBar: true // Show progress bar
+            }).then(() => {
+              window.location.href = "home.php"; // Redirect after alert
+            });
+
           }
+        },
+        error: (err) => {
+          console.error("AJAX Error:", err);
         }
-      };
-
-      const handleInput = (e) => {
-        const target = e.target;
-        const index = inputs.indexOf(target);
-
-        // Ensure only the first character is retained
-        target.value = target.value.slice(0, 1);
-
-        // Move to the next input if available
-        if (target.value && index < inputs.length - 1) {
-          inputs[index + 1].focus();
-        }
-      };
-
-      const handleFocus = (e) => {
-        e.target.select();
-      };
-
-      const handlePaste = (e) => {
-        e.preventDefault();
-        const text = e.clipboardData.getData("text");
-        if (!new RegExp(`^[0-9]{${inputs.length}}$`).test(text)) {
-          return;
-        }
-        const digits = text.split("");
-        inputs.forEach((input, index) => (input.value = digits[index] || ""));
-      };
-
-      inputs.forEach((input) => {
-        input.addEventListener("input", handleInput);
-        input.addEventListener("keydown", handleKeyDown);
-        input.addEventListener("focus", handleFocus);
-        input.addEventListener("paste", handlePaste);
       });
-    });
+    }
 
+
+
+    // otp starts
+    // function verify(event) {
+    //   document.addEventListener("DOMContentLoaded", () => {
+    //     const form = document.getElementById("otp-form");
+    //     const inputs = [...form.querySelectorAll("input[type=text]")];
+    //     const otp = $('input[type=text]');
+    //     console.log('here', otp.val());
+
+    //     $.ajax({
+    //       url: './api/verify',
+    //       method: 'POST',
+    //       data: verifyOTP,
+    //       success: (res) => {
+    //         const status = res.status
+    //         if (status == 'error') {
+    //           Swal.fire({
+    //             icon: "error",
+    //             title: res.message,
+
+    //             showConfirmButton: true,
+
+    //           });
+    //         } else {
+    //           Swal.fire({
+    //             icon: "success",
+    //             title: res.message,
+
+    //             showConfirmButton: true,
+
+    //           });
+    //           firstDiv.classList.add("hidden");
+    //           color.classList.add("text-blue-600");
+    //           secondDiv.classList.remove("hidden");
+    //         }
+    //       }, error: (err) => {
+    //         console.error(err)
+    //       }
+    //     })
+
+    //     const handleKeyDown = (e) => {
+    //       if (
+    //         !/^[0-9]{1}$/.test(e.key) &&
+    //         e.key !== "Backspace" &&
+    //         e.key !== "Delete" &&
+    //         e.key !== "Tab" &&
+    //         !e.metaKey
+    //       ) {
+    //         e.preventDefault();
+    //       }
+
+    //       if (e.key === "Delete" || e.key === "Backspace") {
+    //         const index = inputs.indexOf(e.target);
+    //         if (index > 0) {
+    //           inputs[index - 1].value = "";
+    //           inputs[index - 1].focus();
+    //         }
+    //       }
+    //     };
+
+    //     const handleInput = (e) => {
+    //       const target = e.target;
+    //       const index = inputs.indexOf(target);
+
+    //       // Ensure only the first character is retained
+    //       target.value = target.value.slice(0, 1);
+
+    //       // Move to the next input if available
+    //       if (target.value && index < inputs.length - 1) {
+    //         inputs[index + 1].focus();
+    //       }
+    //     };
+
+    //     const handleFocus = (e) => {
+    //       e.target.select();
+    //     };
+
+    //     const handlePaste = (e) => {
+    //       e.preventDefault();
+    //       const text = e.clipboardData.getData("text");
+    //       if (!new RegExp(`^[0-9]{${inputs.length}}$`).test(text)) {
+    //         return;
+    //       }
+    //       const digits = text.split("");
+    //       inputs.forEach((input, index) => (input.value = digits[index] || ""));
+    //     };
+
+    //     inputs.forEach((input) => {
+    //       input.addEventListener("input", handleInput);
+    //       input.addEventListener("keydown", handleKeyDown);
+    //       input.addEventListener("focus", handleFocus);
+    //       input.addEventListener("paste", handlePaste);
+    //     });
+    //   });
+    // }
 
     // otp end
   </script>

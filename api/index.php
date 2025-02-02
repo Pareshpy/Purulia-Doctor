@@ -192,7 +192,7 @@ $app->post('/signup', function (Request $req, Response $res, array $args) {
 
                 $mail->send();
 
-                return $res->withJson(['status' => 'success', 'message' => 'Verification email has been sent']);
+                return $res->withJson(['status' => 'success', 'message' => 'Verification email has been sent', 'vid' => $vid]);
             } else {
                 return $res->withJson(['status' => 'error', 'message' => 'Unable to process']);
 
@@ -206,5 +206,49 @@ $app->post('/signup', function (Request $req, Response $res, array $args) {
     }
 
 });
+
+$app->post('/verify', function (Request $req, Response $res, array $args) {
+    $db = $this->get('db');
+    $data = (object) $req->getParsedBody();
+
+    $vid = $data->vid ?? null;
+    $userOtp = $data->otp ?? null;
+
+    if (!$vid || !$userOtp) {
+        return $res->withJson(['status' => 'error', 'message' => 'VID and OTP are required'], 400);
+    }
+
+    try {
+        // Fetch stored OTP
+        $query = "SELECT otp FROM users WHERE vid = :vid";
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(':vid', $vid);
+        $stmt->execute();
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($user) {
+            $storedOtp = $user['otp'];
+
+            // Compare OTP
+            if ($storedOtp == $userOtp) {
+                // OTP is correct, update verification status and clear vid & otp
+                $updateQuery = "UPDATE users SET vid = NULL, otp = NULL, status = 1 WHERE vid = :vid";
+                $updateStmt = $db->prepare($updateQuery);
+                $updateStmt->bindParam(':vid', $vid);
+                $updateStmt->execute();
+
+                return $res->withJson(['status' => 'success', 'message' => 'verified successfully']);
+            } else {
+                return $res->withJson(['status' => 'error', 'message' => 'Invalid OTP']);
+            }
+        } else {
+            return $res->withJson(['status' => 'error', 'message' => 'User not found']);
+        }
+    } catch (PDOException $e) {
+        return $res->withJson(['error' => 'Database query failed: ' . $e->getMessage()], 500);
+    }
+});
+
+
 
 $app->run();
