@@ -50,6 +50,21 @@ class PD
         }
 
     }
+
+    function checkVerification($data)
+    {
+        global $conn;
+        $data = json_decode($data);
+        $vid = $data->vid;
+        $query = "SELECT * FROM users WHERE vid = '$vid'";
+        $query_run = mysqli_query($conn, $query);
+        if ($query_run->num_rows > 0) {
+            return json_encode(['status' => 'success']);
+
+        } else {
+            return json_encode(['status' => 'error']);
+        }
+    }
 }
 
 

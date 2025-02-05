@@ -77,14 +77,21 @@ $app->post('/checkEmail', function (Request $req, Response $res, array $args) {
     $data = (object) $req->getParsedBody();
     try {
         $email = $data->email;
-        $query = "SELECT * FROM users WHERE `email` = '$email'";
-        $stmt = $db->query($query);
-        $emails = $stmt->fetchAll();
+        $query = "SELECT vid FROM users WHERE email = :email";
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+        $stmt->execute();
+
+        $emails = $stmt->fetchAll(PDO::FETCH_ASSOC); // Fetch as an associative array
+
         if ($emails) {
+            $vid = $emails[0]['vid'] ?? null; // Get the first row's VID
+            if ($vid !== null) {
+                return $res->withJson(['status' => 'error', 'message' => 'Email already exists', 'vid' => $vid]);
+            }
             return $res->withJson(['status' => 'error', 'message' => 'Email already exists']);
         } else {
-            return $res->withJson(['status' => 'success', 'message' => 'Email available']);
-
+            return $res->withJson(['status' => 'success', 'message' => 'Email available','email' => $email]);
         }
     } catch (PDOException $e) {
         return $res->withJson(['error' => 'Database query failed: ' . $e->getMessage()], 500);
@@ -119,75 +126,88 @@ $app->post('/signup', function (Request $req, Response $res, array $args) {
                 $mail->isHTML(true);
                 $mail->Subject = 'Verify your email!';
                 $mail->Body = "
-          <html>
-          <head>
-              <style>
-                  body {
-                      font-family: Arial, sans-serif;
-                      background-color: #f6f6f6;
-                      margin: 0;
-                      padding: 0;
-                  }
-                  .container {
-                      background-color: #ffffff;
-                      max-width: 600px;
-                      margin: 20px auto;
-                      padding: 20px;
-                      border-radius: 8px;
-                      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-                  }
-                  .header {
-                      text-align: center;
-                      padding: 20px 0;
-                      border-bottom: 1px solid #eeeeee;
-                  }
-                  .header h1 {
-                      margin: 0;
-                      color: #333333;
-                  }
-                  .content {
-                      padding: 20px;
-                  }
-                  .content p {
-                      color: #555555;
-                      line-height: 1.5;
-                  }
-                  .otp {
-                      display: inline-block;
-                      padding: 10px 20px;
-                      margin: 20px 0;
-                      font-size: 24px;
-                      color: #ffffff;
-                      background-color: #007bff;
-                      border-radius: 4px;
-                      text-decoration: none;
-                  }
-                  .footer {
-                      text-align: center;
-                      padding: 10px 0;
-                      border-top: 1px solid #eeeeee;
-                      color: #999999;
-                      font-size: 12px;
-                  }
-              </style>
-          </head>
-          <body>
-              <div class='container'>
-                  <div class='header'>
-                      <h1>OTP Verification</h1>
-                  </div>
-                  <div class='content'>
-                      <p>Dear $fName,</p>
-                      <p>Thank you for using our service. Please use the following OTP to complete your verification process:</p>
-                      <a class='otp'>$otp</a>
-                      <p>If you did not request this OTP, please ignore this email.</p>
-                  </div>
-                  <div class='footer'>
-                      <p>&copy; " . date('Y') . " Purulia Doctors. All rights reserved.</p>
-                  </div>
-              </div>
-          </body>
-          </html>
+            <html>
+            <head>
+                <style>
+                    body {
+                        font-family: Arial, sans-serif;
+                        background-color: #f6f6f6;
+                        margin: 0;
+                        padding: 0;
+                    }
+                    .container {
+                        background-color: #ffffff;
+                        max-width: 600px;
+                        margin: 20px auto;
+                        padding: 20px;
+                        border-radius: 8px;
+                        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                    }
+                    .header {
+                        text-align: center;
+                        padding: 20px 0;
+                        border-bottom: 1px solid #eeeeee;
+                    }
+                    .header h1 {
+                        margin: 0;
+                        color: #333333;
+                    }
+                    .content {
+                        padding: 20px;
+                        text-align: center;
+                    }
+                    .content p {
+                        color: #555555;
+                        line-height: 1.5;
+                    }
+                    .otp {
+                        display: inline-block;
+                        padding: 10px 20px;
+                        margin: 20px 0;
+                        font-size: 24px;
+                        color: #ffffff;
+                        background-color: #007bff;
+                        border-radius: 4px;
+                        text-decoration: none;
+                    }
+                    .verify-link {
+                        display: inline-block;
+                        padding: 10px 20px;
+                        margin-top: 20px;
+                        font-size: 18px;
+                        background-color: #28a745;
+                        color: #ffffff;
+                        border-radius: 5px;
+                        text-decoration: none;
+                    }
+                    .footer {
+                        text-align: center;
+                        padding: 10px 0;
+                        border-top: 1px solid #eeeeee;
+                        color: #999999;
+                        font-size: 12px;
+                    }
+                </style>
+            </head>
+            <body>
+                <div class='container'>
+                    <div class='header'>
+                        <h1>OTP Verification</h1>
+                    </div>
+                    <div class='content'>
+                        <p>Dear $fName,</p>
+                        <p>Thank you for using our service. Please use the following OTP to complete your verification process:</p>
+                        <a class='otp'>$otp</a>
+                        <p>Or click the button below to verify your email:</p>
+                        <a class='verify-link' href='https://puruliadoctors.in/verify2.php?vid=$vid'>Verify Now</a>
+                        <p>If you did not request this OTP, please ignore this email.</p>
+                    </div>
+                    <div class='footer'>
+                        <p>&copy; " . date('Y') . " Purulia Doctors. All rights reserved.</p>
+                    </div>
+                </div>
+            </body>
+            </html>
           ";
 
                 $mail->send();

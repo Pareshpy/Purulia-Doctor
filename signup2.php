@@ -1,190 +1,6 @@
 <?php
 $title = "Signup";
-
 include('common/functions.php');
-use Ramsey\Uuid\Uuid;
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
-
-$mail = new PHPMailer(true);
-
-$mail->isSMTP();
-$mail->Host = 'us1-mta1.sendclean.net';
-$mail->SMTPAuth = true;
-$mail->Username = 'smtp94454398';
-$mail->Password = 'rZ7dMEh2sS';
-$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-$mail->Port = 587;
-
-// Recipients
-$mail->setFrom('no-reply@stringocean.com', 'Purulia Doctors');
-
-// Initialize error and success messages
-$error_message = "";
-$success_message = "";
-$form_success = false;
-
-
-
-// Handle form submission
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signup'])) {
-  $first_name = $_POST['first_name'];
-  $middle_name = isset($_POST['middle_name']) ? $_POST['middle_name'] : null;
-  $last_name = $_POST['last_name'];
-  $email = $_POST['email'];
-  $phone = $_POST['phone'];
-  $password = $_POST['password'];
-  $c_password = $_POST['c_password'];
-  $profile_image = null;
-  $vid = Uuid::uuid4();
-  $otp = rand(111111, 999999);
-  // Validate form fields
-  if (empty($first_name) || empty($last_name) || empty($email) || empty($phone) || empty($password) || empty($c_password)) {
-    $error_message = "All fields except middle name are required.";
-  } else if ($password !== $c_password) {
-    $error_message = "Passwords do not match.";
-  } else {
-    // Check if email already exists
-    $stmt = $conn->prepare("SELECT email FROM users WHERE email = ?");
-    $stmt->bind_param("s", $email);
-    $stmt->execute();
-    $stmt->store_result();
-
-    if ($stmt->num_rows > 0) {
-      $error_message = "Email already exists.";
-    } else {
-      // Handle file upload
-      if (isset($_FILES['profile_image']) && $_FILES['profile_image']['error'] === UPLOAD_ERR_OK) {
-        $target_dir = "uploads/";
-        $file_name = basename($_FILES["profile_image"]["name"]);
-        $target_file = $target_dir . $file_name;
-        $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-
-        // Validate file type and size
-        $allowed_types = ['jpg', 'jpeg', 'png', 'gif', 'avif'];
-        if (!in_array($imageFileType, $allowed_types)) {
-          $error_message = "Only JPG, JPEG, PNG & GIF files are allowed.";
-        } else if ($_FILES["profile_image"]["size"] > 50000000) { // 5000KB max size
-          $error_message = "Your file is too large.";
-        } else {
-          // Check if the directory exists
-          if (!is_dir($target_dir)) {
-            mkdir($target_dir, 0777, true);
-          }
-
-          if (move_uploaded_file($_FILES["profile_image"]["tmp_name"], $target_file)) {
-            $profile_image = $target_file;
-          } else {
-            $error_message = "There was an error uploading your file.";
-          }
-        }
-      }
-
-      // If no error, proceed to insert user data
-      if (empty($error_message)) {
-        // Hash the password
-        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
-        // Prepare and bind
-        $stmt = $conn->prepare("INSERT INTO users (first_name, middle_name, last_name, email, phone, password, profile_image, vid, otp) VALUES (?, ?, ?, ?, ?, ?, ?,?,?)");
-        $stmt->bind_param("sssssssss", $first_name, $middle_name, $last_name, $email, $phone, $hashed_password, $profile_image, $vid, $otp);
-
-        // Execute the query
-        if ($stmt->execute()) {
-          $mail->addAddress($email, $first_name . ' ' . $last_name);
-
-          $mail->isHTML(true);
-          $mail->Subject = 'Verify your email!';
-          $mail->Body = "
-    <html>
-    <head>
-        <style>
-            body {
-                font-family: Arial, sans-serif;
-                background-color: #f6f6f6;
-                margin: 0;
-                padding: 0;
-            }
-            .container {
-                background-color: #ffffff;
-                max-width: 600px;
-                margin: 20px auto;
-                padding: 20px;
-                border-radius: 8px;
-                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            }
-            .header {
-                text-align: center;
-                padding: 20px 0;
-                border-bottom: 1px solid #eeeeee;
-            }
-            .header h1 {
-                margin: 0;
-                color: #333333;
-            }
-            .content {
-                padding: 20px;
-            }
-            .content p {
-                color: #555555;
-                line-height: 1.5;
-            }
-            .otp {
-                display: inline-block;
-                padding: 10px 20px;
-                margin: 20px 0;
-                font-size: 24px;
-                color: #ffffff;
-                background-color: #007bff;
-                border-radius: 4px;
-                text-decoration: none;
-            }
-            .footer {
-                text-align: center;
-                padding: 10px 0;
-                border-top: 1px solid #eeeeee;
-                color: #999999;
-                font-size: 12px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class='container'>
-            <div class='header'>
-                <h1>OTP Verification</h1>
-            </div>
-            <div class='content'>
-                <p>Dear $first_name,</p>
-                <p>Thank you for using our service. Please use the following OTP to complete your verification process:</p>
-                <a class='otp'>$otp</a>
-                <p>If you did not request this OTP, please ignore this email.</p>
-            </div>
-            <div class='footer'>
-                <p>&copy; " . date('Y') . " Purulia Doctors. All rights reserved.</p>
-            </div>
-        </div>
-    </body>
-    </html>
-    ";
-
-          $mail->send();
-          $success_message = "Your account has been created successfully.";
-          $form_success = true;
-          echo "<script>location.href='./verify.php?vid=$vid'</script>";
-        } else {
-          $error_message = "Error: " . $stmt->error;
-        }
-      }
-    }
-
-    // Close the statement
-    $stmt->close();
-  }
-}
-
-// Close the connection
-$conn->close();
-
 $pd = new PD();
 ?>
 <!DOCTYPE html>
@@ -217,7 +33,7 @@ $pd = new PD();
         </button>
       </div>
       <div class="flex lg:flex-1">
-        <a href="#" class="-m-1.5 p-1">
+        <a href="home.php" class="-m-1.5 p-1">
           <span
             class="self-center lg:text-2xl  md:text-xl font-semibold whitespace-nowrap text-indigo-500 ml-4 ">PURULIA
             DOCTORS</span>
@@ -405,55 +221,46 @@ $pd = new PD();
 
 
 
-    <div class="w-full space-y-6 text-gray-600 sm:max-w-md sm:max-h-md hidden" id="optVerify">
-      <div class="flex items-center justify-center text-center mb-14">
+    <div class="w-full space-y-6 text-gray-600 max-w-md hidden" id="optVerify">
+      <div class="text-center">
         <h2 class="text-2xl font-bold text-slate-600">Verify</h2>
       </div>
 
-      <div class="bg-white shadow p-4 py-6 sm:p-6 sm:rounded-lg">
-        <!-- Change the id to be associated with the div -->
-        <div class="px-4 py-6">
-          <div class="py-2 mb-8">
-            <p class="text-sm text-center">
-              OTP has been sent to <span class="font-medium text-base text-indigo-500">example@gmail.com</span>
-              <br>
-              If this is not your email address
-              <a href="#" class="pointer hover:underline text-blue-500">click here</a>
-            </p>
-          </div>
-          <form class="flex justify-center gap-10 mb-6" id="otp-form">
-            <input
-              class="w-12 h-12 text-center border rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-              type="text" maxlength="1" required>
-            <input
-              class="w-12 h-12 text-center border rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-              type="text" maxlength="1" required>
-            <input
-              class="w-12 h-12 text-center border rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-              type="text" maxlength="1" required>
-            <input
-              class="w-12 h-12 text-center border rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-              type="text" maxlength="1" required>
-            <input
-              class="w-12 h-12 text-center border rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-              type="text" maxlength="1" required>
-            <input
-              class="w-12 h-12 text-center border rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-              type="text" maxlength="1" required>
-            <div class="flex items-center justify-center mt-8">
-              <button onclick="verify(event)"
-                class="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                type="button">
-                Verify
-              </button>
-              <a class="inline-block align-baseline font-bold text-sm text-indigo-500 hover:text-indigo-600 ml-4"
-                href="#">
-                Resend OTP
-              </a>
-          </form>
+      <div class="bg-white shadow-md p-6 rounded-lg">
+        <div class="text-center">
+          <p class="text-sm">
+            OTP has been sent to <span class="font-medium text-base text-indigo-500">example@gmail.com</span>
+            <br>
+            If this is not your email address,
+            <a href="#" class="hover:underline text-blue-500">click here</a>
+          </p>
+        </div>
+
+        <form class="flex justify-center gap-x-2 mt-6" id="otp-form">
+          <input class="w-12 h-12 text-center border rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+            type="text" maxlength="1" required>
+          <input class="w-12 h-12 text-center border rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+            type="text" maxlength="1" required>
+          <input class="w-12 h-12 text-center border rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+            type="text" maxlength="1" required>
+          <input class="w-12 h-12 text-center border rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+            type="text" maxlength="1" required>
+          <input class="w-12 h-12 text-center border rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+            type="text" maxlength="1" required>
+          <input class="w-12 h-12 text-center border rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+            type="text" maxlength="1" required>
+        </form>
+
+        <div class="flex items-center justify-center mt-6 space-x-4">
+          <button onclick="verify(event)"
+            class="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-6 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            Verify
+          </button>
+          <a class="font-bold text-sm text-indigo-500 hover:text-indigo-600" href="#">
+            Resend OTP
+          </a>
         </div>
       </div>
-    </div>
     </div>
   </main>
 
@@ -482,12 +289,53 @@ $pd = new PD();
       policyCheckbox.addEventListener("change", validateForm);
     });
 
+    document.addEventListener("DOMContentLoaded", function () {
+      const otpInputs = document.querySelectorAll("#otp-form input");
+
+      otpInputs.forEach((input, index) => {
+        input.addEventListener("input", (e) => {
+          const value = e.target.value;
+
+          // Allow only numeric input
+          e.target.value = value.replace(/[^0-9]/g, "");
+
+          if (value && index < otpInputs.length - 1) {
+            otpInputs[index + 1].focus();
+          }
+        });
+
+        input.addEventListener("keydown", (e) => {
+          if (e.key === "Backspace" && !e.target.value && index > 0) {
+            otpInputs[index - 1].focus();
+          }
+        });
+
+        input.addEventListener("paste", (e) => {
+          e.preventDefault();
+          const pasteData = (e.clipboardData || window.clipboardData).getData("text");
+          const digits = pasteData.replace(/[^0-9]/g, "").split("");
+
+          otpInputs.forEach((input, i) => {
+            if (digits[i]) {
+              input.value = digits[i];
+            }
+          });
+
+          otpInputs[Math.min(digits.length, otpInputs.length) - 1].focus();
+        });
+      });
+    });
+
 
     function emailVerify(event) {
       event.preventDefault()
       let firstDiv = document.querySelector('#eVerify');
       let secondDiv = document.querySelector('#accInfo');
       let color = document.querySelector('#firstOneColor');
+      let button = event.target;
+
+      button.innerText = "Please wait...";
+      button.disabled = true;
 
       const email = $('#email');
       console.log('here', email.val())
@@ -499,17 +347,23 @@ $pd = new PD();
         method: 'POST',
         data: data,
         success: (res) => {
-          const status = res.status
+          const status = res.status;
           if (status == 'error') {
-            Swal.fire({
-              icon: "error",
-              title: res.message,
-
-              showConfirmButton: true,
-
-            });
+            if (res.vid) {
+              // Redirect to verify2.php with vid
+              window.location.href = `verify2.php?vid=${encodeURIComponent(res.vid)}`;
+            } else {
+              Swal.fire({
+                icon: "error",
+                title: res.message + ' <br><a class="text-base underline text-blue-500" href="home.php?showLogin=true">Click Here to login</a>',
+                showConfirmButton: true,
+              });
+            }
+            button.innerText = "Continue";
+            button.disabled = false;
           } else {
-            sessionStorage.setItem('email', email.val())
+            sessionStorage.setItem('email', res.email);
+            console.log("email stored:", res.email);
             firstDiv.classList.add("hidden");
             color.classList.add("text-blue-600");
             secondDiv.classList.remove("hidden");
@@ -550,6 +404,10 @@ $pd = new PD();
       let firstDiv = document.querySelector('#accInfo');
       let secondDiv = document.querySelector('#optVerify');
       let color = document.querySelector('#secondOneColor');
+      let button = event.target;
+
+      button.innerText = "Please wait...";
+      button.disabled = true;
 
 
       const fName = $('#fName');
@@ -584,8 +442,9 @@ $pd = new PD();
               title: res.message,
 
               showConfirmButton: true,
-
             });
+            button.innerText = "Submit and Continue";
+            button.disabled = false;
           } else {
             Swal.fire({
               icon: "success",
@@ -637,6 +496,8 @@ $pd = new PD();
         });
         return;
       }
+      let button = event.target;
+      button.innerText = "Please wait...";
 
       // Send OTP and vid to backend
       $.ajax({
@@ -669,103 +530,4 @@ $pd = new PD();
         }
       });
     }
-
-
-
-    // otp starts
-    // function verify(event) {
-    //   document.addEventListener("DOMContentLoaded", () => {
-    //     const form = document.getElementById("otp-form");
-    //     const inputs = [...form.querySelectorAll("input[type=text]")];
-    //     const otp = $('input[type=text]');
-    //     console.log('here', otp.val());
-
-    //     $.ajax({
-    //       url: './api/verify',
-    //       method: 'POST',
-    //       data: verifyOTP,
-    //       success: (res) => {
-    //         const status = res.status
-    //         if (status == 'error') {
-    //           Swal.fire({
-    //             icon: "error",
-    //             title: res.message,
-
-    //             showConfirmButton: true,
-
-    //           });
-    //         } else {
-    //           Swal.fire({
-    //             icon: "success",
-    //             title: res.message,
-
-    //             showConfirmButton: true,
-
-    //           });
-    //           firstDiv.classList.add("hidden");
-    //           color.classList.add("text-blue-600");
-    //           secondDiv.classList.remove("hidden");
-    //         }
-    //       }, error: (err) => {
-    //         console.error(err)
-    //       }
-    //     })
-
-    //     const handleKeyDown = (e) => {
-    //       if (
-    //         !/^[0-9]{1}$/.test(e.key) &&
-    //         e.key !== "Backspace" &&
-    //         e.key !== "Delete" &&
-    //         e.key !== "Tab" &&
-    //         !e.metaKey
-    //       ) {
-    //         e.preventDefault();
-    //       }
-
-    //       if (e.key === "Delete" || e.key === "Backspace") {
-    //         const index = inputs.indexOf(e.target);
-    //         if (index > 0) {
-    //           inputs[index - 1].value = "";
-    //           inputs[index - 1].focus();
-    //         }
-    //       }
-    //     };
-
-    //     const handleInput = (e) => {
-    //       const target = e.target;
-    //       const index = inputs.indexOf(target);
-
-    //       // Ensure only the first character is retained
-    //       target.value = target.value.slice(0, 1);
-
-    //       // Move to the next input if available
-    //       if (target.value && index < inputs.length - 1) {
-    //         inputs[index + 1].focus();
-    //       }
-    //     };
-
-    //     const handleFocus = (e) => {
-    //       e.target.select();
-    //     };
-
-    //     const handlePaste = (e) => {
-    //       e.preventDefault();
-    //       const text = e.clipboardData.getData("text");
-    //       if (!new RegExp(`^[0-9]{${inputs.length}}$`).test(text)) {
-    //         return;
-    //       }
-    //       const digits = text.split("");
-    //       inputs.forEach((input, index) => (input.value = digits[index] || ""));
-    //     };
-
-    //     inputs.forEach((input) => {
-    //       input.addEventListener("input", handleInput);
-    //       input.addEventListener("keydown", handleKeyDown);
-    //       input.addEventListener("focus", handleFocus);
-    //       input.addEventListener("paste", handlePaste);
-    //     });
-    //   });
-    // }
-
-    // otp end
   </script>
