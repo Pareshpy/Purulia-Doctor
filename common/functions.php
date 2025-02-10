@@ -20,6 +20,22 @@ class PD
         return json_encode($doctors);
     }
 
+    public function getCategory()
+    {
+        global $conn;
+        $query = "SELECT * FROM categories";
+        $query_run = mysqli_query($conn, $query);
+        $check_category = mysqli_num_rows($query_run);
+
+        $categories = [];
+        if($check_category > 0){
+            while ($row = mysqli_fetch_object($query_run)){
+                $categories[] = $row;
+            }
+        }
+        return json_encode($categories);
+    }
+
     public function getEmails()
     {
         global $conn;
