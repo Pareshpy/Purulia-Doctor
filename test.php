@@ -1,91 +1,70 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+include 'functions.php';
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Email Verification</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-</head>
+$pd = new PD;
 
-<body>
-  <main class="w-full h-screen flex flex-col items-center justify-center bg-gray-50 sm:px-4">
-    <div class="w-full max-w-md bg-white shadow p-6 rounded-lg space-y-6 text-gray-600">
-      <h2 class="text-xl font-bold text-center text-gray-700">Verify Your Email</h2>
-      <form onSubmit="event.preventDefault()" class="space-y-5">
-        <!-- Email Field -->
-        <div class="relative">
-          <label class="font-medium">Email</label>
-          <input type="email" id="email-input" required
-            class="w-full mt-2 px-3 py-2 text-gray-700 bg-transparent outline-none border border-gray-200 focus:border-indigo-200 shadow-sm rounded-lg pr-10" />
-          <i id="check-icon"
-            class="hidden fa-solid fa-check-circle absolute top-1/2 right-3 transform -translate-y-1/2 text-green-500"></i>
-          <i id="cross-icon"
-            class="hidden fa-solid fa-circle-xmark absolute top-1/2 right-3 transform -translate-y-1/2 text-red-500"></i>
+// Get the search query from the URL
+$searchQuery = isset($_GET['search']) ? trim($_GET['search']) : '';
+
+// Fetch clinics from the database
+$clinics = $pd->getClinic();
+$clinics = json_decode($clinics, true);
+
+// Filter clinics based on search query
+if (!empty($searchQuery)) {
+    $clinics = array_filter($clinics, function ($clinic) use ($searchQuery) {
+        return stripos($clinic['clinic_name'], $searchQuery) !== false || 
+               stripos($clinic['clinic_address'], $searchQuery) !== false || 
+               stripos($clinic['owner_name'], $searchQuery) !== false;
+    });
+}
+?>
+
+<body class="bg-gray-50">
+    <section class="p-6 gap-4">
+        <div class="max-w-7xl mx-auto bg-white shadow-md rounded-lg p-6 my-6">
+            <!-- Title & Search Box Wrapper -->
+            <div class="flex justify-between items-center">
+                <!-- Title -->
+                <h2 class="text-xl font-semibold text-gray-800 sm:hidden md:block">
+                    <?= count($clinics) ?> Clinics in Purulia
+                </h2>
+
+                <!-- Search Box -->
+                <form method="GET" action="" class="relative w-full md:w-64">
+                    <input class="border-2 border-gray-300 bg-white h-10 px-5 pr-16 w-full rounded-lg text-sm focus:outline-none" 
+                           type="search" name="search" placeholder="Search" value="<?= htmlspecialchars($searchQuery) ?>">
+                    <button type="submit" class="absolute right-3 top-1/2 transform -translate-y-1/2">
+                        <svg class="text-gray-600 h-4 w-4 fill-current" xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 56.966 56.966" width="512px" height="512px">
+                            <path d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  
+                s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  
+                c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17
+                s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z" />
+                        </svg>
+                    </button>
+                </form>
+            </div>
         </div>
 
-        <!-- Buttons -->
-        <button type="button" id="verify-button"
-          class="w-full px-4 py-2 text-white font-medium bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-600 rounded-lg duration-150">
-          Verify
-        </button>
-        <button onclick="window.location.href='home.php'" id="home-button"
-          class="hidden w-full px-4 py-2 text-white font-medium bg-green-500 hover:bg-green-600 active:bg-green-700 rounded-lg duration-150">
-          Go to Home
-        </button>
-      </form>
-    </div>
-  </main>
+        <?php if (empty($clinics)) { ?>
+            <p class="text-center text-gray-500">No clinics found for "<?= htmlspecialchars($searchQuery) ?>"</p>
+        <?php } ?>
 
-  <script>
-    // Function to simulate email existence check
-    function checkEmailExistence(email) {
-      // Simulated database (replace with actual API call if needed)
-      const existingEmails = ["test@example.com", "user@example.com", "admin@example.com"];
-      return existingEmails.includes(email);
-    }
-
-    // Event listener for verify button
-    document.getElementById("verify-button").addEventListener("click", () => {
-      const emailInput = document.getElementById("email-input");
-      const checkIcon = document.getElementById("check-icon");
-      const crossIcon = document.getElementById("cross-icon");
-      const verifyButton = document.getElementById("verify-button");
-      const homeButton = document.getElementById("home-button");
-
-      // Get the email value
-      const email = emailInput.value.trim();
-
-      if (email === "") {
-        alert("Please enter an email address.");
-        return;
-      }
-
-      // Check email existence
-      if (checkEmailExistence(email)) {
-        // Email exists
-        checkIcon.classList.remove("hidden");
-        crossIcon.classList.add("hidden");
-        emailInput.classList.add("border-green-500");
-        emailInput.classList.remove("border-gray-200", "border-red-500");
-
-        verifyButton.classList.add("hidden");
-        homeButton.classList.remove("hidden");
-      } else {
-        // Email does not exist
-        checkIcon.classList.add("hidden");
-        crossIcon.classList.remove("hidden");
-        emailInput.classList.add("border-red-500");
-        emailInput.classList.remove("border-gray-200", "border-green-500");
-
-        verifyButton.classList.remove("hidden");
-        homeButton.classList.add("hidden");
-      }
-    });
-  </script>
+        <?php foreach ($clinics as $clinic) { ?>
+            <div class="max-w-7xl mx-auto bg-white shadow-md rounded-lg p-6 my-6">
+                <div class="flex flex-col md:flex-row md:items-center gap-4">
+                    <img src="https://via.placeholder.com/50" alt="Clinic Logo" class="w-20 h-20 rounded-md">
+                    <div class="flex-1 m-6">
+                        <h3 class="text-xl font-bold text-gray-600 mb-3">
+                            <?= htmlspecialchars($clinic['clinic_name']); ?>
+                        </h3>
+                        <p class="text-gray-600 text-sm mb-2">Multi-speciality Clinic • <span
+                                class="text-indigo-500 ml-4"><?= htmlspecialchars($clinic['clinic_address']); ?></span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        <?php } ?>
+    </section>
 </body>
-
-</html>

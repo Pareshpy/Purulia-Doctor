@@ -36,6 +36,22 @@ class PD
         return json_encode($categories);
     }
 
+    public function getClinic()
+    {
+        global $conn;
+        $query = "SELECT * FROM clinics";
+        $query_run = mysqli_query($conn , $query);
+        $check_clinic = mysqli_num_rows($query_run);
+
+        $clinics = [];
+        if($check_clinic > 0){
+            while($row = mysqli_fetch_object($query_run)){
+                $clinics[] = $row;
+            }
+        }
+        return json_encode($clinics);
+    }
+
     public function getEmails()
     {
         global $conn;
@@ -82,5 +98,6 @@ class PD
         }
     }
 }
+
 
 

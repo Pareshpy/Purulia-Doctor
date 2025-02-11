@@ -62,7 +62,7 @@ if (isset($_SESSION['user_id'])) {
           </button>
         </div>
         <div class="flex lg:flex-1">
-          <a href="#" class="-m-1.5 p-1">
+          <a href="home.php" class="-m-1.5 p-1">
             <span
               class="self-center lg:text-2xl  md:text-xl font-semibold whitespace-nowrap text-indigo-500 ml-4 ">PURULIA
               DOCTORS</span>
@@ -73,7 +73,7 @@ if (isset($_SESSION['user_id'])) {
             class="text-base font-semibold leading-6 text-slate-800 transition ease-in-out delay-150 hover:text-indigo-500 duration-200">Categories</a>
           <a href="#"
             class="text-base font-semibold leading-6 text-slate-800 transition ease-in-out delay-150 hover:text-indigo-500 duration-200">Doctors</a>
-          <a href="#"
+          <a href="clinic.php"
             class="text-base font-semibold leading-6 text-slate-800 transition ease-in-out delay-150 hover:text-indigo-500 duration-200">Clinics</a>
           <a href="#"
             class="text-base font-semibold leading-6 text-slate-800 transition ease-in-out delay-150 hover:text-indigo-500 duration-200">About</a>
@@ -103,10 +103,10 @@ if (isset($_SESSION['user_id'])) {
           <button class="lg:hidden flex items-center text-gray-500 hover:text-blue-600 focus:outline-none"
             aria-label="Search">
             <svg class="w-5 h-5 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                viewBox="0 0 20 20">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-              </svg>
+              viewBox="0 0 20 20">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+            </svg>
           </button>
         </div>
 
@@ -115,7 +115,8 @@ if (isset($_SESSION['user_id'])) {
           <div>
             <?php if (!$user): ?>
               <a href="#" class="text-xl font-medium leading-6 text-slate-800">
-                <i data-modal-target="authentication-modal" data-modal-toggle="authentication-modal" class="ri-user-line" id="login"></i>
+                <i data-modal-target="authentication-modal" data-modal-toggle="authentication-modal" class="ri-user-line"
+                  id="login"></i>
               </a>
             <?php else: ?>
               <?php $user_image = $user->profile_image ? $user->profile_image : './assets/img/pic.svg'; ?>
@@ -172,7 +173,7 @@ if (isset($_SESSION['user_id'])) {
           </div>
         </div>
       </div>
-      
+
       <!-- Mobile menu -->
       <div id="mobile-menu" class="lg:hidden hidden" role="dialog" aria-modal="true">
         <div class="fixed inset-0 z-50 bg-black/50"></div>
@@ -197,7 +198,7 @@ if (isset($_SESSION['user_id'])) {
                   class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Categories</a>
                 <a href="#"
                   class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Doctors</a>
-                <a href="#"
+                <a href="clinic.php"
                   class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Clinics</a>
                 <a href="#"
                   class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">About</a>
@@ -212,10 +213,10 @@ if (isset($_SESSION['user_id'])) {
         </div>
       </div>
     </header>
-    <!-- navbar end -->
     <?php
-      include('login2.php');
-?>
+    include('login2.php');
+    ?>
+    <!-- navbar end -->
     <!-- hero section -->
     <section class="hero h-[80vh] bg-cover bg-center flex flex-col justify-center items-center relative"
       style="background-image: url('assets/img/hero-bg.jpg');">
@@ -275,108 +276,9 @@ if (isset($_SESSION['user_id'])) {
 
   <!-- categories section -->
   <?php
-    include ('./common/categories-names.php');
-?>
-  <!-- <section class="h-auto flex flex-col justify-center items-center">
-    <div>
-      <p class="flex items-center justify-center text-3xl font-bold text-slate-600 item-center mt-6">Categories</p>
-      <hr class="w-24 h-px mx-auto my-4 bg-gray-100 border-0 rounded dark:bg-gray-500">
-      <p class="flex items-center justify-center mb-3 text-lg text-gray-500 md:text-xl">Different types of Department we
-        have for your Healthcare</p>
-    </div>
+  include('./common/categories-names.php');
+  ?>
 
-    <div class="w-[70vw] flex flex-wrap justify-center gap-4 m-9">
-
-      <div
-        class="w-52 h-40 rounded-lg text-center drop-shadow-xl shadow-lg transition ease-in-out hover:scale-110 duration-300 mx-3 my-2">
-        <img src="assets/img/pngs/heart.png"
-          class="w-16 h-16 inline-flex item-center justify-center relative z-10 p-1 my-5"
-          style="filter: invert(20%) sepia(98%) saturate(1951%) hue-rotate(198deg) brightness(96%) contrast(103%);"
-          alt="">
-        <p class="text-lg font-medium">Cardiologist</p>
-      </div>
-
-      <div
-        class="w-52 h-40 rounded-lg text-center drop-shadow-xl shadow-lg transition ease-in-out hover:scale-110 duration-300 mx-3 my-2">
-        <img src="assets/img/pngs/teeth.png"
-          class="w-16 h-16 inline-flex item-center justify-center relative z-10 p-1 my-5"
-          style="filter: invert(20%) sepia(98%) saturate(1951%) hue-rotate(198deg) brightness(96%) contrast(103%);"
-          alt="">
-        <p class="text-lg font-medium">Dentist</p>
-      </div>
-
-      <div
-        class="w-52 h-40 rounded-lg text-center drop-shadow-xl shadow-lg transition ease-in-out hover:scale-110 duration-300 mx-3 my-2">
-        <img src="assets/img/pngs/urology.png"
-          class="w-16 h-16 inline-flex item-center justify-center relative z-10 p-1 my-5"
-          style="filter: invert(20%) sepia(98%) saturate(1951%) hue-rotate(198deg) brightness(96%) contrast(103%);"
-          alt="">
-        <p class="text-lg font-medium">Urologist</p>
-      </div>
-
-      <div
-        class="w-52 h-40 rounded-lg text-center drop-shadow-xl shadow-lg transition ease-in-out hover:scale-110 duration-300 mx-3 my-2">
-        <img src="assets/img/pngs/doc-sign.png"
-          class="w-16 h-16 inline-flex item-center justify-center relative z-10 p-1 my-5"
-          style="filter: invert(20%) sepia(98%) saturate(1951%) hue-rotate(198deg) brightness(96%) contrast(103%);"
-          alt="">
-        <p class="text-lg font-medium">Specialist</p>
-      </div>
-
-      <div
-        class="w-52 h-40 rounded-lg text-center drop-shadow-xl shadow-lg transition ease-in-out hover:scale-110 duration-300 mx-3 my-2">
-        <img src="assets/img/pngs/orthopedic.png"
-          class="w-16 h-16 inline-flex item-center justify-center relative z-10 p-1 my-5"
-          style="filter: invert(20%) sepia(98%) saturate(1951%) hue-rotate(198deg) brightness(96%) contrast(103%);"
-          alt="">
-        <p class="text-lg font-medium">Orthopaedist</p>
-      </div>
-
-      <div
-        class="w-52 h-40 rounded-lg text-center drop-shadow-xl shadow-lg transition ease-in-out hover:scale-110 duration-300 mx-3 my-2">
-        <img src="assets/img/pngs/cold-fever.png"
-          class="w-16 h-16 inline-flex item-center justify-center relative z-10 p-1 my-5"
-          style="filter: invert(20%) sepia(98%) saturate(1951%) hue-rotate(198deg) brightness(96%) contrast(103%);"
-          alt="">
-        <p class="text-lg font-medium">General Physician</p>
-      </div>
-
-      <div
-        class="w-52 h-40 rounded-lg text-center drop-shadow-xl shadow-lg transition ease-in-out hover:scale-110 duration-300 mx-3 my-2">
-        <img src="assets/img/pngs/skin-care.png"
-          class="w-16 h-16 inline-flex item-center justify-center relative z-10 p-1 my-5"
-          style="filter: invert(20%) sepia(98%) saturate(1951%) hue-rotate(198deg) brightness(96%) contrast(103%);"
-          alt="">
-        <p class="text-lg font-medium">Dermatologist</p>
-      </div>
-
-      <div
-        class="w-52 h-40 rounded-lg text-center drop-shadow-xl shadow-lg transition ease-in-out hover:scale-110 duration-300 mx-3 my-2">
-        <img src="assets/img/pngs/stomach.png"
-          class="w-16 h-16 inline-flex item-center justify-center relative z-10 p-1 my-5"
-          style="filter: invert(20%) sepia(98%) saturate(1951%) hue-rotate(198deg) brightness(96%) contrast(103%);"
-          alt="">
-        <p class="text-lg font-medium">Gastroenterologist</p>
-      </div>
-      <div
-        class="w-52 h-40 rounded-lg text-center drop-shadow-xl shadow-lg transition ease-in-out hover:scale-110 duration-300 mx-3 my-2">
-        <img src="assets/img/pngs/Neurologist.png"
-          class="w-16 h-16 inline-flex item-center justify-center relative z-10 p-1 my-5"
-          style="filter: invert(20%) sepia(98%) saturate(1951%) hue-rotate(198deg) brightness(96%) contrast(103%);"
-          alt="">
-        <p class="text-lg font-medium">Neurologist</p>
-      </div>
-      <div
-        class="w-52 h-40 rounded-lg text-center drop-shadow-xl shadow-lg transition ease-in-out hover:scale-110 duration-300 mx-3 my-2">
-        <img src="assets/img/pngs/Radiologist.png"
-          class="w-16 h-16 inline-flex item-center justify-center relative z-10 p-1 my-5"
-          style="filter: invert(20%) sepia(98%) saturate(1951%) hue-rotate(198deg) brightness(96%) contrast(103%);"
-          alt="">
-        <p class="text-lg font-medium">Radiologist</p>
-      </div>
-    </div>
-  </section> -->
-  <!-- categories section end -->
 
   <!-- Doctor section -->
   <section class="h-auto flex flex-col justify-center items-center">
@@ -578,78 +480,77 @@ if (isset($_SESSION['user_id'])) {
 
   <div class="bg-cover bg-center flex items-center justify-center min-h-screen min-w-full overflow-hidden"
     style=" background-repeat: no-repeat; background-size: cover;">
-    
+
     <div class="backdrop-blur-sm bg-white/30 p-8 min-h-screen min-w-full flex items-center justify-center">
-        <div class="min-h-screen flex flex-col items-center justify-center py-6 px-4">
-            <div class="max-w-md w-full">
-                <div class="p-8 rounded-2xl bg-white shadow">
-                    <h2 class="text-gray-800 text-center text-2xl font-bold">Sign in</h2>
-                    <form class="mt-8 space-y-4">
-                        <div>
-                            <label class="text-gray-800 text-sm mb-2 block">User name</label>
-                            <div class="relative flex items-center">
-                                <input name="username" type="text" required
-                                    class="w-full text-gray-800 text-sm border border-gray-300 px-4 py-3 rounded-md outline-blue-600"
-                                    placeholder="Enter user name" />
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="#bbb" stroke="#bbb"
-                                    class="w-4 h-4 absolute right-4" viewBox="0 0 24 24">
-                                    <circle cx="10" cy="7" r="6" data-original="#000000"></circle>
-                                    <path
-                                        d="M14 15H6a5 5 0 0 0-5 5 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 5 5 0 0 0-5-5zm8-4h-2.59l.3-.29a1 1 0 0 0-1.42-1.42l-2 2a1 1 0 0 0 0 1.42l2 2a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42l-.3-.29H22a1 1 0 0 0 0-2z"
-                                        data-original="#000000"></path>
-                                </svg>
-                            </div>
-                        </div>
-
-                        <div>
-                            <label class="text-gray-800 text-sm mb-2 block">Password</label>
-                            <div class="relative flex items-center">
-                                <input name="password" type="password" required
-                                    class="block w-full text-gray-800 text-sm border border-gray-300 px-4 py-3 rounded-md outline-blue-600"
-                                    placeholder="Enter password" />
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="#bbb" stroke="#bbb"
-                                    class="w-4 h-4 absolute right-4 cursor-pointer" viewBox="0 0 128 128">
-                                    <path
-                                        d="M64 104C22.127 104 1.367 67.496.504 65.943a4 4 0 0 1 0-3.887C1.367 60.504 22.127 24 64 24s62.633 36.504 63.496 38.057a4 4 0 0 1 0 3.887C126.633 67.496 105.873 104 64 104zM8.707 63.994C13.465 71.205 32.146 96 64 96c31.955 0 50.553-24.775 55.293-31.994C114.535 56.795 95.854 32 64 32 32.045 32 13.447 56.775 8.707 63.994zM64 88c-13.234 0-24-10.766-24-24s10.766-24 24-24 24 10.766 24 24-10.766 24-24 24zm0-40c-8.822 0-16 7.178-16 16s7.178 16 16 16 16-7.178 16-16-7.178-16-16-16z"
-                                        data-original="#000000"></path>
-                                </svg>
-                            </div>
-                        </div>
-
-                        <div class="flex flex-wrap items-center justify-between gap-4 select-none">
-                            <div class="flex items-center select-none">
-                                <input id="remember-me" name="remember-me" type="checkbox"
-                                    class="h-4 w-4 shrink-0 text-blue-600 border-gray-300 rounded select-none" />
-                                <label for="remember-me" class="ml-3 block text-sm text-gray-800">
-                                    Remember me
-                                </label>
-                            </div>
-                            <div class="text-sm">
-                                <a href="javascript:void(0);" class="text-blue-600 hover:underline font-semibold">
-                                    Forgot your password?
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="!mt-8">
-                            <button type="button"
-                                class="w-full py-3 px-4 text-sm tracking-wide rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none">
-                                Sign in
-                            </button>
-                        </div>
-                        <p class="text-gray-800 text-sm !mt-8 text-center">Don't have an account? <a
-                                href="javascript:void(0);"
-                                class="text-blue-600 hover:underline ml-1 whitespace-nowrap font-semibold">Register
-                                here</a></p>
-                    </form>
+      <div class="min-h-screen flex flex-col items-center justify-center py-6 px-4">
+        <div class="max-w-md w-full">
+          <div class="p-8 rounded-2xl bg-white shadow">
+            <h2 class="text-gray-800 text-center text-2xl font-bold">Sign in</h2>
+            <form class="mt-8 space-y-4">
+              <div>
+                <label class="text-gray-800 text-sm mb-2 block">User name</label>
+                <div class="relative flex items-center">
+                  <input name="username" type="text" required
+                    class="w-full text-gray-800 text-sm border border-gray-300 px-4 py-3 rounded-md outline-blue-600"
+                    placeholder="Enter user name" />
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="#bbb" stroke="#bbb" class="w-4 h-4 absolute right-4"
+                    viewBox="0 0 24 24">
+                    <circle cx="10" cy="7" r="6" data-original="#000000"></circle>
+                    <path
+                      d="M14 15H6a5 5 0 0 0-5 5 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 5 5 0 0 0-5-5zm8-4h-2.59l.3-.29a1 1 0 0 0-1.42-1.42l-2 2a1 1 0 0 0 0 1.42l2 2a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42l-.3-.29H22a1 1 0 0 0 0-2z"
+                      data-original="#000000"></path>
+                  </svg>
                 </div>
-            </div>
+              </div>
+
+              <div>
+                <label class="text-gray-800 text-sm mb-2 block">Password</label>
+                <div class="relative flex items-center">
+                  <input name="password" type="password" required
+                    class="block w-full text-gray-800 text-sm border border-gray-300 px-4 py-3 rounded-md outline-blue-600"
+                    placeholder="Enter password" />
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="#bbb" stroke="#bbb"
+                    class="w-4 h-4 absolute right-4 cursor-pointer" viewBox="0 0 128 128">
+                    <path
+                      d="M64 104C22.127 104 1.367 67.496.504 65.943a4 4 0 0 1 0-3.887C1.367 60.504 22.127 24 64 24s62.633 36.504 63.496 38.057a4 4 0 0 1 0 3.887C126.633 67.496 105.873 104 64 104zM8.707 63.994C13.465 71.205 32.146 96 64 96c31.955 0 50.553-24.775 55.293-31.994C114.535 56.795 95.854 32 64 32 32.045 32 13.447 56.775 8.707 63.994zM64 88c-13.234 0-24-10.766-24-24s10.766-24 24-24 24 10.766 24 24-10.766 24-24 24zm0-40c-8.822 0-16 7.178-16 16s7.178 16 16 16 16-7.178 16-16-7.178-16-16-16z"
+                      data-original="#000000"></path>
+                  </svg>
+                </div>
+              </div>
+
+              <div class="flex flex-wrap items-center justify-between gap-4 select-none">
+                <div class="flex items-center select-none">
+                  <input id="remember-me" name="remember-me" type="checkbox"
+                    class="h-4 w-4 shrink-0 text-blue-600 border-gray-300 rounded select-none" />
+                  <label for="remember-me" class="ml-3 block text-sm text-gray-800">
+                    Remember me
+                  </label>
+                </div>
+                <div class="text-sm">
+                  <a href="javascript:void(0);" class="text-blue-600 hover:underline font-semibold">
+                    Forgot your password?
+                  </a>
+                </div>
+              </div>
+
+              <div class="!mt-8">
+                <button type="button"
+                  class="w-full py-3 px-4 text-sm tracking-wide rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none">
+                  Sign in
+                </button>
+              </div>
+              <p class="text-gray-800 text-sm !mt-8 text-center">Don't have an account? <a href="javascript:void(0);"
+                  class="text-blue-600 hover:underline ml-1 whitespace-nowrap font-semibold">Register
+                  here</a></p>
+            </form>
+          </div>
         </div>
+      </div>
     </div>
-</div>
+  </div>
 
 
-<!-- <div class="h-screen dark:bg-gray-900">
+  <!-- <div class="h-screen dark:bg-gray-900">
   <div class="pt-12 bg-gray-50 dark:bg-gray-900 sm:pt-20">
     <div class="max-w-screen-xl px-4 mx-auto sm:px-6 lg:px-8">
       <div class="max-w-4xl mx-auto text-center">
@@ -741,25 +642,25 @@ if (isset($_SESSION['user_id'])) {
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-    // Get URL parameters
-    const urlParams = new URLSearchParams(window.location.search);
-    
-    // Check if showLogin=true exists
-    if (urlParams.has('showLogin')) {
+      // Get URL parameters
+      const urlParams = new URLSearchParams(window.location.search);
+
+      // Check if showLogin=true exists
+      if (urlParams.has('showLogin')) {
         let loginButton = document.querySelector("#login");
 
         if (loginButton) {
-            loginButton.click(); // Open the modal
+          loginButton.click(); // Open the modal
         }
-    }
-});
+      }
+    });
     // Define the profileDropDown function globally
     function profileDropDown() {
       let dropDown = document.querySelector('#dropDown');
       dropDown.classList.toggle("hidden");
     }
 
-  function login(){
+    function login() {
       let login = document.querySelector()
     }
 
