@@ -269,6 +269,26 @@ $app->post('/verify', function (Request $req, Response $res, array $args) {
     }
 });
 
+$app->post('/searchClinics', function (Request $req, Response $res, array $args) use ($app) {
+    $db = $app->getContainer()->get('db');  // Get database connection
+    $data = (object) $req->getParsedBody();
+
+    if (!isset($data->input) || empty(trim($data->input))) {
+        return $res->withJson(['error' => 'Search input is required'], 400);
+    }
+
+    $input = "%{$data->input}%";  // Add wildcards for partial match
+
+    try {
+        $stmt = $db->prepare("SELECT * FROM clinics WHERE clinic_name LIKE ? OR clinic_address LIKE ?");
+        $stmt->execute([$input, $input]);
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $res->withJson($results);
+    } catch (PDOException $e) {
+        return $res->withJson(['error' => 'Database query failed: ' . $e->getMessage()], 500);
+    }
+});
 
 
 $app->run();

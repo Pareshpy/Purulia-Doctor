@@ -44,7 +44,7 @@ $clinics = json_decode($clinics, true);
                 <div class="relative w-full md:w-64">
                     <input
                         class="border-2 border-gray-300 bg-white h-10 px-5 pr-16 w-full rounded-lg text-sm focus:outline-none"
-                        type="search" name="search" placeholder="Search">
+                        type="search" name="search" placeholder="Search" id="search">
                     <button type="submit" class="absolute right-3 top-1/2 transform -translate-y-1/2">
                         <svg class="text-gray-600 h-4 w-4 fill-current" xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 56.966 56.966" width="512px" height="512px">
@@ -58,10 +58,12 @@ $clinics = json_decode($clinics, true);
             </div>
         </div>
 
-
+        <div id="searchResult">
+            
+        </div>
 
         <?php foreach ($clinics as $clinic) { ?>
-            <div class="max-w-7xl mx-auto bg-white shadow-md rounded-lg p-6 my-6">
+            <div class="max-w-7xl mx-auto bg-white shadow-md rounded-lg p-6 my-6 allClinics">
                 <!-- Clinic Details -->
                 <div class="flex flex-col md:flex-row md:items-center gap-4">
                     <!-- Clinic Logo -->
@@ -148,3 +150,73 @@ $clinics = json_decode($clinics, true);
         <?php } ?>
     </section>
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+    integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer">
+    </script>
+<script>
+$(document).ready(function () {
+    let typingTimer;
+    let doneTypingInterval = 500;
+
+    $("#search").on("keyup", function () {
+        clearTimeout(typingTimer);
+        let input = $(this).val().trim();
+
+        if (input !== "") {
+            $(".allClinics").addClass("hidden"); // Hide all clinics when searching
+
+            typingTimer = setTimeout(function () {
+                $.ajax({
+                    url: './api/searchClinics', // Adjust API path if needed
+                    method: 'POST',
+                    data: { input: input },
+                    dataType: 'json', // Ensure we get JSON response
+                    success: function (response) {
+                        if (response.length > 0) {
+                            let resultHtml = "";
+                            response.forEach(clinic => {
+                                resultHtml += `
+                                    <div class="max-w-7xl mx-auto bg-white shadow-md rounded-lg p-6 my-6">
+                                        <div class="flex flex-col md:flex-row md:items-center gap-4">
+                                            <img src="https://via.placeholder.com/80" alt="Clinic Logo" class="w-20 h-20 rounded-md">
+                                            <div class="flex-1 m-6">
+                                                <h3 class="text-xl font-bold text-gray-600 mb-3">${clinic.clinic_name}</h3>
+                                                <p class="text-gray-600 text-sm mb-2">
+                                                    Multi-speciality Clinic • 
+                                                    <span class="text-indigo-500 ml-4">${clinic.clinic_address}</span>
+                                                </p>
+                                                <p class="text-gray-600 text-sm mb-2">
+                                                    <span class="font-semibold">₹300 - ₹1000</span> Consultation Fees
+                                                </p>
+                                                <p class="text-gray-600 text-sm mb-2">
+                                                    <span class="font-thin">🕒</span> MON - SUN 08:00AM - 10:30PM
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="mt-6">
+                                            <button class="w-full bg-blue-500 text-white text-sm font-semibold py-2 rounded-lg hover:bg-blue-600 transition">
+                                                Call Clinic
+                                            </button>
+                                        </div>
+                                    </div>
+                                `;
+                            });
+
+                            $('#searchResult').html(resultHtml).removeClass("hidden");
+                        } else {
+                            $('#searchResult').html("<div class='max-w-7xl mx-auto bg-white shadow-md rounded-lg p-6 my-6'><p class='text-gray-600 text-center'>No results found.</p></div>").removeClass("hidden");
+                        }
+                    },
+                    error: function () {
+                        $('#searchResult').html("<p class='text-red-600'>Error fetching data.</p>").removeClass("hidden");
+                    }
+                });
+            }, doneTypingInterval);
+        } else {
+            $(".allClinics").removeClass("hidden"); // Show all clinics when input is empty
+            $('#searchResult').html("").addClass("hidden");
+        }
+    });
+});
+</script>
