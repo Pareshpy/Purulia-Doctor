@@ -72,11 +72,11 @@ if (isset($_SESSION['user_id'])) {
         <div class="hidden lg:flex lg:gap-x-12 ">
           <a href="#"
             class="text-base font-semibold leading-6 text-slate-800 transition ease-in-out delay-150 hover:text-indigo-500 duration-200">Categories</a>
-          <a href="#"
+          <a href="doctor.php"
             class="text-base font-semibold leading-6 text-slate-800 transition ease-in-out delay-150 hover:text-indigo-500 duration-200">Doctors</a>
-          <a href="#"
+          <a href="clinic.php"
             class="text-base font-semibold leading-6 text-slate-800 transition ease-in-out delay-150 hover:text-indigo-500 duration-200">Clinics</a>
-          <a href="#"
+          <a href=""
             class="text-base font-semibold leading-6 text-slate-800 transition ease-in-out delay-150 hover:text-indigo-500 duration-200">About</a>
         </div>
         <div class="flex flex-1 justify-end mr-5">

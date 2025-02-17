@@ -71,7 +71,7 @@ if (isset($_SESSION['user_id'])) {
         <div class="hidden lg:flex lg:gap-x-12 ">
           <a href="#"
             class="text-base font-semibold leading-6 text-slate-800 transition ease-in-out delay-150 hover:text-indigo-500 duration-200">Categories</a>
-          <a href="#"
+          <a href="doctor.php"
             class="text-base font-semibold leading-6 text-slate-800 transition ease-in-out delay-150 hover:text-indigo-500 duration-200">Doctors</a>
           <a href="clinic.php"
             class="text-base font-semibold leading-6 text-slate-800 transition ease-in-out delay-150 hover:text-indigo-500 duration-200">Clinics</a>
@@ -196,11 +196,11 @@ if (isset($_SESSION['user_id'])) {
               <div class="space-y-2 py-6">
                 <a href="#"
                   class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Categories</a>
-                <a href="#"
+                <a href="doctor.php"
                   class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Doctors</a>
                 <a href="clinic.php"
                   class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Clinics</a>
-                <a href="#"
+                <a href=""
                   class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">About</a>
               </div>
               <div class="py-6">
@@ -300,8 +300,7 @@ if (isset($_SESSION['user_id'])) {
       if ($check_doctor) {
         while ($row = mysqli_fetch_assoc($query_run)) {
           ?>
-          <div
-            class="p-4 items-center justify-center w-full rounded-xl group sm:flex space-x-6 bg-white bg-opacity-50 shadow-xl bg-gradient-to-br">
+          <div class="p-4 items-center justify-center w-full rounded-xl group sm:flex space-x-6 bg-white bg-opacity-50 shadow-xl bg-gradient-to-br">
             <img
               class="mx-auto block max-h-80 xl:w-4/12 xl:h-full lg:w-1/2 lg:h-1/2 md:w-3/5 md:h-3/5 sm:w-1/6 sm:h-1/6 rounded-lg object-scale-down"
               src="<?php echo $row['photo'] ?>" alt="<?php echo $row['full_name'] ?>" loading="lazy">
