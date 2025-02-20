@@ -64,67 +64,70 @@ $doctors = json_decode($doctors, true);
         <div id="searchResult"></div>
 
         <?php foreach ($doctors as $doctor) { ?>
-            <div class="max-w-7xl mx-auto bg-white shadow-md rounded-lg p-6 my-6 allClinics">
-                <div class="flex flex-col md:flex-row items-center gap-6">
-                    <!-- Doctor Image -->
-                    <div class="w-full md:w-1/3 flex justify-center">
-                        <img src="./uploads/dr.jaydeepmandal.jpg" alt="Doctor Image"
-                            class="max-h-80 w-40 sm:w-48 md:w-56 lg:w-60 xl:w-64 object-cover rounded-lg">
-                    </div>
-
-                    <!-- Doctor Info -->
-                    <div class="flex-1">
-                        <h3
-                            class="lg:text-2xl md:text-xl font-bold text-gray-700 mb-2 text-left md:text-center lg:text-left">
-                            <?php echo htmlspecialchars($doctor['full_name']); ?>
-                        </h3>
-                        <p class="text-gray-600 text-medium mb-1 ">
-                            <span class="font-semibold"><?php echo htmlspecialchars($doctor['category']); ?></span>
-                        </p>
-                        <p class="text-gray-600 text-medium mb-10 ">
-                            <span class="text-sm"><?php echo htmlspecialchars($doctor['exp']); ?> Years Experience
-                                Overall</span>
-                        </p>
-
-                        <p class="text-gray-600 text-sm mb-2">
-                            <span
-                                class="text-indigo-500 font-semibold"><?php echo htmlspecialchars($doctor['address']); ?></span>
-                        </p>
-                        <p class="text-gray-600 text-sm mb-2">
-                            <span class="font-semibold">₹<?php echo htmlspecialchars($doctor['fees']); ?></span>
-                            Consultation
-                            Fees
-                        </p>
-                        <p class="text-gray-700 font-semibold text-sm mb-2">11 Specialties • 12 doctors</p>
-                        <p class="text-gray-600 text-sm mb-2"><span class="font-thin">🕒</span> MON - SUN 08:00AM - 10:30PM
-                        </p>
-                    </div>
-
-                    <!-- Rating -->
-                    <div class="flex flex-col items-center w-full md:w-1/4 space-y-4">
+            <a href="common/doctor-details.php?id=<?php echo htmlspecialchars($doctor['id']); ?>">
+                <div class="max-w-7xl mx-auto bg-white shadow-md rounded-lg p-6 my-6 allClinics">
+                    <div class="flex flex-col md:flex-row items-center gap-6">
+                        <!-- Doctor Image -->
+                        <div class="w-full md:w-1/3 flex justify-center">
+                            <img src="./uploads/dr.jaydeepmandal.jpg" alt="Doctor Image"
+                                class="max-h-80 w-40 sm:w-48 md:w-56 lg:w-60 xl:w-64 object-cover rounded-lg">
+                        </div>
+    
+                        <!-- Doctor Info -->
+                        <div class="flex-1">
+                            <h3
+                                class="lg:text-2xl md:text-xl font-bold text-gray-700 mb-2 text-left md:text-center lg:text-left">
+                                <?php echo htmlspecialchars($doctor['full_name']); ?>
+                            </h3>
+                            <p class="text-gray-600 text-medium mb-1 ">
+                                <span class="font-semibold"><?php echo htmlspecialchars($doctor['category']); ?></span>
+                            </p>
+                            <p class="text-gray-600 text-medium mb-10 ">
+                                <span class="text-sm"><?php echo htmlspecialchars($doctor['exp']); ?> Years Experience
+                                    Overall</span>
+                            </p>
+    
+                            <p class="text-gray-600 text-sm mb-2">
+                                <span
+                                    class="text-indigo-500 font-semibold"><?php echo htmlspecialchars($doctor['address']); ?></span>
+                            </p>
+                            <p class="text-gray-600 text-sm mb-2">
+                                <span class="font-semibold">₹<?php echo htmlspecialchars($doctor['fees']); ?></span>
+                                Consultation
+                                Fees
+                            </p>
+                            <p class="text-gray-700 font-semibold text-sm mb-2">11 Specialties • 12 doctors</p>
+                            <p class="text-gray-600 text-sm mb-2"><span class="font-thin">🕒</span> MON - SUN 08:00AM - 10:30PM
+                            </p>
+                        </div>
+    
                         <!-- Rating -->
-                        <span class="bg-green-100 text-green-600 text-sm font-semibold px-16 py-2 rounded-lg transition">
-                            ⭐ 3.5 (35 rated)
-                        </span>
-
-                        <!-- Button -->
-                        <button
-                            class="bg-blue-500 text-white text-sm font-semibold px-16 py-2 rounded-lg hover:bg-blue-600 transition">
-                            Book clinic visit
-                        </button>
-                        <button
-                            class="bg-blue-500 text-white text-sm font-semibold px-16 py-2 rounded-lg hover:bg-blue-600 transition">
-                            <i class="ri-phone-fill"></i>
-                            Call Clinic   
-                        </button>
+                        <div class="flex flex-col items-center w-full md:w-1/4 space-y-4">
+                            <!-- Rating -->
+                            <span
+                                class="bg-green-100 text-green-600 text-sm font-semibold w-48 text-center py-2 rounded-lg transition">
+                                ⭐ 3.5 (35 rated)
+                            </span>
+    
+                            <!-- Buttons -->
+                            <button
+                                class="bg-blue-500 text-white text-sm font-semibold w-48 py-2 rounded-lg hover:bg-blue-600 transition">
+                                Book clinic visit
+                            </button>
+                            <button
+                                class="bg-blue-500 text-white text-sm font-semibold w-48 py-2 rounded-lg hover:bg-blue-600 transition flex items-center justify-center">
+                                <i class="ri-phone-fill mr-2"></i>
+                                Call Clinic
+                            </button>
+                        </div>
+    
+    
                     </div>
-
-
+                    <div class="mt-6">
+    
+                    </div>
                 </div>
-                <div class="mt-6">
-
-                </div>
-            </div>
+            </a>
         <?php } ?>
 
 

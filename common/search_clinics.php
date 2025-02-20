@@ -1,5 +1,5 @@
 <?php
-include 'functions.php';
+include 'common/functions.php';
 
 $pd = new PD;
 $searchQuery = isset($_GET['search']) ? trim($_GET['search']) : '';
