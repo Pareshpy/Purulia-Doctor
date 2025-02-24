@@ -46,6 +46,7 @@ if (isset($_SESSION['user_id'])) {
   href="https://cdn.jsdelivr.net/npm/tailgrids@2.2.2/assets/css/tailwind.min.css"
   rel="stylesheet"
 />
+<link href="https://cdn.jsdelivr.net/npm/pagedone@1.2.2/src/css/pagedone.css " rel="stylesheet"/>
 
   <title>Purulia Doctors</title>
 </head>

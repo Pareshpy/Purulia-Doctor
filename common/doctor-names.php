@@ -64,7 +64,7 @@ $doctors = json_decode($doctors, true);
         <div id="searchResult"></div>
 
         <?php foreach ($doctors as $doctor) { ?>
-            <a href="common/doctor-details.php?id=<?php echo htmlspecialchars($doctor['id']); ?>">
+            <a href="doctor-profile.php?id=<?php echo htmlspecialchars($doctor['id']); ?>">
                 <div class="max-w-7xl mx-auto bg-white shadow-md rounded-lg p-6 my-6 allClinics">
                     <div class="flex flex-col md:flex-row items-center gap-6">
                         <!-- Doctor Image -->

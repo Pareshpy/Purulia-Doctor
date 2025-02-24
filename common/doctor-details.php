@@ -1,5 +1,54 @@
 <?php
 include 'functions.php';
+
+if (isset($_GET['id'])) {
+    $doctor_id = $_GET['id'];
+    $api_url = "http://localhost/PD-Project/Purulia-Doctor/api/getDoctorByID";
+
+    // Use cURL for the request
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $api_url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
+    curl_setopt($ch, CURLOPT_POST, true);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode(["id" => $doctor_id]));
+
+    $response = curl_exec($ch);
+    $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    curl_close($ch);
+
+    if ($http_code === 200 && $response) {
+        $result = json_decode($response, true);
+
+        if ($result['status'] === 'success') {
+            $doctor = $result['data'];
+
+            // echo "<h2>Doctor Details</h2>";
+            // echo "<p>ID: " . htmlspecialchars($doctor['id']) . "</p>";
+            // echo "<p>doctor name: " . htmlspecialchars($doctor['full_name']) . "</p>";
+            // echo "<p>short email: " . htmlspecialchars($doctor['short_name']) . "</p>";
+            // echo "<p>doctor phone: " . htmlspecialchars($doctor['phone']) . "</p>";
+            // echo "<p>doctor email: " . htmlspecialchars($doctor['email']) . "</p>";
+            // echo "<p>registration no: " . htmlspecialchars($doctor['reg_no']) . "</p>";
+            // echo "<p>degrees: " . htmlspecialchars($doctor['degrees']) . "</p>";
+            // echo "<p>category: " . htmlspecialchars($doctor['category']) . "</p>";
+            // echo "<p>specialty: " . htmlspecialchars($doctor['specialty']) . "</p>";
+            // echo "<p>exp in years: " . htmlspecialchars($doctor['exp']) . "</p>";
+            // echo "<p>address: " . htmlspecialchars($doctor['address']) . "</p>";
+            // echo "<p>verified: " . htmlspecialchars($doctor['verified']) . "</p>";
+            // echo "<p>status: " . htmlspecialchars($doctor['status']) . "</p>";
+            // echo "<p>document: " . htmlspecialchars($doctor['document']) . "</p>";
+            // echo "<p>fees: " . htmlspecialchars($doctor['fees']) . "</p>";
+            // echo '<img src="../' . htmlspecialchars($doctor['photo']) . '" alt="' . htmlspecialchars($doctor['photo']) . '">';
+        } else {
+            echo "<p>" . htmlspecialchars($result['message']) . "</p>";
+        }
+    } else {
+        echo "<p>Failed to connect to API. HTTP Status: $http_code</p>";
+    }
+} else {
+    echo "No doctor ID found in URL.";
+}
 ?>
 <br>
 <div class="max-w-7xl mx-auto bg-white shadow-md rounded-lg p-6 my-6 allClinics">
@@ -10,28 +59,29 @@ include 'functions.php';
         </div>
         <div class="flex-1">
             <h3 class="lg:text-2xl md:text-xl font-bold text-gray-700 mb-2 text-left md:text-center lg:text-left">
-                Dr. Jaydeep Mandal
+            <?php echo htmlspecialchars($doctor['full_name']); ?>
             </h3>
             <p class="text-gray-600 text-medium ">
-                <span class="text-sm"> MBBS, DOMS, DNB - Ophthalmology</span>
+                <span class="text-sm"><?php echo htmlspecialchars($doctor['category']); ?></span>
             </p>
             <p class="text-gray-600 text-medium ">
-                <span class="text-sm">26 Years Experience
+                <span class="text-sm"><?php echo htmlspecialchars($doctor['exp']); ?> Years Experience
                     Overall</span>
             </p>
-            <span class="bg-green-100 text-green-600 text-sm font-semibold max-w-36 text-center py-2 rounded-lg transition block">
+            <span
+                class="bg-green-100 text-green-600 text-sm font-semibold max-w-36 text-center py-2 rounded-lg transition block">
                 ⭐ 3.5 (35 rated)
             </span>
             <p class="text-gray-600 w-max text-sm mb-2">
                 <span class="text-indigo-500 font-semibold"></span>
             </p>
             <p class="text-gray-600 text-medium ">
-                <span class="text-sm">Dr. Ranajit is a Phaco surgeon / Pediatric Ophthalmologist / Squint / Glaucoma
-                    specialist <br> with 25 yrs experience in Clinical practice both in India and abroad</span>
+                <span class="text-sm"><?php echo htmlspecialchars($doctor['full_name']); ?> is a <?php echo htmlspecialchars($doctor['category']); ?>
+                 <br> with <?php echo htmlspecialchars($doctor['exp']); ?> yrs experience in Clinical practice both in India and abroad</span>
             </p>
         </div>
         <div class="flex flex-col gap-6">
-            <span class="font-semibold">₹800</span>
+            <span class="font-semibold">₹<?php echo htmlspecialchars($doctor['fees']); ?></span>
             <span class="text-sm font-light">
                 <i class="ri-bank-card-line text-green-600"></i>
                 online payment available
@@ -45,17 +95,17 @@ include 'functions.php';
 </div>
 <div class="max-w-7xl mx-auto bg-white shadow-md rounded-lg p-6 my-6 allClinics">
     <div class="flex flex-row justify-evenly items-center ">
-        <div class="text-lg font-semibold text-gray-600 py-4">visiting hours</div>
-        <div class="text-lg font-semibold text-gray-600 py-4">stories</div>
-        <div class="text-lg font-semibold text-gray-600 py-4">overview</div>
+        <button class="text-lg font-semibold text-gray-600 py-4 hover:text-blue-500 " id="first" onclick="visit(event)">Visiting Hours</button>
+        <button class="text-lg font-semibold text-gray-600 py-4 hover:text-blue-500" id="second" onclick="story(event)">Stories</button>
+        <button class="text-lg font-semibold text-gray-600 py-4 hover:text-blue-500" id="third" onclick="overview(event)">Overview</button>
     </div>
     <div class="mt-4">
         <hr class="w-full text-gray-600 py-3 font-light">
     </div>
-    <div class="flex flex-col md:flex-row justify-between md:mx-5 my-5">
+    <div class="flex flex-col md:flex-row justify-between md:mx-5 my-5 animate" id="visitingHours">
         <div class="flex flex-col">
             <div class="text-gray-600 text-sm mb-4">
-                <span class="font-semibold">Saheb band, near Science Museum</span>
+                <span class="font-semibold"><?php echo htmlspecialchars($doctor['address']); ?></span>
             </div>
             <div class="flex flex-col gap-1">
                 <a href="#" class="text-indigo-500 font-bold">Deep Medical</a>
@@ -69,17 +119,7 @@ include 'functions.php';
             <p>10:00 AM - 01:00 PM</p>
             <p>02:00 PM - 05:00 PM</p>
         </div>
-        <!-- <div class="flex flex-col gap-6">
-                <span class="font-semibold">₹800</span>
-                <span class="text-sm font-light">
-                    <i class="ri-bank-card-line text-green-600"></i>
-                    online payment available
-                </span>
-                <button class="bg-blue-500 text-white text-sm font-semibold w-48 py-2 rounded-lg hover:bg-blue-600 transition">
-                    Book clinic visit
-                </button>
-            </div> -->
-
+        
         <!-- Date Picker Start -->
         <section class="bg-white py-6 ">
             <div class="container">
@@ -203,8 +243,75 @@ include 'functions.php';
 
 
     </div>
+    <div class=" flex-col md:flex-row justify-center md:mx-5 my-5 hidden animate-fadeInLeft" id="stories">
+        <p class="text-center">Stories Unavailable</p>
+    </div>
+
+    <div class=" flex-col md:flex-row justify-center md:mx-5 my-5 hidden animate-fade-left animate-once animate-ease-in-out" id="overview">
+        <p class="text-center">Doctor overview Unavailable</p>
+    </div>
 </div>
 
+
+<script src="https://cdn.jsdelivr.net/npm/pagedone@1.2.2/src/js/pagedone.js"></script>
+<script>
+    function visit(event) {
+        event.preventDefault()
+        let firstDiv = document.querySelector('#visitingHours');
+        let secondDiv = document.querySelector('#stories');         //select divs
+        let thirdDiv = document.querySelector('#overview');
+
+        let firstBtnColor = document.querySelector('#first');
+        let secondBtnColor = document.querySelector('#second');         // select btns
+        let thirdBtnColor = document.querySelector('#third');
+
+        firstDiv.classList.remove("hidden");
+        secondDiv.classList.add("hidden");          //hidden divs
+        thirdDiv.classList.add("hidden");
+        
+        firstBtnColor.classList.add("text-blue-500")
+        secondBtnColor.classList.remove("text-blue-500")        //color btns
+        thirdBtnColor.classList.remove("text-blue-500")
+    }
+
+    function story(event) {
+        event.preventDefault()
+        let firstDiv = document.querySelector('#visitingHours');
+        let secondDiv = document.querySelector('#stories');         //select divs
+        let thirdDiv = document.querySelector('#overview');
+
+        let firstBtnColor = document.querySelector('#first');
+        let secondBtnColor = document.querySelector('#second');         // select btns
+        let thirdBtnColor = document.querySelector('#third');
+
+        firstDiv.classList.add("hidden");
+        secondDiv.classList.remove("hidden");       //hidden divs
+        thirdDiv.classList.add("hidden");
+
+        firstBtnColor.classList.remove("text-blue-500")
+        secondBtnColor.classList.add("text-blue-500")       //color btns
+        thirdBtnColor.classList.remove("text-blue-500")
+    }
+
+    function overview(event) {
+        event.preventDefault()
+        let firstDiv = document.querySelector('#visitingHours');
+        let secondDiv = document.querySelector('#stories');         //select divs
+        let thirdDiv = document.querySelector('#overview');
+
+        let firstBtnColor = document.querySelector('#first');
+        let secondBtnColor = document.querySelector('#second');         // select btns
+        let thirdBtnColor = document.querySelector('#third');
+
+        firstDiv.classList.add("hidden");
+        secondDiv.classList.add("hidden");          //hidden divs
+        thirdDiv.classList.remove("hidden");
+
+        firstBtnColor.classList.remove("text-blue-500")
+        secondBtnColor.classList.remove("text-blue-500")            //color btns
+        thirdBtnColor.classList.add("text-blue-500")
+    }
+</script>
 <script>
     const datepicker = document.getElementById('datepicker');
     const datepickerContainer = document.getElementById('datepicker-container');

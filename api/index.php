@@ -270,7 +270,7 @@ $app->post('/verify', function (Request $req, Response $res, array $args) {
 });
 
 $app->post('/searchClinics', function (Request $req, Response $res, array $args) use ($app) {
-    $db = $app->getContainer()->get('db');  // Get database connection
+    $db = $app->getContainer()->get('db');
     $data = (object) $req->getParsedBody();
 
     if (!isset($data->input) || empty(trim($data->input))) {
@@ -287,6 +287,28 @@ $app->post('/searchClinics', function (Request $req, Response $res, array $args)
         return $res->withJson($results);
     } catch (PDOException $e) {
         return $res->withJson(['error' => 'Database query failed: ' . $e->getMessage()], 500);
+    }
+});
+
+$app->post('/getDoctorByID', function (Request $req, Response $res, array $args) {
+    $db = $this->get('db');
+    $data = (object) $req->getParsedBody();
+
+    if (isset($data->id)) {
+        $doctor_id = (int)$data->id;
+
+        $stmt = $db->prepare("SELECT * FROM doctors WHERE id = :id");
+        $stmt->bindParam(':id', $doctor_id, PDO::PARAM_INT);
+        $stmt->execute();
+        $doctor = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($doctor) {
+            return $res->withJson(["status" => "success", "data" => $doctor]);
+        } else {
+            return $res->withJson(["status" => "error", "message" => "Doctor not found"], 404);
+        }
+    } else {
+        return $res->withJson(["status" => "error", "message" => "Doctor ID is required"], 400);
     }
 });
 
